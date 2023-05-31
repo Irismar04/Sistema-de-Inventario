@@ -1,0 +1,16 @@
+{
+    "name": "irismar/sistemadeinventario",
+    "autoload": {
+        "psr-4": {
+            "Inventario\\": "src/",
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Irismar",
+            "email": "128446136+Irismar04@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
