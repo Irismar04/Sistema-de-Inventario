@@ -7,16 +7,16 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Panel de Administrador</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="/sistema-de-inventario/assets/css/style.min.css" rel="stylesheet" />
         <link href="/sistema-de-inventario/assets/css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <?= dirname(__DIR__) . '\..\assets\css\styles.css'; ?>
         <body class="sb-nav-fixed">
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public/index">Inversiones Zormar</a>
+            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public">Inversiones Zormar</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -35,7 +35,7 @@
                         <li><a class="dropdown-item" href="#!">Ajustes</a></li>
                         <li><a class="dropdown-item" href="#!">Registro de actividades</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/sistema-de-inventario/public/inicio">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -52,8 +52,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="Anadir.view.php">Añadir Productos</a>
-                                    <a class="nav-link" href="Lista.view.php">Lista de Productos</a>
+                                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Añadir Productos</a>
+                                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Lista de Productos</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -81,7 +81,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></i></div>
                                 Entrada de productos
                             </a>
-                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/Usuario">
+                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
                                 Salidas de productos
                             </a>
@@ -96,98 +96,33 @@
                     </div>
                     
                 </nav>
+                
             </div>
+            
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4"></h1>
-                        <ol class="breadcrumb mb-4">
-                            
-                                
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Tabla de Productos
+                <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">
+                                        <p>7</p>
+                                        <p>Usuarios Registrados</p></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">Más Información</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Categoria</th>
-                                            <th>Marca</th>
-                                            <th>Nombre</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Higiene Personal</th>
-                                            <th>Colgate</th>
-                                            <th>Cepillo Dentales</th>
-                                            <th>2</th>
-                                            <th>3$</th>
-                                            <th>06-03-2023</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Enlatados</td>
-                                            <td>Margarita</td>
-                                            <td>Atun enlanta</td>
-                                            <td>5</td>
-                                            <td>5$</td>
-                                            <td>07-03-2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charcuteria</td>
-                                            <td>SanBlas</td>
-                                            <td>Pollo</td>
-                                            <td>5</td>
-                                            <td>10$</td>
-                                            <td>08-03-2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Viveres</td>
-                                            <td>Fina</td>
-                                            <td>Harinas</td>
-                                            <td>20</td>
-                                            <td>17$</td>
-                                            <td>10-03-2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bebida</td>
-                                            <td>Pepsi</td>
-                                            <td>Refresco</td>
-                                            <td>5</td>
-                                            <td>7$</td>
-                                            <td>12-03-2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Viveres</td>
-                                            <td>Montalban</td>
-                                            <td>Azucar</td>
-                                            <td>4</td>
-                                            <td>3$</td>
-                                            <td>15-03-2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Viveres</td>
-                                            <td>Mavesa</td>
-                                            <td>Mantequilla</td>
-                                            <td>25</td>
-                                            <td>19$</td>
-                                            <td>17-03-2023</td>
-                                        </tr>
-                                        
-                                   </tbody>
-                                </table>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </main>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">
+                                        <p>15</p>
+                                        <p>Ultimos Productos Registrados</p></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">Mas Información</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -203,12 +138,12 @@
             </div>
         </div>
         
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/chart.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/demo/chart-area-demo.js"></script>
         <script src="/sistema-de-inventario/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/datatables-simple-demo.js"></script>
         <script>
           import DataTable from 'datatables.net';

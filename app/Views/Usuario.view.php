@@ -8,12 +8,12 @@
         <meta name="author" content="" />
         <title>Panel</title>
         <link href="/sistema-de-inventario/assets/css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public/index">Inversiones Zormar</a>
+            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public">Inversiones Zormar</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -31,7 +31,7 @@
                         <li><a class="dropdown-item" href="#!">Ajustes</a></li>
                         <li><a class="dropdown-item" href="#!">Registro de Actividades</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/sistema-de-inventario/public/inicio">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -95,11 +95,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    
-                            
-                            <li class="breadcrumb-item"><a href="index.html"></a></li>
-                            
-                            <div class="container-fluid">
+                    <div class="container-fluid">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp;ADMINISTRADOR</h3>
@@ -267,7 +263,7 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/scripts.js"></script>
     </body>
 </html>

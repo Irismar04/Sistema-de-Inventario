@@ -8,12 +8,12 @@
         <meta name="author" content="" />
         <title>Panel</title>
         <link href="/sistema-de-inventario/assets/css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public/index">Inversiones Zormar</a>
+            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public">Inversiones Zormar</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -31,7 +31,7 @@
                         <li><a class="dropdown-item" href="#!">Ajustes</a></li>
                         <li><a class="dropdown-item" href="#!">Registro de Actividades</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/sistema-de-inventario/public/inicio">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -48,7 +48,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/Anadir">Añadir Productos</a>
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Añadir Productos</a>
                                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Lista de Productos</a>
                                 </nav>
                             </div>
@@ -69,7 +69,7 @@
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                             </div>
-                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/Usuario.html">
+                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                                 <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 Gestion de usuarios
                             </a>
@@ -77,7 +77,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></i></div>
                                 Entrada de productos
                             </a>
-                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/Usuario">
+                            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
                                 Salidas de productos
                             </a>
@@ -203,7 +203,7 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/sistema-de-inventario/assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/scripts.js"></script>
     </body>
 </html>
