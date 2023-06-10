@@ -13,8 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         <?= dirname(__DIR__) . '\..\assets\css\styles.css'; ?>
-        <body class="sb-nav-fixed">
-            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public">Inversiones Zormar</a>
             <!-- Sidebar Toggle-->
@@ -26,16 +25,12 @@
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
-
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Ajustes</a></li>
-                        <li><a class="dropdown-item" href="#!">Registro de actividades</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="http://localhost/sistema-de-inventario/public/inicio">Cerrar sesión</a></li>
+                     <li><a class="dropdown-item" href="http://localhost/sistema-de-inventario/public/inicio">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -45,15 +40,25 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fa fa-cart-plus"></i></div>
-                            Productos
+                            
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            
+                            <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/anadir" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Gestionar Producto
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Añadir Productos</a>
-                                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Lista de Productos</a>
+
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Consultar Producto</a>
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Agregar Producto</a>
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar Entrada</a>
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar Salida</a>
+                                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar Categorias</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -64,80 +69,137 @@
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Agregar categorias
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        Agregar Categorias
+                                        
                                     </a>
-                                    
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        
+                                    </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Eliminar categorias
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        Eliminar Categorias
+                                        
                                     </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        
+                                    </div>
+                                    </nav>
                             </div>
                             <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
-                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
-                                Gestion de usuarios
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Gestion de Usuarios
                             </a>
                             <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
-                                <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></i></div>
-                                Entrada de productos
+                                <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                               Entradas de Productos
                             </a>
                             <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                                Salidas de productos
+                               Salidas de Productos
                             </a>
                             <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
                                 <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
-                                Historial
-                            </a>
-                            
-                                    
+                               Historial
                             </a>
                         </div>
+
                     </div>
-                    
+                   
                 </nav>
-                
             </div>
-            
             <div id="layoutSidenav_content">
                 <main>
-                <div class="row">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Bienvenido</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active"></li>
+                        </ol>
+                        <div class="row">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
+                                <div class="card bg-info text-white mb-4">
                                     <div class="card-body">
-                                        <p>7</p>
-                                        <p>Usuarios Registrados</p></div>
+                                    <p>Usuarios Registrados</p>
+                                    <p>05</p>
+                                        
+                                    </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Más Información</a>
+                                        <a class="small text-white stretched-link" href="#">Más información</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
+                                <div class="card bg-secondary text-white mb-4">
                                     <div class="card-body">
+                                        <p>Productos Registrados</p>
                                         <p>15</p>
-                                        <p>Ultimos Productos Registrados</p></div>
+                                    </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Mas Información</a>
+                                        <a class="small text-white stretched-link" href="#">Más información</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
-                                </main>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">
+                                        <p>Categorias Registradas</p>
+                                        <p>02</p>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">Más información</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">
+                                        <p>Marcas Registradas</p>
+                                        <p>03</p>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">Más información</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    
+                                <div class="card bg-dark text-white mb-4">  
+                                        Resumen de Actividades
+                                    </div>
+                                    <div class="card bg-primary text-white mb-4">
+                                        <br>
+                                    
+                                        <b><p>Ultimos producto agregado: Coca-Cola 2L</p>
+                                        <p>Ultimas entradas registrada: +20 PAN 1Kg</p>
+                                        <p>Ultimas salidas registradas: -3 Ariel 500g </p></b>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Derechos de autor &copy; Irismar Oliveros - Louwis Hernandez - 2023</div>
                             <div>
-                                <a href="#">Política de Privacidad</a>
+                                <a href="#">Políticas de Privacidad</a>
                                 &middot;
-                                <a href="#">Términos &amp; Condiciones</a>
+                                <a href="#">Terminos &amp; Condiciones</a>
                             </div>
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
-        
         <script src="/sistema-de-inventario/assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/scripts.js"></script>
         <script src="/sistema-de-inventario/assets/js/chart.min.js" crossorigin="anonymous"></script>
@@ -145,15 +207,5 @@
         <script src="/sistema-de-inventario/assets/demo/chart-bar-demo.js"></script>
         <script src="/sistema-de-inventario/assets/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="/sistema-de-inventario/assets/js/datatables-simple-demo.js"></script>
-        <script>
-          import DataTable from 'datatables.net';
-import languageDE from 'datatables.net-plugins/i18n/de-DE.mjs';
- 
-var table = new DataTable('#myTable', {
-    language: languageDE,
-});
-            </script>
-        
-    
     </body>
 </html>
