@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class InicioController 
+class InicioController extends Controller
 {
-    public function mostrar () 
+    public function mostrar() 
     {
-        require dirname(__DIR__) . '/Views/Inicio.view.php';
+        return $this->ver('Inicio');
     }
 }

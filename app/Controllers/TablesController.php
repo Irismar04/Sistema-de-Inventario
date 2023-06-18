@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class TablesController 
+class TablesController extends Controller
 {
-    public function mostrar () 
+    public function mostrar() 
     {
-        require dirname(__DIR__) . '/Views/Tables.view.php';
+        return $this->ver('Tables');
     }
 }

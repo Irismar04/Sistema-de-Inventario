@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class UsuarioController 
+class UsuarioController extends Controller
 {
-    public function mostrar () 
+    public function mostrar() 
     {
-        require dirname(__DIR__) . '/Views/Usuario.view.php';
+        return $this->ver('Usuario');
     }
 }

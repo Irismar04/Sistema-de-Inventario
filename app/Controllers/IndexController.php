@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class IndexController 
+class IndexController  extends Controller 
 {
-    public function mostrar () 
+    public function mostrar() 
     {
-        require dirname(__DIR__) . '/Views/index.view.php';
+        return $this->ver('Index');
     }
 }

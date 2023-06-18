@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class AnadirController 
+class AnadirController extends Controller
 {
     public function mostrar () 
     {
-        require dirname(__DIR__) . '/Views/Anadir.view.php';
+        return $this->ver('Anadir');
     }
 }
