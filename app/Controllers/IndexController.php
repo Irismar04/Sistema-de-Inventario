@@ -6,6 +6,6 @@ class IndexController  extends Controller
 {
     public function mostrar() 
     {
-        return $this->ver('Index');
+        return $this->ver('Index', ['nombre' => 'Inversiones Zormar']);
     }
 }

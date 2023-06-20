@@ -15,7 +15,7 @@ $router = new Router;
 
 $router->get('/sistema-de-inventario/public/', function (){
     $controlador = new IndexController;
-    $controlador->mostrar();
+   echo $controlador->mostrar();
 });
 
 
