@@ -1,24 +1,77 @@
 <?php
-declare(strict_types=1);
+
+
 namespace Inventario\Routing;
+
+use Inventario\Routing\HttpMethod;
 
 class Router 
 {
     public array $rutas;
 
-    public function get(string $uri, mixed $action): void
+
+    public function correr ($request)
     {
-        $this->rutas['GET'][$uri] = $action;
+        $accion = $this->rutas[$request->method][$request->path] ?? null;
+        if ($accion == null) {
+            throw new HttpNotFoundException();
+
+        }
+        if (is_array($accion)) {
+            return $this->llamarMetodoEnClase($accion);
+        }
+        throw new HttpNotFoundException();
     }
-    public function correr()
+
+    private function crearRuta ($metodo, $uri, $accion)
+
     {
-        $metodo = $_SERVER['REQUEST_METHOD'];
-        $uri = $_SERVER['REQUEST_URI'];
-
-        $accion = $this->rutas[$metodo][$uri];
-
-        $accion();
+        $this->rutas[$metodo][$uri] = $accion;
 
     }
+        private function llamarMetodoEnClase($accion)
+        {
+            [$clase, $metodo] = $accion;
+
+            if (class_exists($clase)) 
+            {
+                 $controller = $clase;
+                if (method_exists($clase, $metodo))
+                {
+                    return call_user_func_array([new $controller, $metodo], []);
+                }
+            }
+        }
+
+    public function get($uri, $accion)
+
+    {
+        return $this->crearRuta(HttpMethod:: GET, $uri, $accion);
+    }
+
+    public function post($uri, $accion)
+
+    {
+        return $this->crearRuta(HttpMethod:: POST, $uri, $accion);
+    }
+
+    public function put($uri, $accion)
+
+    {
+        return $this->crearRuta(HttpMethod:: PUT, $uri, $accion);
+    }
+
+    public function PATCH($uri, $accion)
+
+    {
+        return $this->crearRuta(HttpMethod:: PATCH, $uri, $accion);
+    }
+
+    public function delete($uri, $accion)
+
+    {
+        return $this->crearRuta(HttpMethod:: DELETE, $uri, $accion);
+    }
+
     
 }

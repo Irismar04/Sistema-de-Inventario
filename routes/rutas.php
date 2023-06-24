@@ -1,6 +1,6 @@
 <?php 
 
-declare(strict_types=1);
+
 use Inventario\Routing\Router;
 use App\Controllers\IndexController;
 use App\Controllers\AnadirController;
@@ -13,10 +13,8 @@ use App\Controllers\UsuarioController;
 
 $router = new Router;
 
-$router->get('/sistema-de-inventario/public/', function (){
-    $controlador = new IndexController;
-   echo $controlador->mostrar();
-});
+$router->get('/sistema-de-inventario/public', [IndexController::class, 'mostrar']);
+
 
 
 $router->get('/sistema-de-inventario/public/anadir', function (){
