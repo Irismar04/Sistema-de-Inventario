@@ -15,30 +15,12 @@ $router = new Router;
 
 $router->get('/sistema-de-inventario/public', [IndexController::class, 'mostrar']);
 
+$router->get('/sistema-de-inventario/public/anadir', [anadirController::class, 'mostrar']);
 
+$router->get('/sistema-de-inventario/public/inicio', [InicioController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public/anadir', function (){
-    $controlador = new AnadirController;
-    $controlador->mostrar();
-});
+$router->get('/sistema-de-inventario/public/lista', [listaController::class, 'mostrar']);
 
+$router->get('/sistema-de-inventario/public/tables', [tablesController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public/inicio', function (){
-    $controlador = new InicioController;
-    $controlador->mostrar();
-});
-
-$router->get('/sistema-de-inventario/public/lista', function (){
-    $controlador = new ListaController;
-    $controlador->mostrar();
-});
-
-$router->get('/sistema-de-inventario/public/tables', function (){
-    $controlador = new TablesController;
-    $controlador->mostrar();
-});
-
-$router->get('/sistema-de-inventario/public/usuario', function (){
-    $controlador = new UsuarioController;
-    $controlador->mostrar();
-});
+$router->get('/sistema-de-inventario/public/usuario', [usuarioController::class, 'mostrar']);

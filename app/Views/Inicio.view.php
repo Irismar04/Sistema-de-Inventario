@@ -35,12 +35,19 @@
 
                                 </div>
                                 <br>
-                                <div class="form-group">
-                                    <label class="small mb-1" for="clave"><i class="fas fa-key"></i>Contraseña</label>
-                                    <input class="form-control py-3" id="clave" name="clave" type="password"
-                                        placeholder="Ingrese Contraseña" />
-
-                                </div>
+                                <form id="form1">
+                            <div class="container">
+                            <div class="row">
+                        <div class="col-md-6">
+        
+                        <label class="small mb-1" for="clave"><i class="fas fa-key"></i>Contraseña</label>
+                        <div class="input-group">
+                        <input id="clave" type="Password" class="form-control py-3" placeholder="Ingrese Contraseña"/>
+                        <div class="input-group-append">
+    <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+          </div>
+    </div>
+      </div>
 
                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                     <a class="btn btn-primary" href="http://localhost/sistema-de-inventario/public">Iniciar Sesión</a>
