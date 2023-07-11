@@ -10,12 +10,11 @@
         <link href="/sistema-de-inventario/assets/css/style.min.css" rel="stylesheet" />
         <link href="/sistema-de-inventario/assets/css/styles.css" rel="stylesheet" />
         <script src="/sistema-de-inventario/assets/js/all.js" crossorigin="anonymous"></script>
-    </head>
+</head>
     <body class="sb-nav-fixed">
-        <?= dirname(__DIR__) . '\..\assets\css\styles.css'; ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public">Inversiones Zormar</a>
+            <a class="navbar-brand ps-3" href="http://localhost/sistema-de-inventario/public"><?= $titulo ?></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
