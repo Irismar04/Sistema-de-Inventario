@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Inventario\View;
 
 use Exception;
 
-class ViewEngine 
+class ViewEngine
 {
     protected $viewPath;
     protected $layoutPath;
@@ -16,31 +16,37 @@ class ViewEngine
         $this->layoutPath = dirname(__DIR__) . '/../app/Views/layouts/';
         $this->contentSlot = '{{content}}';
     }
+
     public function render($view)
     {
-        $viewContent = $this->getView ($view->file, $view->data);
+        $viewContent = $this->getView($view->file, $view->data);
         if (!$view->layout) {
             return $viewContent;
         }
         $layoutContent = $this->getLayout($view->layout);
         return str_replace($this->contentSlot, $viewContent, $layoutContent);
     }
-    private function getView ($view, $params)
+
+    private function getView($view, $params)
     {
         return $this->getContentFile($this->viewPath . $view . ".view.php", $params);
     }
-        private function getLayout($layout)
+
+    private function getLayout($layout)
     {
         return $this->getContentFile($this->layoutPath . $layout . ".view.php");
     }
-    private function getContentFile ($filePath, $data = [])
+
+    private function getContentFile($filePath, $data = [])
     {
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $$key = $value;
         }
-        if (!file_exists($filePath)){
+
+        if (!file_exists($filePath)) {
             throw new Exception();
         }
+
         ob_start();
         include $filePath;
         $content = (string) ob_get_contents();
@@ -49,8 +55,3 @@ class ViewEngine
     }
 
 }
-
-    
-
-
-

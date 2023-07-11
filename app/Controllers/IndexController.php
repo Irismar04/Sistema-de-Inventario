@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-class IndexController  extends Controller 
+class IndexController extends Controller
 {
-    public function mostrar() 
+    public function mostrar()
     {
         return $this->ver('Index', ['nombre' => 'Inversiones Zormar']);
     }

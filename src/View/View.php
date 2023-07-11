@@ -1,9 +1,8 @@
-<?php 
+<?php
 
 namespace Inventario\View;
 
-class View 
-
+class View
 {
     public $file;
     public $data;
@@ -13,14 +12,12 @@ class View
         $file,
         $data = [],
         $layout = 'default'
-         
     ) {
-
-    $this-> file = $file;
-    $this-> data = $data;
-    $this->layout = $layout;
-        
+        $this->file = $file;
+        $this->data = $data;
+        $this->layout = $layout;
     }
+
     public function __get($name)
     {
         return $this->data[$name] ? $this->data[$name] : null;

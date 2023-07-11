@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 use Inventario\Routing\Router;
@@ -9,18 +9,29 @@ use App\Controllers\ListaController;
 use App\Controllers\TablesController;
 use App\Controllers\UsuarioController;
 
+$router = new Router();
 
+$router->get('/', [IndexController::class, 'mostrar']);
 
-$router = new Router;
+$router->get('/anadir', [AnadirController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public', [IndexController::class, 'mostrar']);
+$router->get('/inicio', [InicioController::class, 'mostrar']);
 
 $router->get('/sistema-de-inventario/public/anadir', [anadirController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public/inicio', [InicioController::class, 'mostrar']);
+$router->get('/lista', [ListaController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public/lista', [listaController::class, 'mostrar']);
+$router->get('/sistema-de-inventario/public/', function () {
+    $controlador = new IndexController();
+    $controlador->mostrar();
+});
 
-$router->get('/sistema-de-inventario/public/tables', [tablesController::class, 'mostrar']);
 
-$router->get('/sistema-de-inventario/public/usuario', [usuarioController::class, 'mostrar']);
+$router->get('/sistema-de-inventario/public/anadir', function () {
+    $controlador = new AnadirController();
+    $controlador->mostrar();
+});
+
+
+
+$router->get('/usuario', [UsuarioController::class, 'mostrar']);
