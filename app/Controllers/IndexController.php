@@ -2,10 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\Users;
+
 class IndexController extends Controller
 {
     public function mostrar()
     {
-        return $this->ver('Index', ['nombre' => 'Inversiones Zormar']);
+        $modelo = new Users();
+        $usuarios = $modelo->todos();
+        return $this->ver('index', [
+            'nombre' => 'Inversiones Zormar',
+            'usuarios' => $usuarios
+        ]);
     }
 }
