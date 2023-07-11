@@ -1,17 +1,17 @@
-<?php 
+<?php
 
 namespace Inventario\View;
 
 use Exception;
 
-class ViewEngine 
+class ViewEngine
 {
-
     protected $viewPath;
     protected $layoutPath;
     protected $contentSlot;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->viewPath = dirname(__DIR__) . '/../app/Views/';
         $this->layoutPath = dirname(__DIR__) . '/../app/Views/layouts/';
         $this->contentSlot = '{{content}}';

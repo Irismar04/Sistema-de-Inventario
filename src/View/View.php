@@ -12,7 +12,7 @@ class View
         $file,
         $data = [],
         $layout = 'default'
-        ) {
+    ) {
         $this->file = $file;
         $this->data = $data;
         $this->layout = $layout;
@@ -20,6 +20,6 @@ class View
 
     public function __get($name)
     {
-        return $this->data[$name] ? $this->data[$name] :  null;
+        return $this->data[$name] ? $this->data[$name] : null;
     }
 }

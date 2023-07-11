@@ -13,7 +13,6 @@ class Controller
     {
         $this->viewEngine = new ViewEngine();
     }
-
     public function ver($file, $params = [], $layout = "default")
     {
         $view = new View($file, $params, $layout);

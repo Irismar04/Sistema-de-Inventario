@@ -23,8 +23,8 @@ class Router
     }
 
     private function crearRuta($metodo, $uri, $accion)
-    {   
-        if($uri != '/'){
+    {
+        if($uri != '/') {
             $ruta = $this->carpetas . $uri;
         } else {
             $ruta = $this->carpetas;
@@ -36,13 +36,13 @@ class Router
     {
         [$clase, $metodo] = $accion;
         if (class_exists($clase)) {
-            $controller = new $clase;
+            $controller = new $clase();
             if (method_exists($clase, $metodo)) {
                 return call_user_func_array([$controller, $metodo], []);
             }
         }
     }
-    
+
     public function get($uri, $accion)
     {
         return $this->crearRuta(HttpMethod::GET, $uri, $accion);
