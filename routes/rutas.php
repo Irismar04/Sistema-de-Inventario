@@ -6,6 +6,7 @@ use App\Controllers\IndexController;
 use App\Controllers\AnadirController;
 use App\Controllers\InicioController;
 use App\Controllers\ListaController;
+use App\Controllers\ProductoController;
 use App\Controllers\TablesController;
 use App\Controllers\UsuarioController;
 
@@ -35,3 +36,5 @@ $router->get('/sistema-de-inventario/public/anadir', function () {
 
 
 $router->get('/usuario', [UsuarioController::class, 'mostrar']);
+
+$router->controlador('/productos', ProductoController::class);

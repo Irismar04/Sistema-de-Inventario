@@ -39,6 +39,8 @@ class Router
             $controller = new $clase();
             if (method_exists($clase, $metodo)) {
                 return call_user_func_array([$controller, $metodo], []);
+            } else {
+                throw new HttpNotFoundException();
             }
         }
     }
@@ -89,6 +91,6 @@ class Router
         $this->patch($uri, [$controller, 'update']);
 
         // Delete
-        $this->delete($uri, [$controller, 'update']);
+        $this->delete($uri, [$controller, 'destroy']);
     }
 }
