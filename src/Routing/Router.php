@@ -91,6 +91,6 @@ class Router
         $this->patch($uri, [$controller, 'update']);
 
         // Delete
-        $this->delete($uri, [$controller, 'update']);
+        $this->delete($uri, [$controller, 'destroy']);
     }
 }
