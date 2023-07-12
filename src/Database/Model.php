@@ -53,4 +53,10 @@ abstract class Model
 
         return $registro;
     }
+
+    abstract public function guardar($datosForm);
+
+    abstract public function actualizar($id, $datosForm);
+
+    abstract public function borrar($id);
 }
