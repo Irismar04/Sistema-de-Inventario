@@ -39,6 +39,8 @@ class Router
             $controller = new $clase();
             if (method_exists($clase, $metodo)) {
                 return call_user_func_array([$controller, $metodo], []);
+            } else {
+                throw new HttpNotFoundException();
             }
         }
     }

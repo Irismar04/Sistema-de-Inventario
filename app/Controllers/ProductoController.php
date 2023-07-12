@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class AnadirController extends Controller
+class ProductoController extends Controller
 {
     public function mostrar()
     {
-        return $this->ver('Anadir');
+        return $this->ver('Lista');
     }
 }
