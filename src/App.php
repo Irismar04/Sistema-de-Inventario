@@ -14,9 +14,10 @@ class App
     protected $router;
     protected $viewEngine;
 
-    public function __construct($router, $config) {
+    public function __construct($router, $config)
+    {
         $this->router = $router;
-        $this->viewEngine = new ViewEngine;
+        $this->viewEngine = new ViewEngine();
         static::$db = new DB($config ?? []);
     }
 
@@ -27,15 +28,12 @@ class App
 
     public function correr(): void
     {
-        try
-        {
+        try {
             $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
             echo $this->router->correr($request);
-        } 
-        catch (HttpNotFoundException $e) 
-        {
+        } catch (HttpNotFoundException $e) {
             http_response_code(404);
-            $view = new View("errors/404", ['message' => $e->getMessage(), 'code' => $e->getCode()]);
+            $view = new View("errors/404", ['message' => $e->getMessage(), 'code' => $e->getCode()], '404', null);
             echo $this->viewEngine->render($view);
         }
     }

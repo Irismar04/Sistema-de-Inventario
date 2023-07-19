@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Inventario\Database\Model as BaseModel;
 
-class Model extends BaseModel
+abstract class Model extends BaseModel
 {
+    abstract public function guardar($datosForm);
+
+    abstract public function actualizar($datosForm);
+
+    abstract public function destruir($id);
 }

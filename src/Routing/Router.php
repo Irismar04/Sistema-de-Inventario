@@ -7,6 +7,18 @@ class Router
     public $rutas;
     private $carpetas = '/sistema-de-inventario/public';
 
+    public function authMiddleware($path)
+    {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: {$this->carpetas}/login");
+            exit;
+        } else {
+            if($path === "{$this->carpetas}/login") {
+                header("Location: {$this->carpetas}/");
+            }
+        }
+    }
+
     public function correr($request)
     {
         $accion = $this->rutas[$request->method][$request->path] ?? null;
@@ -17,6 +29,7 @@ class Router
             return call_user_func($accion);
         }
         if (is_array($accion)) {
+            $this->authMiddleware($request->path);
             return $this->llamarMetodoEnClase($accion);
         }
         throw new HttpNotFoundException();
@@ -76,21 +89,21 @@ class Router
         $this->get($uri, [$controller, 'index']);
 
         // Create
-        $this->get("$uri/create", [$controller, 'create']);
+        $this->get("$uri/crear", [$controller, 'crear']);
 
         // Store
-        $this->post($uri, [$controller, 'store']);
+        $this->post($uri, [$controller, 'guardar']);
 
         // Show
-        $this->get("$uri/show", [$controller, 'show']);
+        $this->get("$uri/mostrar", [$controller, 'mostrar']);
 
         // Edit
-        $this->get("$uri/edit", [$controller, 'edit']);
+        $this->get("$uri/editar", [$controller, 'editar']);
 
         // Update
-        $this->patch($uri, [$controller, 'update']);
+        $this->post("$uri/actualizar", [$controller, 'actualizar']);
 
         // Delete
-        $this->delete($uri, [$controller, 'destroy']);
+        $this->get("$uri/destruir", [$controller, 'destruir']);
     }
 }
