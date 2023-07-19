@@ -13,9 +13,9 @@ class Controller
     {
         $this->viewEngine = new ViewEngine();
     }
-    public function ver($file, $params = [], $layout = "default")
+    public function ver($file, $params = [], $titulo = 'Inversiones Zormar', $layout = "default")
     {
-        $view = new View($file, $params, $layout);
+        $view = new View($file, $params, $titulo, $layout);
         return $this->viewEngine->render($view);
     }
 }

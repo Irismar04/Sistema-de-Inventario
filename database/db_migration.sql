@@ -26,10 +26,11 @@ USE sistema_de_inventario;
         id_usuario int NOT NULL AUTO_INCREMENT,
         id_rol int NOT NULL,
         nom_usuario VARCHAR (255) NOT NULL,
-        clave INT NOT NULL,
+        clave VARCHAR (255) NOT NULL,
         estado INT NOT NULL DEFAULT 1,
         PRIMARY KEY(id_usuario),
-        FOREIGN KEY (id_rol) REFERENCES rol (id_rol)
+        FOREIGN KEY (id_rol) REFERENCES rol (id_rol),
+        UNIQUE(nom_usuario)
     );
     CREATE TABLE historial(
         id_historial int NOT NULL AUTO_INCREMENT,

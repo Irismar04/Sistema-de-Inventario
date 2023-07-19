@@ -9,12 +9,13 @@ class ViewEngine
     protected $viewPath;
     protected $layoutPath;
     protected $contentSlot;
-
+    protected $titleSlot;
     public function __construct()
     {
         $this->viewPath = dirname(__DIR__) . '/../app/Views/';
         $this->layoutPath = dirname(__DIR__) . '/../app/Views/layouts/';
         $this->contentSlot = '{{content}}';
+        $this->titleSlot = '{{title}}';
     }
 
     public function render($view)
@@ -23,7 +24,7 @@ class ViewEngine
         if (!$view->layout) {
             return $viewContent;
         }
-        $layoutContent = $this->getLayout($view->layout);
+        $layoutContent = $this->getLayout($view->layout, $view->titulo);
         return str_replace($this->contentSlot, $viewContent, $layoutContent);
     }
 
@@ -32,9 +33,10 @@ class ViewEngine
         return $this->getContentFile($this->viewPath . $view . ".view.php", $params);
     }
 
-    private function getLayout($layout)
+    private function getLayout($layout, $titulo)
     {
-        return $this->getContentFile($this->layoutPath . $layout . ".view.php");
+        $data = ['titulo' => $titulo];
+        return $this->getContentFile($this->layoutPath . $layout . ".view.php", $data);
     }
 
     private function getContentFile($filePath, $data = [])

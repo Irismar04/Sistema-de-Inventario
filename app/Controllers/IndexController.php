@@ -13,6 +13,6 @@ class IndexController extends Controller
         return $this->ver('index', [
             'nombre' => 'Inversiones Zormar',
             'usuarios' => $usuarios
-        ]);
+        ], 'Inversiones Zormar - Dashboard');
     }
 }
