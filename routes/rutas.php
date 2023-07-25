@@ -7,6 +7,7 @@ use App\Controllers\AnadirController;
 use App\Controllers\CategoriaController;
 use App\Controllers\InicioController;
 use App\Controllers\ListaController;
+use App\Controllers\MarcaController;
 use App\Controllers\ProductoController;
 use App\Controllers\UsuarioController;
 use Inventario\Routing\Request;
@@ -36,6 +37,11 @@ $router->get('/logout', function () {
 // Rutas para las categorias
 $router->controlador('/categorias', CategoriaController::class);
 
+// Rutas para las marcas
+$router->controlador('/marcas', MarcaController::class);
+
+// Rutas para los productos
+$router->controlador('/productos', ProductoController::class);
 
 $router->get('/', [IndexController::class, 'mostrar']);
 
@@ -61,5 +67,3 @@ $router->get('/sistema-de-inventario/public/anadir', function () {
 
 
 $router->get('/usuario', [UsuarioController::class, 'mostrar']);
-
-$router->controlador('/productos', ProductoController::class);

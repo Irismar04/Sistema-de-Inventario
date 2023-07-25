@@ -10,19 +10,19 @@ class CategoriaController extends Controller
     {
         $modelo = new Categoria();
         $categorias = $modelo->todos();
-        return $this->ver('categorias/index', ['categorias' => $categorias]);
+        return parent::ver('categorias/index', ['categorias' => $categorias]);
     }
 
     public function crear()
     {
-        return $this->ver('categorias/crear');
+        return parent::ver('categorias/crear');
     }
 
     public function editar()
     {
         $modelo = new Categoria();
         $categoria = $modelo->uno($_GET['id']);
-        return $this->ver('categorias/editar', ['categoria' => $categoria]);
+        return parent::ver('categorias/editar', ['categoria' => $categoria]);
     }
 
     public function guardar()
@@ -30,7 +30,7 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->guardar($_POST);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias');
     }
 
     public function actualizar()
@@ -38,7 +38,7 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->actualizar($_POST);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias');
     }
 
     public function destruir()
@@ -46,6 +46,6 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->destruir($_GET['id']);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias');
     }
 }

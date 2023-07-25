@@ -7,15 +7,15 @@ use Inventario\View\ViewEngine;
 
 class Controller
 {
-    public $viewEngine;
-
-    public function __construct()
-    {
-        $this->viewEngine = new ViewEngine();
-    }
     public function ver($file, $params = [], $titulo = 'Inversiones Zormar', $layout = "default")
     {
+        $viewEngine = new ViewEngine();
         $view = new View($file, $params, $titulo, $layout);
-        return $this->viewEngine->render($view);
+        return $viewEngine->render($view);
+    }
+
+    public function redirigir($ruta)
+    {
+        header("Location: /sistema-de-inventario/public/". $ruta);
     }
 }

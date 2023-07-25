@@ -6,29 +6,16 @@ class ProductoController extends Controller
 {
     public function index()
     {
+        return parent::ver('categorias/index', []);
     }
 
-    public function create()
+    public function crear()
     {
+        return parent::ver('categorias/crear');
     }
 
-    public function store($producto)
+    public function editar()
     {
-    }
-
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update($id, $producto)
-    {
-    }
-
-    public function destroy($id)
-    {
+        return parent::ver('categorias/editar', []);
     }
 }

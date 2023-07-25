@@ -6,7 +6,9 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/anadir"
+
+                <!-- Productos -->
+                <a class="nav-link collapsed" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -16,19 +18,16 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Consultar
-                            Producto</a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/anadir">Agregar
-                            Producto</a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar
-                            Entrada</a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar
-                            Salida</a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/lista">Consultar
-                            Categorias</a>
-                    </nav>
+                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos">
+                            Consultar Producto
+                        </a>
+                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos/crear">
+                            Agregar Producto
+                        </a>
                 </div>
+                <!-- Fin Productos -->
+
+                <!-- Categorias -->
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -50,6 +49,32 @@
                         </div>
                     </nav>
                 </div>
+                <!-- Fin Categorias -->
+
+                <!-- Marcas -->
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas"
+                    aria-expanded="false" aria-controls="collapseMarcas">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Marcas
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseMarcas" aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas">
+                        Consultar Marcas
+                    </a>
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas/crear">
+                        Agregar Marcas
+                    </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+
+                        </div>
+                    </nav>
+                </div>
+                <!-- Fin Marcas -->
+
                 <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Gestion de Usuarios
