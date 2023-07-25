@@ -2,14 +2,15 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="http://localhost/sistema-de-inventario/public">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
 
                 <!-- Productos -->
-                <a class="nav-link collapsed" href="#"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+
+<a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/anadir"
+        data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Gestionar Producto
@@ -18,16 +19,18 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos">
-                            Consultar Producto
-                        </a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos/crear">
-                            Agregar Producto
-                        </a>
-                </div>
-                <!-- Fin Productos -->
 
-                <!-- Categorias -->
+<a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos">Consultar</a>
+<a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos/crear">Agregar</a>
+                        
+                        
+                    </nav>
+                </div>
+
+                <!--Fin de Productos -->
+
+
+                <!--Categorias-->
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -38,10 +41,10 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias">
-                        Consultar Categorias
+                        Consultar
                     </a>
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias/crear">
-                        Agregar Categorias
+                        Agregar 
                     </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
@@ -49,12 +52,12 @@
                         </div>
                     </nav>
                 </div>
-                <!-- Fin Categorias -->
 
-                <!-- Marcas -->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas"
-                    aria-expanded="false" aria-controls="collapseMarcas">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                <!--Fin Categoria -->
+
+                <!--Marcas-->
+ <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas" aria-expanded="false" aria-controls="collapsePages">
+        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Marcas
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -62,10 +65,10 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas">
-                        Consultar Marcas
+                        Consultar
                     </a>
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas/crear">
-                        Agregar Marcas
+                        Agregar 
                     </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
@@ -73,9 +76,12 @@
                         </div>
                     </nav>
                 </div>
-                <!-- Fin Marcas -->
 
-                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                <!--Fin Marcas -->
+
+
+                <!-- Productos -->
+        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Gestion de Usuarios
                 </a>

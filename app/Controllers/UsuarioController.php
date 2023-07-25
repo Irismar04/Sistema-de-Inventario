@@ -6,6 +6,6 @@ class UsuarioController extends Controller
 {
     public function mostrar() 
     {
-        return $this->ver('Usuario');
+        return parent::ver('Usuario');
     }
 }

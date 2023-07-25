@@ -8,7 +8,7 @@ class InicioController extends Controller
 {
     public function mostrar()
     {
-        return $this->ver('inicio', [], '', null);
+        return parent::ver('inicio', [], '', null);
     }
 
     public function login($datos)

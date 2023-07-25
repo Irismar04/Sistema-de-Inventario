@@ -27,40 +27,33 @@
                                     alt="Logo InternetCtrl"></p>
 
 
-                        </div>
-                        <div class="card-body">
-                            <form method="post" action="/sistema-de-inventario/public/login">
-                                <div class="form-group">
-                                    <label class="small mb-1" for="usuario"><i class="fas fa-user"></i>Usuario</label>
-                                    <input class="form-control py-3" id="usuario" name="usuario" type="text"
+                </div>
+            <div class="card-body">
+    <form method="post" action="/sistema-de-inventario/public/login">
+    <div class="form-group">
+    <label class="small mb-1" for="usuario"><i class="fas fa-user"></i>Usuario</label>
+    <input class="form-control py-3" id="usuario" name="usuario" type="text"
                                         placeholder="Ingrese Usuario" />
+</div>
+    <br>
+    <form id="form1">
+            <div class="container">
+    <div class="row">
+    <div class="col-md-">
 
-                                </div>
-                                <br>
-                                <form id="form1">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6">
+    <label class="small mb-1" for="clave"><i class="fas fa-key"></i>Contraseña</label>
+        
+<input id="clave" type="Password" name="contrasena" class="form-control py-3" placeholder="Ingrese Contraseña" />
+    
+           
+            </div>
 
-                                                <label class="small mb-1" for="clave"><i
-                                                        class="fas fa-key"></i>Contraseña</label>
-                                                <div class="input-group">
-                                                    <input id="clave" type="Password" name="contrasena"
-                                                        class="form-control py-3" placeholder="Ingrese Contraseña" />
-                                                    <div class="input-group-append">
-                                                        <button id="show_password" class="btn btn-primary" type="button"
-                                                            onclick="mostrarPassword()"> <span
-                                                                class="fa fa-eye-slash icon"></span> </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    <input class="btn btn-primary" type="reset" value="Limpiar"></a>
 
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                                                <input class="btn btn-primary" type="reset" value="Limpiar"></a>
-
-                                            </div>
-                                </form>
+                </div>
+                    </form>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ class IndexController extends Controller
     {
         $modelo = new Users();
         $usuarios = $modelo->todos();
-        return $this->ver('index', [
+        return parent::ver('index', [
             'nombre' => 'Inversiones Zormar',
             'usuarios' => $usuarios
         ], 'Inversiones Zormar - Dashboard');

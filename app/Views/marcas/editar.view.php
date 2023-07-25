@@ -8,7 +8,7 @@
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre de la marca</label>
 
-                        <input type="text" class="form-control" value="<?= $marca['nom_marca'] ?>" name="nombre" id="nombre" placeholder="Nombre de la marca" autofocus />
+                        <input type="text" class="form-control" value="<?= $categoria['nom_categoria'] ?>" name="nombre" id="nombre" placeholder="Nombre de la marca" autofocus />
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0"></div>
                         <input type="hidden" name="id" value="<?= $marca['id_marca'] ?>">
                         <button class="btn btn-success" type="submit">Editar</button>

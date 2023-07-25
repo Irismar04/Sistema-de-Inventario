@@ -6,6 +6,6 @@ class ListaController extends Controller
 {
     public function mostrar() 
     {
-        return $this->ver('Lista');
+        return parent::ver('Lista');
     }
 }

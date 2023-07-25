@@ -6,6 +6,6 @@ class AnadirController extends Controller
 {
     public function mostrar()
     {
-        return $this->ver('Anadir');
+        return parent::ver('Anadir');
     }
 }
