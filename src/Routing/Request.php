@@ -4,9 +4,9 @@ namespace Inventario\Routing;
 
 class Request
 {
-    public array $uri;
-    public string $method;
-    public string $path;
+    public $uri;
+    public $method;
+    public $path;
 
     public function __construct($uri, $method)
     {
