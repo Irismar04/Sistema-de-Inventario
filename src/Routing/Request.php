@@ -15,7 +15,7 @@ class Request
         $this->setPath($this->uri['path']);
     }
 
-    public function setPath(string $uri): void
+    public function setPath(string $uri)
     {
         if (strlen($uri) != 1) {
             $uri =  rtrim($uri, "/");
