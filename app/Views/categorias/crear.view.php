@@ -3,15 +3,16 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html"></a></li>
             <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
-                <h2 class="text-center font-weight-light my-4">Formulario de Añadir Categoria</h2>
-                <form method="post" action="http://localhost/sistema-de-inventario/public/categorias">
+                <h2 class="text-center font-weight-light my-4"> Añadir Categoría</h2>
+                <form id= "form" method="post" action="http://localhost/sistema-de-inventario/public/categorias">
                     <div class="mb-3">
 
-                        <!-- Nombre de la categoria -->
-                        <label for="nombre" class="form-label">Nombre de la categoria</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Nombre de la categoria" autofocus />
-                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0"></div>
+                        <!-- Nombre de la categoría -->
+<label for="nombre" class="form-label">Nombre </label>
+<input  class="form-control" name="nombre" id="nombre"placeholder="Nombre de la categoría" autofocus required="" type="text" pattern="[a-zA-Z]+" />
+    <div class="d-flex align-items-center justify-content-between mt-4 mb-0"></div>
+
+                        <p><i>*Solo guarda letras</i></p>
 
              <button class="btn btn-success" type="submit">Guardar</button>
             <button class="btn btn-danger" type="reset">Limpiar</button>
@@ -25,3 +26,20 @@
             <div style="height: 100vh"></div>
     </div>
 </main>
+
+<script>
+
+    let form = document.getElementById('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+    let nombre = document.getElementById('nombre').value;
+    if (nombre == ''){
+        alert('si funciona')
+    } else {
+        form.submit();
+    }
+
+})
+    
+</script>

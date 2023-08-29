@@ -22,9 +22,7 @@
                         <div class="card-header">
                             <h3 class="text-center font-weight-light my-4">Inicio de sesión</h3>
                             <h4 class="text-center font-weight-light my-4">Sistema de Inventario</h4>
-                            <p style="text-align:center;"><img
-                                    src="http://localhost/sistema-de-inventario/assets/img/imagen1.png" height="190px"
-                                    alt="Logo InternetCtrl"></p>
+<p style="text-align:center;"><img src="http://localhost/sistema-de-inventario/assets/img/imagen1.png" height="190px" alt="Logo InternetCtrl"></p>
 
 
                 </div>
@@ -33,7 +31,7 @@
     <div class="form-group">
     <label class="small mb-1" for="usuario"><i class="fas fa-user"></i>Usuario</label>
     <input class="form-control py-3" id="usuario" name="usuario" type="text"
-                                        placeholder="Ingrese Usuario" />
+                                        placeholder="Ingrese Usuario" required="" />
 </div>
     <br>
     <form id="form1">
@@ -43,7 +41,7 @@
 
     <label class="small mb-1" for="clave"><i class="fas fa-key"></i>Contraseña</label>
         
-<input id="clave" type="Password" name="contrasena" class="form-control py-3" placeholder="Ingrese Contraseña" />
+<input id="clave" type="Password" name="contrasena" class="form-control py-3" placeholder="Ingrese Contraseña" required="" />
     
            
             </div>

@@ -11,7 +11,6 @@ class MarcaController extends Controller
     
         $modelo = new Marca();
         $marcas = $modelo->todos();
-
         return parent::ver('marcas/index' , ['marcas' => $marcas]);
     }
 
@@ -22,7 +21,9 @@ class MarcaController extends Controller
 
     public function editar()
     {
-        return parent::ver('marcas/editar', []);
+       $modelo = new Marca();
+       $marca = $modelo->uno($_GET['id']); 
+        return parent::ver('marcas/editar', ['marca' =>$marca]);
     }
 
      public function guardar()
@@ -30,7 +31,7 @@ class MarcaController extends Controller
         $modelo = new Marca();
         $modelo->guardar($_POST);
 
-        header("Location: /sistema-de-inventario/public/marcas");
+        parent::redirigir('marcas?success=crear');
     }
 
     public function actualizar()
@@ -38,7 +39,7 @@ class MarcaController extends Controller
         $modelo = new Marca();
         $modelo->actualizar($_POST);
 
-        header("Location: /sistema-de-inventario/public/marcas");
+       parent::redirigir('marcas?success=editar');
     }
 
      public function destruir()
@@ -46,7 +47,7 @@ class MarcaController extends Controller
         $modelo = new Marca();
         $modelo->destruir($_GET['id']);
 
-        header("Location: /sistema-de-inventario/public/marcas");
+        parent::redirigir('marcas?success=borrar');
     }
 
 }

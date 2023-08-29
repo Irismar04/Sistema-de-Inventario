@@ -48,6 +48,7 @@ class Login
 
     public function cerrarSesion()
     {
+        unset($SESSION['usuario']);
         session_destroy();
     }
 }
