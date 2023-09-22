@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -9,32 +9,32 @@ class Producto extends Model
     protected $tabla = 'producto';
 
     public function todos()
-{
-    // Consulta para buscar todos los registros en la tabla deseada
-    $sql = "SELECT * FROM {$this->tabla} 
+    {
+        // Consulta para buscar todos los registros en la tabla deseada
+        $sql = "SELECT * FROM {$this->tabla} 
     LEFT JOIN categoria ON categoria.id_categoria = producto.id_categoria
     LEFT JOIN marca ON marca.id_marca = producto.id_marca";
 
-    // Prepara la consultar 
-    $stmt = $this->db->prepare($sql);
+        // Prepara la consultar
+        $stmt = $this->db->prepare($sql);
 
-    //Ejecutar la consulta
-    $stmt->execute();
+        //Ejecutar la consulta
+        $stmt->execute();
 
-    // Obtener todos los registros como un arreglo asociativo
-    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    return $resultados;
+        return $resultados;
 
     }
 
     public function guardar($datosForm)
     {
-        $query = 
+        $query =
         "INSERT INTO {$this->tabla}
         (id_categoria, id_marca, nom_producto, precio_producto, stock, stock_minimo )
         VALUES 
-(:id_categoria, :id_marca, :nom_producto, :precio_producto,:stock, :stock_minimo)"; 
+(:id_categoria, :id_marca, :nom_producto, :precio_producto,:stock, :stock_minimo)";
 
 
         $statement = $this->db->prepare($query);
@@ -62,15 +62,15 @@ class Producto extends Model
         stock_minimo = :stock_minimo 
         WHERE id_producto = :id_producto";
 
-        $statement = $this->db->prepare($query); 
+        $statement = $this->db->prepare($query);
         $statement->bindParam(":id_producto", $datosForm['id']);
-        
+
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);
         $statement->bindParam(":id_categoria", $datosForm['categorias']);
         $statement->bindParam(":id_marca", $datosForm['marcas']);
         $statement->bindParam(":precio_producto", $datosForm['precio']);
         $statement->bindParam(":stock_minimo", $datosForm['stock_minimo']);
-     
+
 
         $statement->execute();
 

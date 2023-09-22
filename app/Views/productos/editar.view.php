@@ -5,6 +5,8 @@
             <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
                 <h2 class="text-center font-weight-light my-4"> Editar Productos</h2>
                 <form method="post" action="http://localhost/sistema-de-inventario/public/productos/actualizar">
+                <h2 class="text-center font-weight-light my-4"> Editar Productos</h2>
+                <form method="post" action="http://localhost/sistema-de-inventario/public/productos/actualizar">
                     <div class="mb-3">
                         <form method="post" action="http://localhost/sistema-de-inventario/public/productos/actualizar">
 
@@ -27,7 +29,9 @@
 
  <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
     <option value="<?= $categoria['id_categoria']?>"
-    <?php if($categoria['id_categoria'] == $producto['id_categoria']) echo 'selected';?>
+    <?php if($categoria['id_categoria'] == $producto['id_categoria']) {
+        echo 'selected';
+    }?>
     >
         <?= $categoria['nom_categoria']?></option>
     <?php endforeach; ?>
@@ -47,7 +51,9 @@
  <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
     <option value="<?= $marca['id_marca']?>"
 
-        <?php if($marca['id_marca'] == $producto['id_marca']) echo 'selected';?>
+        <?php if($marca['id_marca'] == $producto['id_marca']) {
+            echo 'selected';
+        }?>
     >
         <?= $marca['nom_marca']?></option>
     <?php endforeach; ?>
@@ -74,4 +80,6 @@
             <div style="height: 100vh"></div>
     </div>
 </main>
+
+
 

@@ -1,48 +1,49 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-use PDO; 
+use PDO;
 
 /**
- * 
+ *
  */
 class Rol extends Model
-{ 
-	protected $tabla = 'rol';
-	
-	public function guardar($datosForm){}
-
-	public function actualizar($datosForm){}
-
-	public function destruir($id){}
-
-	public function uno($id)
-
 {
-	//Consulta para buscar elregistro por su ID en la tabla deseada 
+    protected $tabla = 'rol';
 
-	$sql = "SELECT * FROM {$this->tabla} WHERE id_rol = :id_rol";
+    public function guardar($datosForm)
+    {
+    }
 
-	// Prepararla consulta 
-	$stmt = $this->db->prepare($sql);
+    public function actualizar($datosForm)
+    {
+    }
 
-	// Asignar el valor del parametro :id
+    public function destruir($id)
+    {
+    }
 
-	$stmt->bindParam(':id_rol', $id, PDO::PARAM_INT);
+    public function uno($id)
+    {
+        //Consulta para buscar elregistro por su ID en la tabla deseada
 
-	// Ejecutar la consulta 
+        $sql = "SELECT * FROM {$this->tabla} WHERE id_rol = :id_rol";
 
-	$stmt->execute(); 
+        // Prepararla consulta
+        $stmt = $this->db->prepare($sql);
 
-	//Obtener el registro como un arregl asociativo 
+        // Asignar el valor del parametro :id
 
-	$registro = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->bindParam(':id_rol', $id, PDO::PARAM_INT);
 
-	return $registro;
-	}
+        // Ejecutar la consulta
+
+        $stmt->execute();
+
+        //Obtener el registro como un arregl asociativo
+
+        $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $registro;
+    }
 }
-
-
-
-?>

@@ -9,7 +9,7 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $categorias = $modelo->todos();
         return parent::ver('categorias/index', ['categorias' => $categorias]);
-    } 
+    }
 
     public function crear()
     {

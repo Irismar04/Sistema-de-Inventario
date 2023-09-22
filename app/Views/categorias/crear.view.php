@@ -12,12 +12,20 @@
             <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
                 <h2 class="text-center font-weight-light my-4"> Añadir Categoría</h2>
                 <form id= "form" method="post" action="http://localhost/sistema-de-inventario/public/categorias">
+                <h2 class="text-center font-weight-light my-4"> Añadir Categoría</h2>
+                <form id= "form" method="post" action="http://localhost/sistema-de-inventario/public/categorias">
                     <div class="mb-3">
 
                         <!-- Nombre de la categoría -->
 <label for="nombre" class="form-label">Nombre </label>
 <input  class="form-control" name="nombre" id="nombre"placeholder="Nombre de la categoría" autofocus required="" type="text" pattern="[a-zA-Z]+" />
     <div class="d-flex align-items-center justify-content-between mt-4 mb-0"></div>
+                        <!-- Nombre de la categoría -->
+<label for="nombre" class="form-label">Nombre </label>
+<input  class="form-control" name="nombre" id="nombre"placeholder="Nombre de la categoría" autofocus required="" type="text" pattern="[a-zA-Z]+" />
+    <div class="d-flex align-items-center justify-content-between mt-4 mb-0"></div>
+
+                        <p><i>*Solo guarda letras</i></p>
 
                         <p><i>*Solo guarda letras</i></p>
 

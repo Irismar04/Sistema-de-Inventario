@@ -22,6 +22,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
 
 <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos/crear">Añadir</a>
+<a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos/crear">Añadir</a>
 <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos">Consultar</a>
                         
                         
@@ -41,6 +42,9 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias/crear">
+                        Añadir
+                    </a>
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias/crear">
                         Añadir
                     </a>
@@ -68,7 +72,11 @@
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas/crear">
                         Añadir
                     </a>
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas/crear">
+                        Añadir
+                    </a>
                     <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas">
+                        Consultar 
                         Consultar 
                     </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
@@ -117,6 +125,13 @@
                 <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Historial
+                </a>
+
+                <br>
+
+<a href="/sistema-de-inventario/Manual.pdf" download="Manual de Usuario.pdf" class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
+                    <div class="sb-nav-link-icon"><i class="fas fa-file-pdf"></i>
+                      Manual de Usuario
                 </a>
 
                 <br>
