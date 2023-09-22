@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -10,7 +10,19 @@
     <title><?= $titulo ?></title>
     <link href="/sistema-de-inventario/assets/css/style.min.css" rel="stylesheet" />
     <link href="/sistema-de-inventario/assets/css/styles.css" rel="stylesheet" />
+    <link href="/sistema-de-inventario/assets/css/custom.css" rel="stylesheet" />
     <script src="/sistema-de-inventario/assets/js/all.js" crossorigin="anonymous"></script>
+
+<script src="/sistema-de-inventario/assets/js/modales.js"></script>
+
+
+        
+        <!-- script para los reportes en PDF -->
+
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable"></script>
+
+
 </head>
 
 <body>

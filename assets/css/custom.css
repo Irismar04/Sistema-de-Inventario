@@ -1,3 +1,35 @@
+.tostada {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.slide-fade-enter-active {
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-fade-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-leave-to {
+  opacity: 0;
+  filter: blur(8px);
+}
+
+
 body {
     display: flex;
     flex-direction: column;
