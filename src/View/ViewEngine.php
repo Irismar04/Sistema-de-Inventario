@@ -6,14 +6,12 @@ use Exception;
 
 class ViewEngine
 {
-    protected $viewPath;
-    protected $layoutPath;
     protected $contentSlot;
     protected $titleSlot;
+
     public function __construct()
     {
-        $this->viewPath = dirname(__DIR__) . '/../app/Views/';
-        $this->layoutPath = dirname(__DIR__) . '/../app/Views/layouts/';
+
         $this->contentSlot = '{{content}}';
         $this->titleSlot = '{{title}}';
     }
@@ -30,13 +28,13 @@ class ViewEngine
 
     private function getView($view, $params)
     {
-        return $this->getContentFile($this->viewPath . $view . ".view.php", $params);
+        return $this->getContentFile(VIEWS_PATH . $view . ".view.php", $params);
     }
 
     private function getLayout($layout, $titulo)
     {
         $data = ['titulo' => $titulo];
-        return $this->getContentFile($this->layoutPath . $layout . ".view.php", $data);
+        return $this->getContentFile(LAYOUTS_PATH . $layout . ".view.php", $data);
     }
 
     private function getContentFile($filePath, $data = [])
@@ -44,7 +42,6 @@ class ViewEngine
         foreach ($data as $key => $value) {
             $$key = $value;
         }
-
         if (!file_exists($filePath)) {
             throw new Exception();
         }

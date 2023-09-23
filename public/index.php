@@ -5,6 +5,10 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/routes/rutas.php';
 use Inventario\App;
 
+$dir = dirname(__DIR__);
+define('VIEWS_PATH', "{$dir}/app/Views/");
+define('LAYOUTS_PATH', "{$dir}/app/Views/layouts/");
+
 function generarAlertaExito($texto)
 {
     $alerta = '<div id="alerta" class="alert alert-success slide-fade-enter-from tostada" role="alert">'.$texto.'</div>';
@@ -16,8 +20,6 @@ function generarAlertaError($texto)
     $alerta = '<div id="alerta" class="alert alert-danger slide-fade-enter-from tostada" role="alert">'.$texto.'</div>';
     return $alerta;
 }
-
-
 
 function modal($nombre, $id, $mensaje)
 {
@@ -50,7 +52,6 @@ function borrarUrl($uri, $id)
 }
 
 $db = include dirname(__DIR__) . '/config/database.php';
-
 
 $app = new App($router, $db);
 $app->correr();
