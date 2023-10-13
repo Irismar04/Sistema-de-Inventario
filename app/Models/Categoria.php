@@ -63,6 +63,9 @@ class Categoria extends Model
         $this->revisarDuplicados($datosForm, 'editar');
 
 
+        $this->revisarDuplicados($datosForm, 'editar');
+
+
         $query = "UPDATE {$this->tabla} SET nom_categoria = :nuevo_nombre WHERE id_categoria = :id_categoria";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);

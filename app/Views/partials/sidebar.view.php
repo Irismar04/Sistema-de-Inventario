@@ -6,6 +6,8 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     
                     Inicio
+                    
+                    Inicio
                 </a>
 
                 <!-- Productos -->
@@ -36,6 +38,7 @@
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Gestionar Categorias
+                    Gestionar Categorias
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
@@ -59,6 +62,7 @@
                 <!--Marcas-->
  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas" aria-expanded="false" aria-controls="collapsePages">
         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Gestionar Marcas
                     Gestionar Marcas
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -85,7 +89,32 @@
 
     <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/usuario" data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false" aria-controls="collapsePages">
         <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                <!--Gestion de Usuario  -->
+
+    <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/usuario" data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false" aria-controls="collapsePages">
+        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Gestion de Usuarios
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                        Añadir
+                    </a>
+                    <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                        Consultar 
+                    </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+
+                        </div>
+                    </nav>
+                </div>
+
+                <!--Fin de Gestion de Usuario -->
+
+            <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
@@ -129,3 +158,4 @@
         </div>
     </nav>
 </div>
+

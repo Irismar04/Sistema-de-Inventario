@@ -5,6 +5,13 @@
 <?php endif; ?>
 <?php endif; ?>
 
+<!--Alertas-->
+<?php if (isset($_GET['error'])): ?>
+<?php if ($_GET['error'] == 'nombre'): ?>
+<?= generarAlertaError('¡Ya hay una categoria con ese nombre!') ?>
+<?php endif; ?>
+<?php endif; ?>
+
 <main>
     <div class="container-fluid px-4">
         <ol class="breadcrumb mb-4">

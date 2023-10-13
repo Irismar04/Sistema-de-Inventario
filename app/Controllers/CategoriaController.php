@@ -32,6 +32,7 @@ class CategoriaController extends Controller
         $modelo->guardar($_POST);
 
         parent::redirigir('categorias?success=crear');
+        parent::redirigir('categorias?success=crear');
     }
 
     public function actualizar()

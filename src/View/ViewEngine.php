@@ -6,8 +6,6 @@ use Exception;
 
 class ViewEngine
 {
-    protected $viewPath;
-    protected $layoutPath;
     protected $contentSlot;
     protected $titleSlot;
     public function __construct($basePath = 'D:\repositories\sistema-de-inventario')
@@ -44,7 +42,6 @@ class ViewEngine
         foreach ($data as $key => $value) {
             $$key = $value;
         }
-
         if (!file_exists($filePath)) {
             throw new Exception();
         }
