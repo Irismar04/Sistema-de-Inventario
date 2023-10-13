@@ -1,12 +1,15 @@
 <?php
 
 session_start();
-require dirname(__DIR__) . '/vendor/autoload.php';
-require dirname(__DIR__) . '/routes/rutas.php';
-
-$db = include dirname(__DIR__) . '/config/database.php';
+$basePath = dirname(__DIR__);
+require "{$basePath}/vendor/autoload.php";
+require "{$basePath}/routes/rutas.php";
+require "{$basePath}/public/components.php";
+require "{$basePath}/public/helpers.php";
 
 use Inventario\App;
 
-$app = new App($router, $db);
+$db = include "{$basePath}/config/database.php";
+
+$app = new App($router, $db, $basePath);
 $app->correr();

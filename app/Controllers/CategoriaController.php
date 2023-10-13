@@ -22,6 +22,7 @@ class CategoriaController extends Controller
     {
         $modelo = new Categoria();
         $categoria = $modelo->uno($_GET['id']);
+
         return parent::ver('categorias/editar', ['categoria' => $categoria]);
     }
 
@@ -30,7 +31,7 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->guardar($_POST);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias?success=crear');
     }
 
     public function actualizar()
@@ -38,7 +39,7 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->actualizar($_POST);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias?success=editar');
     }
 
     public function destruir()
@@ -46,6 +47,6 @@ class CategoriaController extends Controller
         $modelo = new Categoria();
         $modelo->destruir($_GET['id']);
 
-        header("Location: /sistema-de-inventario/public/categorias");
+        parent::redirigir('categorias?success=borrar');
     }
 }

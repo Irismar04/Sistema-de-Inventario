@@ -13,11 +13,13 @@ class App
     private static $db;
     protected $router;
     protected $viewEngine;
+    protected $basePath;
 
-    public function __construct($router, $config)
+    public function __construct($router, $config, $basePath)
     {
         $this->router = $router;
-        $this->viewEngine = new ViewEngine();
+        $this->viewEngine = new ViewEngine($basePath);
+        $this->basePath = $basePath;
         static::$db = new DB($config ?? []);
     }
 

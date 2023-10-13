@@ -10,27 +10,29 @@ class Router
     public function authMiddleware($path)
     {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: {$this->carpetas}/login");
+            header("Location: {$this->carpetas}");
             exit;
         } else {
-            if($path === "{$this->carpetas}/login") {
-                header("Location: {$this->carpetas}/");
+            if($path === "{$this->carpetas}/") {
+                header("Location: {$this->carpetas}/dashboard");
             }
         }
     }
 
     public function correr($request)
     {
-        $accion = $this->rutas[$request->method][$request->path] ?? null;
-        if ($accion == null) {
+        $ruta = $this->rutas[$request->method][$request->path] ?? null;
+        if ($ruta == null) {
             throw new HttpNotFoundException();
         }
-        if (is_callable($accion)) {
-            return call_user_func($accion);
+        if (is_callable($ruta->accion)) {
+            return call_user_func($ruta->accion);
         }
-        if (is_array($accion)) {
-            $this->authMiddleware($request->path);
-            return $this->llamarMetodoEnClase($accion);
+        if (is_array($ruta->accion)) {
+            if($ruta->middleware == 'auth') {
+                $this->authMiddleware($request->path);
+            }
+            return $this->llamarMetodoEnClase($ruta->accion);
         }
         throw new HttpNotFoundException();
     }
@@ -42,7 +44,10 @@ class Router
         } else {
             $ruta = $this->carpetas;
         }
-        $this->rutas[$metodo][$ruta] = $accion;
+        $clase = new Ruta($accion);
+        $this->rutas[$metodo][$ruta] = $clase;
+
+        return $clase;
     }
 
     private function llamarMetodoEnClase($accion)
@@ -83,27 +88,27 @@ class Router
         return $this->crearRuta(HttpMethod::DELETE, $uri, $accion);
     }
 
-    public function controlador($uri, $controller)
+    public function controlador($uri, $controller, $middleware = null)
     {
         // Index
-        $this->get($uri, [$controller, 'index']);
+        $this->get($uri, [$controller, 'index'])->auth($middleware);
 
         // Create
-        $this->get("$uri/crear", [$controller, 'crear']);
+        $this->get("$uri/crear", [$controller, 'crear'])->auth($middleware);
 
         // Store
-        $this->post($uri, [$controller, 'guardar']);
+        $this->post($uri, [$controller, 'guardar'])->auth($middleware);
 
         // Show
-        $this->get("$uri/mostrar", [$controller, 'mostrar']);
+        $this->get("$uri/mostrar", [$controller, 'mostrar'])->auth($middleware);
 
         // Edit
-        $this->get("$uri/editar", [$controller, 'editar']);
+        $this->get("$uri/editar", [$controller, 'editar'])->auth($middleware);
 
         // Update
-        $this->post("$uri/actualizar", [$controller, 'actualizar']);
+        $this->post("$uri/actualizar", [$controller, 'actualizar'])->auth($middleware);
 
         // Delete
-        $this->get("$uri/destruir", [$controller, 'destruir']);
+        $this->get("$uri/destruir", [$controller, 'destruir'])->auth($middleware);
     }
 }

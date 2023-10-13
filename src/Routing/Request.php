@@ -20,7 +20,7 @@ class Request
         if (strlen($uri) != 1) {
             $uri =  rtrim($uri, "/");
         }
-        $this->path =$uri;
+        $this->path = $uri;
     }
 
 }

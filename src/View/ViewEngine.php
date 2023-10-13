@@ -10,10 +10,10 @@ class ViewEngine
     protected $layoutPath;
     protected $contentSlot;
     protected $titleSlot;
-    public function __construct()
+    public function __construct($basePath = 'D:\repositories\sistema-de-inventario')
     {
-        $this->viewPath = dirname(__DIR__) . '/../app/Views/';
-        $this->layoutPath = dirname(__DIR__) . '/../app/Views/layouts/';
+        $this->viewPath = "{$basePath}/app/Views";
+        $this->layoutPath = "{$basePath}/app/Views/layouts";
         $this->contentSlot = '{{content}}';
         $this->titleSlot = '{{title}}';
     }
@@ -30,13 +30,13 @@ class ViewEngine
 
     private function getView($view, $params)
     {
-        return $this->getContentFile($this->viewPath . $view . ".view.php", $params);
+        return $this->getContentFile("{$this->viewPath}/{$view}.view.php", $params);
     }
 
     private function getLayout($layout, $titulo)
     {
         $data = ['titulo' => $titulo];
-        return $this->getContentFile($this->layoutPath . $layout . ".view.php", $data);
+        return $this->getContentFile("{$this->layoutPath}/{$layout}.view.php", $data);
     }
 
     private function getContentFile($filePath, $data = [])

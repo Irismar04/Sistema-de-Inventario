@@ -1,69 +1,30 @@
 <?php
 
-
 use Inventario\Routing\Router;
-use App\Controllers\IndexController;
-use App\Controllers\AnadirController;
 use App\Controllers\CategoriaController;
 use App\Controllers\InicioController;
-use App\Controllers\ListaController;
+use App\Controllers\LoginController;
 use App\Controllers\MarcaController;
 use App\Controllers\ProductoController;
 use App\Controllers\UsuarioController;
-use Inventario\Routing\Request;
 
 $router = new Router();
 
-$router->get('/login', function () {
-    $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-    $path = $request->path;
-    if($path === "/sistema-de-inventario/public/login" && isset($_SESSION['usuario'])) {
-        header("Location: /sistema-de-inventario/public/");
-    }
-    $controlador = new InicioController();
-    echo $controlador->mostrar();
-});
+$router->get('/', [LoginController::class, 'mostrar']);
 
-$router->post('/login', function () {
-    $controlador = new InicioController();
-    $controlador->login($_POST);
-});
+$router->post('/login', [LoginController::class, 'login']);
 
-$router->get('/logout', function () {
-    $controlador = new InicioController();
-    $controlador->logout();
-});
+$router->get('/logout', [LoginController::class, 'logout']);
+
+$router->get('/dashboard', [InicioController::class, 'mostrar'])->auth();
 
 // Rutas para las categorias
-$router->controlador('/categorias', CategoriaController::class);
+$router->controlador('/categorias', CategoriaController::class, 'auth');
 
 // Rutas para las marcas
-$router->controlador('/marcas', MarcaController::class);
+$router->controlador('/marcas', MarcaController::class, 'auth');
 
 // Rutas para los productos
-$router->controlador('/productos', ProductoController::class);
-
-$router->get('/', [IndexController::class, 'mostrar']);
-
-$router->get('/anadir', [AnadirController::class, 'mostrar']);
-
-$router->get('/inicio', [InicioController::class, 'mostrar']);
-
-$router->get('/sistema-de-inventario/public/anadir', [anadirController::class, 'mostrar']);
-
-$router->get('/lista', [ListaController::class, 'mostrar']);
-
-$router->get('/sistema-de-inventario/public/', function () {
-    $controlador = new IndexController();
-    $controlador->mostrar();
-});
-
-
-$router->get('/sistema-de-inventario/public/anadir', function () {
-    $controlador = new AnadirController();
-    $controlador->mostrar();
-});
-
-
+$router->controlador('/productos', ProductoController::class, 'auth');
 
 $router->get('/usuario', [UsuarioController::class, 'mostrar']);

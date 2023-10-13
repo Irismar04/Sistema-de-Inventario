@@ -16,6 +16,7 @@ class Controller
 
     public function redirigir($ruta)
     {
-        header("Location: /sistema-de-inventario/public/". $ruta);
+        header("Location: /sistema-de-inventario/public/{$ruta}");
+        exit;
     }
 }
