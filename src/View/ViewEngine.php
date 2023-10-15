@@ -8,7 +8,10 @@ class ViewEngine
 {
     protected $contentSlot;
     protected $titleSlot;
-    public function __construct($basePath = 'D:\repositories\sistema-de-inventario')
+    protected $viewPath;
+    protected $layoutPath;
+
+    public function __construct($basePath = 'D:\xampp\htdocs\sistema-de-inventario')
     {
         $this->viewPath = "{$basePath}/app/Views";
         $this->layoutPath = "{$basePath}/app/Views/layouts";

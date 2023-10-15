@@ -14,14 +14,17 @@ function generarAlertaError($texto)
 
 function modal($nombre, $id, $mensaje)
 {
+    $borrarUrl = borrarUrl($nombre, $id);
 
-    return '<dialog data-modal id="delete-modal-'.$id.'"> 
-<p>
-    '.$mensaje.'
-</p>
-<div>
-    <button class="btn" onclick="cerrar('.$id.')">Cancelar</button>
-    <a class="btn" href="'.borrarUrl($nombre, $id).'">Confirmar</a>
-</div>
-</dialog>';
+    return <<<HTML
+        <dialog data-modal id="delete-modal-$id">
+            <p>
+                $mensaje
+            </p>
+            <div>
+                <button class="btn" onclick="cerrar('$id')">Cancelar</button>
+                <a class="btn" href="$borrarUrl">Confirmar</a>
+            </div>
+        </dialog>
+    HTML;
 }

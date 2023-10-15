@@ -46,8 +46,13 @@ class CategoriaController extends Controller
     public function destruir()
     {
         $modelo = new Categoria();
-        $modelo->destruir($_GET['id']);
 
-        parent::redirigir('categorias?success=borrar');
+        $success = $modelo->destruir($_GET['id']);
+
+        if($success) {
+            parent::redirigir('categorias?success=borrar');
+        } else {
+            parent::redirigir('categorias?error=borrar');
+        }
     }
 }

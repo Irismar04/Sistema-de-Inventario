@@ -8,6 +8,12 @@ class Categoria extends Model
 {
     protected $tabla = 'categoria';
 
+    protected $id = 'id_categoria';
+
+    protected $columns = [
+        'nom_categoria'
+    ];
+
     public function revisarDuplicados($datosForm, $vista)
     {
 
@@ -97,9 +103,15 @@ class Categoria extends Model
 
     public function destruir($id)
     {
-        $sql = "DELETE FROM categoria WHERE id_categoria = :id_categoria";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(':id_categoria', $id);
-        $statement->execute();
+        try {
+            $sql = "DELETE FROM categoria WHERE id_categoria = :id_categoria";
+            $statement = $this->db->prepare($sql);
+            $statement->bindParam(':id_categoria', $id);
+            $statement->execute();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+
     }
 }
