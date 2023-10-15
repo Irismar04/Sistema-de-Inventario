@@ -36,10 +36,10 @@ class ProductoController extends Controller
         $categorias = $modeloDos->todos();
         $marcas = $modeloTres->todos();
         return parent::ver('productos/editar', [
-
-        'producto' => $producto,
-        'categorias' => $categorias,
-        'marcas' => $marcas]);
+            'producto' => $producto,
+            'categorias' => $categorias,
+            'marcas' => $marcas
+        ]);
     }
 
     public function guardar()

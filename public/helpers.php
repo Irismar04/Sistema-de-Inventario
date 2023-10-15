@@ -28,3 +28,8 @@ function assetsDir($file)
 {
     return root_dir('assets')."$file";
 }
+
+function selected($primero, $segundo)
+{
+    return ($primero == $segundo) ? 'selected' : '';
+}

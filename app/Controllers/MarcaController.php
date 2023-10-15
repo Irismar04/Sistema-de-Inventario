@@ -32,7 +32,6 @@ class MarcaController extends Controller
         $modelo->guardar($_POST);
 
         parent::redirigir('marcas?success=crear');
-        parent::redirigir('marcas?success=crear');
     }
 
     public function actualizar()
@@ -46,10 +45,13 @@ class MarcaController extends Controller
     public function destruir()
     {
         $modelo = new Marca();
-        $modelo->destruir($_GET['id']);
+        $success = $modelo->destruir($_GET['id']);
 
-        parent::redirigir('marcas?success=borrar');
-        parent::redirigir('marcas?success=borrar');
+        if($success) {
+            parent::redirigir('marcas?success=borrar');
+        } else {
+            parent::redirigir('marcas?error=borrar');
+        }
     }
 
 }

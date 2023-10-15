@@ -1,90 +1,133 @@
-<!-- Alertas -->
+<!-- Alertas de exito -->
 <?php if(isset($_GET['success'])): ?>
 <?php if($_GET['success'] == 'crear'): ?>
-    <?= generarAlertaExito('¡Se agregó un Producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se agregó un producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'editar'): ?>
-    <?= generarAlertaExito('¡Se editó un Producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se editó un producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
-    <?= generarAlertaExito('¡Se eliminó un Producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se eliminó un producto satisfactoriamente!') ?>
+<?php endif; ?>
+<?php endif; ?>
+
+<!-- Alertas de error -->
+<?php if(isset($_GET['error'])): ?>
+<?php if($_GET['error'] == 'crear'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al crear el producto!') ?>
+<?php elseif($_GET['error'] == 'editar'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al editar el producto!') ?>
+<?php elseif($_GET['error'] == 'borrar'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error borrando el producto!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
 
-<main>
-
+<main class="mx-4">
     <h2 class="text-center font-weight-light my-4">Lista de Productos</h2>
-
-    <br> 
-    <input type="button" class="btn btn-info" onclick="generarPDF()" value="General PDF" style="float: right;">
-    
-    <table id="tabla-de-reporte" style="margin: 0 auto;" class="table table-light table-striped ">
-        <br>
-        <br>
+    <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
+    <br>
+    <br>
+    <table id="tabla-de-reporte">
         <thead>
             <tr>
-                
                 <th>Nombre del producto</th>
                 <th>Categoría</th>
                 <th>Marca</th>
-                <th>Precio</th>
+                <th>Precio (USD$)</th>
                 <th>Stock</th>
                 <th>Stock Minimo</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
-        </thead> 
+        </thead>
         <tbody>
-        <?php foreach ($productos as $producto):?> 
-        <tr>
-            <td><?= $producto['nom_producto']; ?></td>
-            <td><?= $producto['nom_categoria'];?></td>
-            <td><?= $producto['nom_marca'];?></td>
-            <td><?= $producto['precio_producto'];?></td>
-            <td><?= $producto['stock'];?></td>
-            <td><?= $producto['stock_minimo'];?></td>
-
-
-
-            <th><a class="btn" 
-href="http://localhost/sistema-de-inventario/public/productos/editar?id=<?= $producto['id_producto'] ?>"><i class="fa fa-edit"></i></a></th>
-            <th><a class="btn"
-            href="http://localhost/sistema-de-inventario/public/productos/destruir?id=<?= $producto['id_producto'] ?>"><i class="fa fa-trash"></i></a></th>
-        </tr>
-        <?php endforeach; ?>
+            <?php foreach ($productos as $producto):?>
+            <tr>
+                <td><?= $producto['nom_producto']; ?></td>
+                <td><?= $producto['nom_categoria'];?></td>
+                <td><?= $producto['nom_marca'];?></td>
+                <td><?= $producto['precio_producto'];?></td>
+                <td><?= $producto['stock'];?></td>
+                <td><?= $producto['stock_minimo'];?></td>
+                <!-- Boton para editar -->
+                <td>
+                    <a class="btn" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </td>
+                <!-- Boton para mostrar modal de borrare -->
+                <td>
+                    <button class="btn" onclick="show(<?= $producto['id_producto'] ?>)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+                <!-- Modal para borrar -->
+                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere borrar esta producto?') ?>
+            </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
- 
-    </div>
-    <div style="height: 100vh"></div>
-    </div>
+    <table id="tabla-del-pdf" style="display:none;">
+        <thead>
+            <tr>
+                <th>Nombre del producto</th>
+                <th>Categoría</th>
+                <th>Marca</th>
+                <th>Precio (USD$)</th>
+                <th>Stock</th>
+                <th>Stock Minimo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($productos as $producto):?>
+            <tr>
+                <td><?= $producto['nom_producto']; ?></td>
+                <td><?= $producto['nom_categoria'];?></td>
+                <td><?= $producto['nom_marca'];?></td>
+                <td><?= $producto['precio_producto'];?></td>
+                <td><?= $producto['stock'];?></td>
+                <td><?= $producto['stock_minimo'];?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </main>
 
 <script>
+    $(document).ready(function () {
+        $('#tabla-de-reporte').DataTable({
+            language: {
+                url: '<?= assetsDir('/js/es-ES.json') ?>'
+            }
+        });
+    });
 
     function generarPDF() {
         const doc = new window.jspdf.jsPDF()
-        doc.autoTable({ html: '#tabla-de-reporte'})
-        doc.save("Reporte");
+        doc.autoTable({
+            html: '#tabla-del-pdf',
+            includeHiddenHtml: true
+        })
+        doc.save("Reporte - Productos");
     }
     // Cuando cargue
     document.addEventListener("DOMContentLoaded", function () {
-    // guarda todas las alertas en una variable
-    const alertas = document.querySelectorAll("#alerta");
+        // guarda todas las alertas en una variable
+        const alertas = document.querySelectorAll("#alerta");
 
-    alertas.forEach((alerta) => {
-        // Le añade las clases para hacer la transición de entrada
-        alerta.classList.add('slide-fade-enter-active');
+        alertas.forEach((alerta) => {
+            // Le añade las clases para hacer la transición de entrada
+            alerta.classList.add('slide-fade-enter-active');
+            setTimeout(() => {
+                alerta.classList.add('slide-fade-enter-to');
+            }, 10);
+        });
         setTimeout(() => {
-            alerta.classList.add('slide-fade-enter-to');
-        }, 10);
-        });
-    setTimeout(() => {
-        // Le añade las clases para hacer la transición de salida
-        alertas.forEach(function (alerta) {
-            alerta.classList.add('slide-fade-leave-active');
-            alerta.classList.add('slide-fade-leave-to');
-        });
-    }, 3000);
-});
+            // Le añade las clases para hacer la transición de salida
+            alertas.forEach(function (alerta) {
+                alerta.classList.add('slide-fade-leave-active');
+                alerta.classList.add('slide-fade-leave-to');
+            });
+        }, 3000);
+    });
 </script>

@@ -12,19 +12,18 @@
 <!-- Alertas de error -->
 <?php if(isset($_GET['error'])): ?>
 <?php if($_GET['error'] == 'crear'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error al crear la categoria!') ?>
+<?= generarAlertaError('¡Ha ocurrido un error al crear la categoría!') ?>
 <?php elseif($_GET['error'] == 'editar'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error al editar la categoria!') ?>
+<?= generarAlertaError('¡Ha ocurrido un error al editar la categoría!') ?>
 <?php elseif($_GET['error'] == 'borrar'): ?>
-<?= generarAlertaError('¡La categoria tiene productos asignados!') ?>
+<?= generarAlertaError('¡La categoría tiene productos asignados!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
 <!--Contenido-->
-<main style="padding-left: 6px; padding-right: 6px;">
+<main class="mx-4">
     <h2 class="text-center font-weight-light my-4">Lista de Categorías</h2>
-    <input type="button" class="btn btn-success" onclick="generarPDF()" value="Generar PDF" style="float: right;">
-    
+    <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
     <br>
     <br>
     <table id="tabla-de-reporte">
@@ -56,6 +55,21 @@
             </tr>
             <?php endforeach; ?>
     </table>
+
+    <!-- Tabla a imprimir -->
+    <table id="tabla-del-pdf" style="display: none;">
+        <thead>
+            <tr>
+                <th>Nombre de la categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($categorias as $categoria):?>
+            <tr>
+                <td><?= $categoria['nom_categoria']; ?></td>
+            </tr>
+            <?php endforeach; ?>
+    </table>
 </main>
 
 <script>
@@ -70,9 +84,10 @@
     function generarPDF() {
         const doc = new window.jspdf.jsPDF()
         doc.autoTable({
-            html: '#tabla-de-reporte'
+            html: '#tabla-del-pdf',
+            includeHiddenHtml: true
         })
-        doc.save("Reporte");
+        doc.save("Reporte - Categorias");
 
     }
     // Cuando cargue

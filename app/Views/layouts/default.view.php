@@ -22,8 +22,8 @@
     <script src="<?= assetsDir('/js/datatables.min.js') ?>"></script>
 
     <!-- script para los reportes en PDF -->
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/jspdf-autotable"></script>
+    <script src="<?= assetsDir('/js/jspdf.umd.min.js') ?>"></script>
+    <script src="<?= assetsDir('/js/jspdf.plugin.autotable.js') ?>"></script>
 </head>
 
 <body>
@@ -41,9 +41,8 @@
     </div>
 
     
-    <script src="<?= assetsDir('/js/bootstrap.bundle.min.js') ?>" crossorigin="anonymous"></script>
+    <script src="<?= assetsDir('/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= assetsDir('/js/scripts.js') ?>"></script>
-    <script src="<?= assetsDir('/js/chart.min.js') ?>" crossorigin="anonymous"></script>
     <script src="<?= assetsDir('/js/alertas.js') ?>"></script>
 
 </body>

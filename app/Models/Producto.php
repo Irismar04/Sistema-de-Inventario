@@ -7,34 +7,58 @@ use PDO;
 class Producto extends Model
 {
     protected $tabla = 'producto';
+    protected $id = 'id_producto';
 
-    public function todos()
+    protected $relaciones = [
+        'categoria' => 'id_categoria',
+        'marca' => 'id_marca'
+    ];
+
+    public function revisarDuplicados($datosForm, $vista)
     {
-        // Consulta para buscar todos los registros en la tabla deseada
-        $sql = "SELECT * FROM {$this->tabla} 
-    LEFT JOIN categoria ON categoria.id_categoria = producto.id_categoria
-    LEFT JOIN marca ON marca.id_marca = producto.id_marca";
 
-        // Prepara la consultar
-        $stmt = $this->db->prepare($sql);
+        // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
 
-        //Ejecutar la consulta
-        $stmt->execute();
+        if (isset($datosForm['id'])) {
+            $sql = "SELECT * FROM {$this->tabla}
+            WHERE nom_producto LIKE :nom_producto AND
+            NOT id_producto = :id_producto" ;
 
-        // Obtener todos los registros como un arreglo asociativo
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        //si no tiene id, es un formulario de crear
+        else {
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_producto LIKE :nom_producto";
+        }
 
-        return $resultados;
+        // Ejecuta la sentencia SQL y revisa de que este correcta
 
+        $columnaUno = $this->db->prepare($sql);
+
+        //Si existe un id, lo introduce en la setencia SQL
+        if (isset($datosForm['id'])) {
+            $columnaUno->bindParam(":id_producto", $datosForm['id']);
+        }
+
+        $nombre = "%" .$datosForm['nombre']."%";
+        $columnaUno->bindParam(":nom_producto", strtolower($nombre));
+        $columnaUno->execute();
+
+
+        //Revisa si hay una producto con ese nombre, si hay, la redirige con error
+        if ($columnaUno->rowCount() > 0) {
+            parent::redirigir("productos/{$vista}?error=nombre&id={$datosForm['id']}");
+        }
     }
 
     public function guardar($datosForm)
     {
+        $this->revisarDuplicados($datosForm, 'crear');
+
         $query =
         "INSERT INTO {$this->tabla}
         (id_categoria, id_marca, nom_producto, precio_producto, stock, stock_minimo )
         VALUES 
-(:id_categoria, :id_marca, :nom_producto, :precio_producto,:stock, :stock_minimo)";
+        (:id_categoria, :id_marca, :nom_producto, :precio_producto,:stock, :stock_minimo)";
 
 
         $statement = $this->db->prepare($query);
@@ -54,6 +78,8 @@ class Producto extends Model
 
     public function actualizar($datosForm)
     {
+        $this->revisarDuplicados($datosForm, 'editar');
+
         $query = "UPDATE {$this->tabla} SET 
         nom_producto = :nuevo_nombre,
         id_categoria = :id_categoria,
@@ -75,33 +101,5 @@ class Producto extends Model
         $statement->execute();
 
         return $statement->rowCount() > 0;
-    }
-
-    public function uno($id)
-    {
-        // Consulta para buscar el registro por su ID en la tabla deseada
-        $sql = "SELECT * FROM {$this->tabla} WHERE id_producto = :id_producto";
-
-        // Preparar la consulta
-        $stmt = $this->db->prepare($sql);
-
-        // Asignar el valor del parámetro :id
-        $stmt->bindParam(':id_producto', $id, PDO::PARAM_INT);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Obtener el registro como un arreglo asociativo
-        $registro = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $registro;
-    }
-
-    public function destruir($id)
-    {
-        $sql = "DELETE FROM producto WHERE id_producto = :id_producto";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(':id_producto', $id);
-        $statement->execute();
     }
 }
