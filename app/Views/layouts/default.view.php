@@ -20,8 +20,7 @@
     <script src="<?= assetsDir('/js/all.js') ?>" crossorigin="anonymous"></script>
     <script src="<?= assetsDir('/js/modales.js') ?>"></script>
     <script src="<?= assetsDir('/js/datatables.min.js') ?>"></script>
-
-    <!-- script para los reportes en PDF -->
+    <script src="<?= assetsDir('/js/validaciones.js') ?>"></script>
     <script src="<?= assetsDir('/js/jspdf.umd.min.js') ?>"></script>
     <script src="<?= assetsDir('/js/jspdf.plugin.autotable.js') ?>"></script>
 </head>

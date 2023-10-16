@@ -2,7 +2,7 @@
     <div class="container-fluid px-4">
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
             <h2 class="text-center font-weight-light my-4"> Editar Marca</h2>
-            <form method="post" action="http://localhost/sistema-de-inventario/public/marcas/actualizar">
+            <form id="form" method="post" action="<?= url('marcas/actualizar') ?>">
 
                 <!-- Nombre de la marca -->
                 <div class="mb-3">
@@ -22,3 +22,5 @@
         </div>
     </div>
 </main>
+
+<script src="<?= assetsDir('/js/validaciones/marcas-y-categorias.js') ?>"></script>

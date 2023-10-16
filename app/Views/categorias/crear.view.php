@@ -8,8 +8,8 @@
 <main>
     <div class="container-fluid px-4">
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
-            <h2 class="text-center font-weight-light my-4"> Añadir Categoría</h2>
-            <form id="form" method="post" action="http://localhost/sistema-de-inventario/public/categorias">
+            <h2 class="text-center font-weight-light my-4">Añadir Categoría</h2>
+            <form id="form" method="post" action="<?= url('categorias') ?>">
                 <!-- Nombre de la categoría -->
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -26,41 +26,4 @@
     </div>
 </main>
 
-<script>
-    // Función para validar campos
-    function validarCampo(campo, regla) {
-        const valido = regla.test(campo)
-
-        return valido;
-    }
-
-    // Formulario a validar
-    const formulario = document.getElementById('form');
-
-
-    formulario.addEventListener('submit', function (submit) {
-
-        // Evita que se envie el formulario prematuramente
-        submit.preventDefault();
-
-        // Estado inicial de la validacion del formulario
-        let formularioValido = true;
-
-        // Campos
-        const nombre = document.getElementById('nombre');
-
-        // Valida nombre
-        formularioValido = validarCampo(nombre.value, /^[a-zA-Z]+$/);
-
-        // Si el nombre no es valido, tira una alerta
-        if (!formularioValido) {
-            alert('El nombre solo puede tener letras')
-        }
-
-        // Si todos los campos son validos, envia el formulario
-        if (formularioValido) {
-            formulario.submit();
-        }
-
-    })
-</script>
+<script src="<?= assetsDir('/js/validaciones/marcas-y-categorias.js') ?>"></script>
