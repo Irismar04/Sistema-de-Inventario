@@ -19,7 +19,7 @@
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Nombre del Producto" autofocus />
+                            placeholder="Nombre del Producto"  autofocus pattern="[a-zA-Z]+" />
                     </div>
 
                     <!-- Categorias-->
@@ -54,18 +54,25 @@
                         </select>
                     </div>
 
+                    <!-- Precio -->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio (USD$)</label>
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="precio" name="precio" 
+                            maxlength="30" placeholder="Precio del Producto">
+                    </div>
+
                     <!-- Stock Inicial -->
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock Inicial</label>
-                        <input class="form-control" type="text" id="stock" name="stock"
-                            placeholder="Stock Inicial del Producto">
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock" name="stock" 
+                            maxlength="30" placeholder="Stock Inicial del Producto">
                     </div>
 
                     <!-- Stock Minimo -->
                     <div class="mb-3">
                         <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input class="form-control" type="text" id="stock_minimo" name="stock_minimo"
-                            placeholder="Stock Mínimo del Producto">
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock_minimo" name="stock_minimo" 
+                            maxlength="30" placeholder="Stock Mínimo del Producto">
                     </div>
 
                     <button class="btn btn-success" type="submit">Guardar</button>

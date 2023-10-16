@@ -2,6 +2,7 @@
 
 use Inventario\Routing\Router;
 use App\Controllers\CategoriaController;
+use App\Controllers\EntradaController;
 use App\Controllers\InicioController;
 use App\Controllers\LoginController;
 use App\Controllers\MarcaController;
@@ -26,5 +27,12 @@ $router->controlador('/marcas', MarcaController::class, 'auth');
 
 // Rutas para los productos
 $router->controlador('/productos', ProductoController::class, 'auth');
+$router->post('/productos/activar', [ProductoController::class, 'activar'])->auth();
+$router->post('/productos/desactivar', [ProductoController::class, 'desactivar'])->auth();
+
+// Rutas para las entradas
+$router->get('/entradas', [EntradaController::class, 'index'])->auth();
+$router->get('/entradas/crear', [EntradaController::class, 'crear'])->auth();
+$router->post('/entradas/guardar', [EntradaController::class, 'guardar'])->auth();
 
 $router->get('/usuario', [UsuarioController::class, 'mostrar']);

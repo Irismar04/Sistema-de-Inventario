@@ -28,7 +28,7 @@ class App
         return static::$db;
     }
 
-    public function correr(): void
+    public function correr()
     {
         try {
             $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

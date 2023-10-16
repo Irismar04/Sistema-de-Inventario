@@ -66,7 +66,7 @@
         <tbody>
             <?php foreach ($categorias as $categoria):?>
             <tr>
-                <td><?= $categoria['nom_categoria']; ?></td>
+                <td><?= $categoria['nom_categoria'] ?></td>
             </tr>
             <?php endforeach; ?>
     </table>

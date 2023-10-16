@@ -18,16 +18,6 @@ validator
             errorMessage: 'La marca es obligatoria'
         }
     ])
-    .addField('#precio', [
-        {
-        rule: 'required',
-            errorMessage: 'El precio es obligatorio'
-        },
-        {
-            rule: 'integer',
-            errorMessage: 'El precio solo puede contener números'
-        }
-    ])
     .addField('#stock', [
         {
         rule: 'required',

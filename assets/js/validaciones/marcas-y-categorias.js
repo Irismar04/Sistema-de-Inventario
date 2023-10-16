@@ -7,8 +7,8 @@ validator
         },
         {
             rule: 'customRegexp',
-            value: /^[a-zA-Z]+$/,
-            errorMessage: 'El nombre solo puede contener letras'
+            value: /^[A-Za-z\s\W]+$/,
+            errorMessage: 'El nombre solo puede contener letras o caracteres especiales'
         },
     ])
     .onSuccess((e) => {

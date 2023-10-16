@@ -18,8 +18,8 @@
                     <!-- Nombre del Producto -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $producto['nom_producto'] ?>"
-                            placeholder="Nombre del Producto" required="" autofocus pattern="[a-zA-Z]+" />
+                        <input type="text" class="form-control" name="nombre" id="nombre"
+                            value="<?= $producto['nom_producto'] ?>" placeholder="Nombre del Producto" autofocus />
                     </div>
 
                     <!-- Categorias-->
@@ -29,7 +29,9 @@
                             <!-- Por cada categoria, se crea una variable $categoria que uso para las opciones-->
                             <?php foreach ($categorias as $categoria):?>
                             <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
-                            <option value="<?= $categoria['id_categoria'] ?>" <?= selected($categoria['id_categoria'], $producto['id_categoria']) ?>><?= $categoria['nom_categoria']?></option>
+                            <option value="<?= $categoria['id_categoria'] ?>"
+                                <?= selected($categoria['id_categoria'], $producto['id_categoria']) ?>>
+                                <?= $categoria['nom_categoria']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -41,30 +43,25 @@
                             <!-- Por cada marca, se crea una variable $marca que uso para las opciones-->
                             <?php foreach ($marcas as $marca):?>
                             <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
-                            <option value="<?= $marca['id_marca'] ?>" <?= selected($categoria['id_categoria'], $producto['id_categoria']) ?>><?= $marca['nom_marca']?></option>
+                            <option value="<?= $marca['id_marca'] ?>"
+                                <?= selected($categoria['id_categoria'], $producto['id_categoria']) ?>>
+                                <?= $marca['nom_marca']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
 
-                    <!-- Precio -->
-                    <div class="mb-3">
-                        <label for="precio" class="form-label">Precio (USD$)</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" value="<?= $producto['precio_producto'] ?>" type="text" id="precio" name="precio" required=""
-                            maxlength="30" placeholder="Precio del Producto">
-                    </div>
-
                     <!-- Stock Inicial -->
                     <div class="mb-3">
-                        <label for="stock" class="form-label">Stock Inicial</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" value="<?= $producto['stock'] ?>" type="text" id="stock" name="stock" required=""
-                            maxlength="30" placeholder="Stock Inicial del Producto">
+                        <label for="stock" class="form-label">Stock Actual</label>
+                        <input class="form-control" disabled value="<?= $producto['stock'] ?>" type="text" id="stock"
+                            name="stock">
                     </div>
 
                     <!-- Stock Minimo -->
                     <div class="mb-3">
                         <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" value="<?= $producto['stock_minimo'] ?>" id="stock_minimo" name="stock_minimo" required=""
-                            maxlength="30" placeholder="Stock Mínimo del Producto">
+                        <input class="form-control" type="text" value="<?= $producto['stock_minimo'] ?>"
+                            id="stock_minimo" name="stock_minimo" placeholder="Stock Mínimo del Producto">
                     </div>
 
                     <!-- ID del producto a editar -->

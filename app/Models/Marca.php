@@ -35,7 +35,7 @@ class Marca extends Model
             $columnaUno->bindParam(":id_marca", $datosForm['id']);
         }
 
-        $nombre = "%" .$datosForm['nombre']."%";
+        $nombre = "{$datosForm['nombre']}%";
         $columnaUno->bindParam(":nom_marca", $nombre);
         $columnaUno->execute();
 

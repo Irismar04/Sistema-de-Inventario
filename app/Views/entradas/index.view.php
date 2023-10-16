@@ -3,13 +3,9 @@
 <?php if($_GET['success'] == 'crear'): ?>
 <?= generarAlertaExito('¡Se agregó un producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'editar'): ?>
-<?= generarAlertaExito('¡Se editó el producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se editó un producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
-<?= generarAlertaExito('¡Se eliminó el producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'activar'): ?>
-<?= generarAlertaExito('¡Se activó el producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'desactivar'): ?>
-<?= generarAlertaExito('¡Se desactivo el producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se eliminó un producto satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -26,7 +22,7 @@
 
 
 <main class="mx-4">
-    <h2 class="text-center font-weight-light my-4">Lista de Productos</h2>
+    <h2 class="text-center font-weight-light my-4">Lista de Entradas de productos</h2>
     <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
     <br>
     <br>
@@ -34,40 +30,37 @@
         <thead>
             <tr>
                 <th>Nombre del producto</th>
-                <th>Categoría</th>
-                <th>Marca</th>
-                <th>Estado</th>
-                <th>Stock</th>
-                <th>Stock Minimo</th>
+                <th>Cantidad</th>
+                <th>Precio de entrada (USD$)</th>
+                <th>Fecha de entrada</th>
+                <th>Fecha de vencimiento</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($productos as $producto):?>
+            <?php foreach ($entradas as $entrada):?>
             <tr>
-                <td><?= $producto['nom_producto']; ?></td>
-                <td><?= $producto['nom_categoria'];?></td>
-                <td><?= $producto['nom_marca'];?></td>
-                <td>
-                    <?= ($producto['estado']) ? "<button type=\"button\" onclick=\"desactivarProducto({$producto['id_producto']})\" class=\"btn btn-success\">Activo</button>" : "<button type=\"button\" onclick=\"activarProducto({$producto['id_producto']})\" class=\"btn btn-danger\">Inactivo</button>" ?>
-                </td>
-                <td><?= $producto['stock'];?></td>
-                <td><?= $producto['stock_minimo'];?></td>
+                <td><?= $entrada['nom_producto']; ?></td>
+                <td><?= $entrada['nom_categoria'];?></td>
+                <td><?= $entrada['nom_marca'];?></td>
+                <td><?= $entrada['precio_entrada'];?></td>
+                <td><?= $entrada['stock'];?></td>
+                <td><?= $entrada['stock_minimo'];?></td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
+                    <a class="btn" href="<?= editarUrl('entradas', $entrada['id_entrada']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
                 <!-- Boton para mostrar modal de borrare -->
                 <td>
-                    <button class="btn" onclick="show(<?= $producto['id_producto'] ?>)">
+                    <button class="btn" onclick="show(<?= $entrada['id_entrada'] ?>)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
                 <!-- Modal para borrar -->
-                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere borrar esta producto?') ?>
+                <?= modal('entradas', $entrada['id_entrada'], 'Cuidado, ¿esta seguro que quiere borrar esta entrada?') ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -76,21 +69,23 @@
     <table id="tabla-del-pdf" style="display:none;">
         <thead>
             <tr>
-                <th>Nombre del producto</th>
+                <th>Nombre del entrada</th>
                 <th>Categoría</th>
                 <th>Marca</th>
+                <th>Precio (USD$)</th>
                 <th>Stock</th>
                 <th>Stock Minimo</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($productos as $producto):?>
+            <?php foreach ($entradas as $entrada):?>
             <tr>
-                <td><?= $producto['nom_producto']; ?></td>
-                <td><?= $producto['nom_categoria'];?></td>
-                <td><?= $producto['nom_marca'];?></td>
-                <td><?= $producto['stock'];?></td>
-                <td><?= $producto['stock_minimo'];?></td>
+                <td><?= $entrada['nom_entrada']; ?></td>
+                <td><?= $entrada['nom_categoria'];?></td>
+                <td><?= $entrada['nom_marca'];?></td>
+                <td><?= $entrada['precio_entrada'];?></td>
+                <td><?= $entrada['stock'];?></td>
+                <td><?= $entrada['stock_minimo'];?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -112,7 +107,7 @@
             html: '#tabla-del-pdf',
             includeHiddenHtml: true
         })
-        doc.save("Reporte - Productos");
+        doc.save("Reporte - entradas");
     }
     // Cuando cargue
     document.addEventListener("DOMContentLoaded", function () {
@@ -134,48 +129,4 @@
             });
         }, 3000);
     });
-</script>
-
-<script>
-function desactivarProducto(id) {
-    const formData = new FormData();
-    formData.append('id', id);
-  fetch('<?= url('productos/desactivar') ?>', {
-    method: 'POST',
-    body: formData,
-    credentials: "include"
-  })
-  .then(response => {
-    if (response.ok) {
-      window.location.href = '<?= url('productos?success=desactivar') ?>'
-    } else {
-      // La solicitud no fue exitosa
-      console.error('Hubo un problema al desactivar el producto');
-    }
-  })
-  .catch(error => {
-    console.error('Error en la solicitud:', error);
-  });
-}
-
-function activarProducto(id) {
-    const formData = new FormData();
-    formData.append('id', id);
-  fetch('<?= url('productos/activar') ?>', {
-    method: 'POST',
-    body: formData,
-    credentials: "include"
-  })
-  .then(response => {
-    if (response.ok) {
-        window.location.href = '<?= url('productos?success=activar') ?>'
-    } else {
-      // La solicitud no fue exitosa
-      console.error('Hubo un problema al activar el producto');
-    }
-  })
-  .catch(error => {
-    console.error('Error en la solicitud:', error);
-  });
-}
 </script>

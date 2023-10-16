@@ -66,4 +66,18 @@ class ProductoController extends Controller
         parent::redirigir('productos?success=borrar');
     }
 
+    public function activar()
+    {
+        $id = $_POST['id'];
+        $modelo = new Producto();
+        $modelo->activar($id);
+    }
+
+    public function desactivar()
+    {
+        $id = $_POST['id'];
+        $modelo = new Producto();
+        $modelo->desactivar($id);
+    }
+
 }

@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use PDO;
-
 class Producto extends Model
 {
     protected $tabla = 'producto';
@@ -39,7 +37,7 @@ class Producto extends Model
             $columnaUno->bindParam(":id_producto", $datosForm['id']);
         }
 
-        $nombre = "%" .$datosForm['nombre']."%";
+        $nombre = "{$datosForm['nombre']}%";
         $columnaUno->bindParam(":nom_producto", strtolower($nombre));
         $columnaUno->execute();
 
@@ -56,9 +54,9 @@ class Producto extends Model
 
         $query =
         "INSERT INTO {$this->tabla}
-        (id_categoria, id_marca, nom_producto, precio_producto, stock, stock_minimo )
+        (id_categoria, id_marca, nom_producto, stock, stock_minimo )
         VALUES 
-        (:id_categoria, :id_marca, :nom_producto, :precio_producto,:stock, :stock_minimo)";
+        (:id_categoria, :id_marca, :nom_producto, :stock, :stock_minimo)";
 
 
         $statement = $this->db->prepare($query);
@@ -66,7 +64,6 @@ class Producto extends Model
         $statement->bindParam(":id_categoria", $datosForm['categorias']);
         $statement->bindParam(":id_marca", $datosForm['marcas']);
         $statement->bindParam(":nom_producto", $datosForm['nombre']);
-        $statement->bindParam(":precio_producto", $datosForm['precio']);
         $statement->bindParam(":stock", $datosForm['stock']);
         $statement->bindParam(":stock_minimo", $datosForm['stock_minimo']);
 
@@ -84,7 +81,6 @@ class Producto extends Model
         nom_producto = :nuevo_nombre,
         id_categoria = :id_categoria,
         id_marca = :id_marca,
-        precio_producto = :precio_producto,
         stock_minimo = :stock_minimo 
         WHERE id_producto = :id_producto";
 
@@ -94,9 +90,44 @@ class Producto extends Model
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);
         $statement->bindParam(":id_categoria", $datosForm['categorias']);
         $statement->bindParam(":id_marca", $datosForm['marcas']);
-        $statement->bindParam(":precio_producto", $datosForm['precio']);
         $statement->bindParam(":stock_minimo", $datosForm['stock_minimo']);
 
+
+        $statement->execute();
+
+        return $statement->rowCount() > 0;
+    }
+
+    public function activar($id)
+    {
+        $activo = 1;
+
+        $query = "UPDATE {$this->tabla} SET 
+        estado = :estado
+        WHERE id_producto = :id_producto";
+
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(":id_producto", $id);
+
+        $statement->bindParam(":estado", $activo, \PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->rowCount() > 0;
+    }
+
+    public function desactivar($id)
+    {
+        $inactivo = 0;
+
+        $query = "UPDATE {$this->tabla} SET 
+        estado = :estado
+        WHERE id_producto = :id_producto";
+
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(":id_producto", $id);
+
+        $statement->bindParam(":estado", $inactivo, \PDO::PARAM_INT);
 
         $statement->execute();
 

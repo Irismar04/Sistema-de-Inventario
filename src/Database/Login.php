@@ -32,7 +32,7 @@ class Login
             $sql = "SELECT * FROM usuario WHERE nom_usuario = :usuario AND clave = :contrasena";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':contrasena', $contrasena);
+            $stmt->bindParam(':contrasena', hash('sha256', $contrasena));
             $stmt->execute();
 
             // Verificar si el usuario existe en la base de datos

@@ -2,13 +2,13 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="http://localhost/sistema-de-inventario/public">
+                <a class="nav-link" href="<?= url('dashboard') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Inicio
                 </a>
 
                 <!-- Productos -->
-                <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/anadir"
+                <a class="nav-link collapsed pointer" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -19,8 +19,8 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link"
-                            href="http://localhost/sistema-de-inventario/public/productos/crear">Añadir</a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/productos">Consultar</a>
+                            href="<?= url('productos/crear') ?>">Añadir</a>
+                        <a class="nav-link" href="<?= url('productos') ?>">Consultar</a>
                     </nav>
                 </div>
                 <!--Fin de Productos -->
@@ -35,10 +35,10 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias/crear">
+                        <a class="nav-link" href="<?= url('categorias/crear') ?>">
                             Añadir
                         </a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/categorias">
+                        <a class="nav-link" href="<?= url('categorias') ?>">
                             Consultar
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
@@ -59,10 +59,10 @@
                 <div class="collapse" id="collapseMarcas" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas/crear">
+                        <a class="nav-link" href="<?= url('marcas/crear') ?>">
                             Añadir
                         </a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/marcas">
+                        <a class="nav-link" href="<?= url('marcas') ?>">
                             Consultar
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
@@ -73,7 +73,7 @@
                 <!--Fin Marcas -->
 
                 <!--Gestion de Usuario  -->
-                <a class="nav-link collapsed" href="http://localhost/sistema-de-inventario/public/usuario"
+                <a class="nav-link collapsed" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false"
                     aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
@@ -83,10 +83,10 @@
                 <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                        <a class="nav-link" href="<?= url('usuarios/crear') ?>">
                             Añadir
                         </a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                        <a class="nav-link" href="<?= url('usuarios') ?>">
                             Consultar
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
@@ -96,41 +96,23 @@
                     </nav>
                 </div>
                 <!--Fin de Gestion de Usuario -->
-                <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
-                    data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
-                            Añadir
-                        </a>
-                        <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
-                            Consultar
-                        </a>
-                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordionPages">
-
-                        </div>
-                    </nav>
-                </div>
-
-                <!--Fin de Gestion de Usuario -->
-
-                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
+                
+                <a class="nav-link" href="<?= url('entradas') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Entradas de Productos
                 </a>
-                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/usuario">
+                <a class="nav-link" href="<?= url('salidas') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
                     Salidas de Productos
                 </a>
-                <a class="nav-link" href="http://localhost/sistema-de-inventario/public/tables">
+                <a class="nav-link" href="<?= url('historial') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Historial
                 </a>
 
                 <br>
 
-                <a href="/sistema-de-inventario/Manual.pdf" download="Manual de Usuario.pdf" class="nav-link"
-                    href="http://localhost/sistema-de-inventario/public/tables">
+                <a href="/sistema-de-inventario/Manual.pdf" download="Manual de Usuario.pdf" class="nav-link">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-pdf"></i>
                         Manual de Usuario
                 </a>
