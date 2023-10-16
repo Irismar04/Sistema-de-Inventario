@@ -13,13 +13,13 @@
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
             <div class="mb-3">
                 <h2 class="text-center font-weight-light my-4">Añadir Producto</h2>
-                <form method="post" action="<?= url('productos') ?>">
+                <form id="form" method="post" action="<?= url('productos') ?>">
 
                     <!-- Nombre del Producto -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Nombre del Producto" required="" autofocus pattern="[a-zA-Z]+" />
+                            placeholder="Nombre del Producto"  autofocus pattern="[a-zA-Z]+" />
                     </div>
 
                     <!-- Categorias-->
@@ -57,21 +57,21 @@
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio (USD$)</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="precio" name="precio" required=""
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="precio" name="precio" 
                             maxlength="30" placeholder="Precio del Producto">
                     </div>
 
                     <!-- Stock Inicial -->
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock Inicial</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock" name="stock" required=""
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock" name="stock" 
                             maxlength="30" placeholder="Stock Inicial del Producto">
                     </div>
 
                     <!-- Stock Minimo -->
                     <div class="mb-3">
                         <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock_minimo" name="stock_minimo" required=""
+                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock_minimo" name="stock_minimo" 
                             maxlength="30" placeholder="Stock Mínimo del Producto">
                     </div>
 
@@ -82,3 +82,5 @@
         </div>
     </div>
 </main>
+
+<script src="<?= assetsDir('/js/validaciones/productos.js') ?>"></script>

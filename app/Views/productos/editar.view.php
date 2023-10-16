@@ -77,3 +77,5 @@
         </div>
     </div>
 </main>
+
+<script src="<?= assetsDir('/js/validaciones/productos.js') ?>"></script>
