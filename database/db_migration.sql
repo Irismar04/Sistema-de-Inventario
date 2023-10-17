@@ -76,12 +76,14 @@ CREATE TABLE producto(
 
 CREATE TABLE entrada (
     id_entrada int NOT NULL AUTO_INCREMENT,
+    cantidad_entrada INT NOT NULL,
     fecha_entrada TIMESTAMP NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id_entrada)
 );
 
 CREATE TABLE salida (
     id_salida int NOT NULL AUTO_INCREMENT,
+    cantidad_salida INT NOT NULL,
     fecha_salida TIMESTAMP NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id_salida)
 );
@@ -91,7 +93,6 @@ CREATE TABLE detalle_entrada(
     id_producto int NOT NULL,
     id_entrada int NOT NULL,
     fecha_vencimiento DATE NOT NULL,
-    cantidad INT NOT NULL,
     precio_entrada INT NOT NULL,
     PRIMARY KEY (id_detalle_entrada),
     FOREIGN KEY (id_producto) REFERENCES producto (id_producto),
@@ -102,7 +103,6 @@ CREATE TABLE detalle_salida(
     id_detalle_salida int NOT NULL AUTO_INCREMENT,
     id_producto int NOT NULL,
     id_salida int NOT NULL,
-    cantidad_salida INT NOT NULL,
     precio_salida INT NOT NULL,
     motivo VARCHAR (255),
     PRIMARY KEY (id_detalle_salida),

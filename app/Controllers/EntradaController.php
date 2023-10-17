@@ -19,14 +19,18 @@ class EntradaController extends Controller
         $modelo = new Producto();
         $productos = $modelo->todos();
 
-        return parent::ver('productos/crear', ['productos' => $productos]);
+        return parent::ver('entradas/crear', ['productos' => $productos]);
     }
 
     public function guardar()
     {
-        $modelo = new Producto();
-        $modelo->guardar($_POST);
+        $modelo = new Entrada();
+        $success = $modelo->guardar($_POST);
 
-        parent::redirigir('productos?success=crear');
+        if($success) {
+            parent::redirigir('entradas?success=crear');
+        } else {
+            parent::redirigir('entradas?error=crear');
+        }
     }
 }

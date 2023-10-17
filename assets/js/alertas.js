@@ -15,5 +15,5 @@ document.addEventListener("DOMContentLoaded", function () {
             alerta.classList.add('slide-fade-leave-active');
             alerta.classList.add('slide-fade-leave-to');
         });
-    }, 3000);
+    }, 7000);
 });

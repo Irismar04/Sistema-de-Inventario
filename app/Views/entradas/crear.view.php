@@ -12,67 +12,50 @@
         </ol>
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
             <div class="mb-3">
-                <h2 class="text-center font-weight-light my-4">Añadir Producto</h2>
-                <form id="form" method="post" action="<?= url('productos') ?>">
+                <h2 class="text-center font-weight-light my-4">Añadir Entrada</h2>
+                <form id="form" method="post" action="<?= url('entradas') ?>">
 
-                    <!-- Nombre del Producto -->
+                    <!-- Productos -->
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Nombre del Producto"  autofocus pattern="[a-zA-Z]+" />
-                    </div>
-
-                    <!-- Categorias-->
-                    <div class="mb-3">
-                        <label for="categorias" class="form-label">Categoría</label>
-                        <select name="categorias" id="categorias" class="form-select">
+                        <label for="productos" class="form-label">Producto</label>
+                        <select name="id_producto" id="productos" class="form-select">
                             <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
-                            <option value="" hidden selected>Seleccione una categoria</option>
+                            <option value="" hidden selected>Seleccione un producto</option>
 
                             <!-- Por cada categoria, se crea una variable $categoria que uso para las opciones-->
-                            <?php foreach ($categorias as $categoria):?>
+                            <?php foreach ($productos as $producto):?>
 
-                            <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
-                            <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nom_categoria']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <!-- Marcas-->
-                    <div class="mb-3">
-                        <label for="marcas" class="form-label">Marca</label>
-                        <select name="marcas" id="marcas" class="form-select">
-                            <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
-                            <option value="" hidden selected>Seleccione una marca</option>
-
-                            <!-- Por cada marca, se crea una variable $marca que uso para las opciones-->
-                            <?php foreach ($marcas as $marca):?>
-
-                            <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
-                            <option value="<?= $marca['id_marca'] ?>"><?= $marca['nom_marca']?></option>
+                            <!-- value es lo que guardaremos, que sera el id, nom_producto es lo que sale al usuario-->
+                            <option value="<?= $producto['id_producto'] ?>"><?= "{$producto['nom_producto']} - {$producto['stock']} unidades" ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
-                        <label for="precio" class="form-label">Precio (USD$)</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="precio" name="precio" 
-                            maxlength="30" placeholder="Precio del Producto">
-                    </div>
-
-                    <!-- Stock Inicial -->
-                    <div class="mb-3">
-                        <label for="stock" class="form-label">Stock Inicial</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock" name="stock" 
-                            maxlength="30" placeholder="Stock Inicial del Producto">
+                        <label for="precio" class="form-label">Precio de compra (USD$)</label>
+                        <input class="form-control" type="text" id="precio" name="precio_entrada" 
+                             placeholder="Precio al que se compraron los productos">
                     </div>
 
                     <!-- Stock Minimo -->
                     <div class="mb-3">
-                        <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input pattern="[0-9-]{1,30}" class="form-control" type="text" id="stock_minimo" name="stock_minimo" 
-                            maxlength="30" placeholder="Stock Mínimo del Producto">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input class="form-control" type="text" id="cantidad" name="cantidad_entrada" 
+                             placeholder="Cantidad de productos a añadir al inventario">
+                    </div>
+
+                    <!-- Fecha de vencimiento -->
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha de vencimiento</label>
+                        <input id="fecha" type="text" name="fecha_vencimiento" class="form-control" placeholder="Seleccione una fecha de vencimiento">
+                        <script>
+                            jQuery.datetimepicker.setLocale('es');
+                            jQuery('#fecha').datetimepicker({
+                            timepicker:false,
+                            format:'Y-m-d'
+                            });
+                        </script>
                     </div>
 
                     <button class="btn btn-success" type="submit">Guardar</button>
@@ -83,4 +66,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/productos.js') ?>"></script>
+<script src="<?= assetsDir('/js/validaciones/entradas.js') ?>"></script>

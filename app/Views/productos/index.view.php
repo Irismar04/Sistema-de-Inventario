@@ -40,7 +40,6 @@
                 <th>Stock</th>
                 <th>Stock Minimo</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -60,14 +59,6 @@
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
-                <!-- Boton para mostrar modal de borrare -->
-                <td>
-                    <button class="btn" onclick="show(<?= $producto['id_producto'] ?>)">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-                <!-- Modal para borrar -->
-                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere borrar esta producto?') ?>
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -7,6 +7,7 @@ use App\Controllers\InicioController;
 use App\Controllers\LoginController;
 use App\Controllers\MarcaController;
 use App\Controllers\ProductoController;
+use App\Controllers\SalidaController;
 use App\Controllers\UsuarioController;
 
 $router = new Router();
@@ -33,6 +34,11 @@ $router->post('/productos/desactivar', [ProductoController::class, 'desactivar']
 // Rutas para las entradas
 $router->get('/entradas', [EntradaController::class, 'index'])->auth();
 $router->get('/entradas/crear', [EntradaController::class, 'crear'])->auth();
-$router->post('/entradas/guardar', [EntradaController::class, 'guardar'])->auth();
+$router->post('/entradas', [EntradaController::class, 'guardar'])->auth();
+
+// Rutas para las entradas
+$router->get('/salidas', [SalidaController::class, 'index'])->auth();
+$router->get('/salidas/crear', [SalidaController::class, 'crear'])->auth();
+$router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
 
 $router->get('/usuario', [UsuarioController::class, 'mostrar']);

@@ -1,28 +1,20 @@
 <!-- Alertas de exito -->
 <?php if(isset($_GET['success'])): ?>
 <?php if($_GET['success'] == 'crear'): ?>
-<?= generarAlertaExito('¡Se agregó un producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'editar'): ?>
-<?= generarAlertaExito('¡Se editó un producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'borrar'): ?>
-<?= generarAlertaExito('¡Se eliminó un producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se agregó stock a un producto satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
 <!-- Alertas de error -->
 <?php if(isset($_GET['error'])): ?>
 <?php if($_GET['error'] == 'crear'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error al crear el producto!') ?>
-<?php elseif($_GET['error'] == 'editar'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error al editar el producto!') ?>
-<?php elseif($_GET['error'] == 'borrar'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error borrando el producto!') ?>
+<?= generarAlertaError('¡Ha ocurrido un error al añadir stock al producto!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
 
 <main class="mx-4">
-    <h2 class="text-center font-weight-light my-4">Lista de Entradas de productos</h2>
+    <h2 class="text-center font-weight-light my-4">Lista de Salidas de productos</h2>
     <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
     <br>
     <br>
@@ -31,19 +23,19 @@
             <tr>
                 <th>Nombre del producto</th>
                 <th>Cantidad</th>
-                <th>Precio de entrada (USD$)</th>
-                <th>Fecha de entrada</th>
-                <th>Fecha de vencimiento</th>
+                <th>Precio de salida (USD$)</th>
+                <th>Motivo de salida</th>
+                <th>Fecha de salida</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($entradas as $entrada):?>
+            <?php foreach ($salidas as $salida):?>
             <tr>
-                <td><?= $entrada['nom_producto']; ?></td>
-                <td><?= $entrada['cantidad_entrada'];?></td>
-                <td><?= $entrada['precio_entrada'];?></td>
-                <td><?= $entrada['fecha_entrada'];?></td>
-                <td><?= $entrada['fecha_vencimiento'];?></td>
+                <td><?= $salida['nom_producto']; ?></td>
+                <td><?= $salida['cantidad_salida'];?></td>
+                <td><?= $salida['precio_salida'];?></td>
+                <td><?= $salida['motivo'];?></td>
+                <td><?= $salida['fecha_salida'];?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -51,22 +43,13 @@
 </main>
 
 <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
         $('#tabla-de-reporte').DataTable({
             language: {
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
             }
         });
     });
-
-    function generarPDF() {
-        const doc = new window.jspdf.jsPDF()
-        doc.autoTable({
-            html: '#tabla-del-pdf',
-            includeHiddenHtml: true
-        })
-        doc.save("Reporte - entradas");
-    }
     // Cuando cargue
     document.addEventListener("DOMContentLoaded", function () {
         // guarda todas las alertas en una variable

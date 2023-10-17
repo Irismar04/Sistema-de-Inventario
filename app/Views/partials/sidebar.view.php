@@ -97,14 +97,53 @@
                 </div>
                 <!--Fin de Gestion de Usuario -->
                 
-                <a class="nav-link" href="<?= url('entradas') ?>">
+                <!--Gestion de Entradas  -->
+                <a class="nav-link collapsed" href="#"
+                    data-bs-toggle="collapse" data-bs-target="#collapseEntrada" aria-expanded="false"
+                    aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Entradas de Productos
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link" href="<?= url('salidas') ?>">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="collapse" id="collapseEntrada" aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link" href="<?= url('entradas/crear') ?>">
+                            Añadir
+                        </a>
+                        <a class="nav-link" href="<?= url('entradas') ?>">
+                            Consultar
+                        </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+
+                        </div>
+                    </nav>
+                </div>
+
+                <!--Gestion de Salidas  -->
+                <a class="nav-link collapsed" href="#"
+                    data-bs-toggle="collapse" data-bs-target="#collapseSalida" aria-expanded="false"
+                    aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Salidas de Productos
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <div class="collapse" id="collapseSalida" aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link" href="<?= url('salidas/crear') ?>">
+                            Añadir
+                        </a>
+                        <a class="nav-link" href="<?= url('salidas') ?>">
+                            Consultar
+                        </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+
+                        </div>
+                    </nav>
+                </div>
                 <a class="nav-link" href="<?= url('historial') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Historial
