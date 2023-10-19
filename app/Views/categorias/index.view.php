@@ -40,13 +40,13 @@
                 <td><?= $categoria['nom_categoria']; ?></td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
                 <!-- Boton para mostrar modal de borrare -->
                 <td>
-                    <button class="btn" onclick="show(<?= $categoria['id_categoria'] ?>)">
+                    <button class="btn" title="Eliminar" onclick="show(<?= $categoria['id_categoria'] ?>)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>

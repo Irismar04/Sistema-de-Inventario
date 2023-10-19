@@ -15,7 +15,7 @@
                     <label for="nombre" class="form-label">Nombre</label>
                     <input class="form-control" name="nombre" id="nombre" placeholder="Nombre de la categoría" autofocus
                         type="text" />
-                    <p class="mt-2"><i>*Solo guarda letras</i></p>
+                 <!--   <p class="mt-2"><i>*Solo guarda letras</i></p>-->
                 </div>
 
                 <!-- Botones -->

@@ -55,7 +55,7 @@
                 <td><?= $producto['stock_minimo'];?></td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

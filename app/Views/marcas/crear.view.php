@@ -18,7 +18,7 @@
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre de la marca"
                         required="required" autofocus pattern="[a-zA-Z]+" />
-                    <p class="mt-2"><i>*Solo guarda letras</i></p>
+                   <!-- <p class="mt-2"><i>*Solo guarda letras</i></p>-->
                 </div>
 
                 <!-- Botones -->
