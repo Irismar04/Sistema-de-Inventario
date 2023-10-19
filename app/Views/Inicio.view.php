@@ -69,27 +69,7 @@
     </main>
     <?php include __DIR__ . '/partials/footer.view.php' ?>
 
-    <script>
-        const validator = new window.JustValidate('#form');
-
-        validator
-        .addField('#usuario', [
-            {
-                rule: 'required',
-                errorMessage: 'El usuario es obligatorio'
-            }
-        ])
-        .addField('#clave', [
-            {
-                rule: 'required',
-                errorMessage: 'La contraseña es obligatoria'
-            }
-        ])
-        .onSuccess((e) => {
-            document.getElementById("form").submit();
-        });
-    </script>
-
+    <script src="<?= assetsDir('/js/validaciones/login.js') ?>"></script>
     <script src="<?= assetsDir('/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= assetsDir('/js/scripts.js') ?>"></script>
     <script src="<?= assetsDir('/js/alertas.js') ?>"></script>

@@ -11,12 +11,14 @@ CREATE TABLE rol (
 CREATE TABLE categoria (
     id_categoria int NOT NULL AUTO_INCREMENT,
     nom_categoria VARCHAR (255) NOT NULL,
+    estado smallint NOT NULL DEFAULT 1,
     PRIMARY KEY (id_categoria)
 );
 
 CREATE TABLE marca (
     id_marca int NOT NULL AUTO_INCREMENT,
     nom_marca VARCHAR (255) NOT NULL,
+    estado smallint NOT NULL DEFAULT 1,
     PRIMARY KEY (id_marca)
 );
 
@@ -31,7 +33,7 @@ CREATE TABLE usuario(
     id_rol int NOT NULL,
     nom_usuario VARCHAR (255) NOT NULL,
     clave VARCHAR (255) NOT NULL,
-    estado INT NOT NULL DEFAULT 1,
+    estado smallint NOT NULL DEFAULT 1,
     PRIMARY KEY(id_usuario),
     FOREIGN KEY (id_rol) REFERENCES rol (id_rol),
     UNIQUE(nom_usuario)
@@ -67,7 +69,7 @@ CREATE TABLE producto(
     nom_producto VARCHAR (255) NOT NULL,
     stock INT NOT NULL,
     stock_minimo INT NOT NULL,
-    estado INT NOT NULL DEFAULT 1,
+    estado smallint NOT NULL DEFAULT 1,
     creado_en TIMESTAMP NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id_producto),
     FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria),
@@ -131,4 +133,4 @@ VALUES
 INSERT INTO
     usuario (id_rol, nom_usuario, clave)
 VALUES
-    (1, 'admin', 'admin');
+    (1, 'admin', 'admin123');
