@@ -22,7 +22,7 @@ $router->get('/dashboard', [InicioController::class, 'mostrar'])->auth();
 
 // Rutas para las categorias
 $router->controlador('/categorias', CategoriaController::class, 'auth');
-
+$router->post('/categorias/cambiar-estado', [CategoriaController::class, 'cambiarEstado'])->auth();
 // Rutas para las marcas
 $router->controlador('/marcas', MarcaController::class, 'auth');
 

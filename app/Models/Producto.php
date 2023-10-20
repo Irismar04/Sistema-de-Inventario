@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Constants\Status;
+
 class Producto extends Model
 {
     protected $tabla = 'producto';
@@ -16,16 +18,16 @@ class Producto extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-
+        $borrado = Status::DELETED;
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_producto LIKE :nom_producto AND
-            NOT id_producto = :id_producto" ;
+            NOT id_producto = :id_producto AND estado != $borrado";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_producto LIKE :nom_producto";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_producto LIKE :nom_producto AND estado != $borrado";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta

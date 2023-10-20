@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use PDO;
+use App\Constants\Status;
 
 class Marca extends Model
 {
@@ -14,16 +14,17 @@ class Marca extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
+        $borrado = Status::DELETED;
 
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_marca LIKE :nom_marca AND
-            NOT id_marca = :id_marca" ;
+            NOT id_marca = :id_marca AND estado != $borrado";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_marca LIKE :nom_marca";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_marca LIKE :nom_marca AND estado != $borrado";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta
@@ -50,7 +51,7 @@ class Marca extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
-        $query = "INSERT INTO {$this->tabla} (nom_marca) VALUES (:nom_marca)";
+        $query = "INSERT INTO {$this->tabla} (nom_marca, estado) VALUES (:nom_marca, default)";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nom_marca", $datosForm['nombre']);
         $statement->execute();

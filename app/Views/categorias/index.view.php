@@ -6,6 +6,10 @@
 <?= generarAlertaExito('¡Se editó una categoría satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
 <?= generarAlertaExito('¡Se eliminó una categoría satisfactoriamente!') ?>
+<?php elseif($_GET['success'] == 'activado'): ?>
+<?= generarAlertaExito('¡Se activo una categoría satisfactoriamente!') ?>
+<?php elseif($_GET['success'] == 'desactivado'): ?>
+<?= generarAlertaExito('¡Se desactivo una categoría satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -17,6 +21,8 @@
 <?= generarAlertaError('¡Ha ocurrido un error al editar la categoría!') ?>
 <?php elseif($_GET['error'] == 'borrar'): ?>
 <?= generarAlertaError('¡La categoría tiene productos asignados!') ?>
+<?php elseif($_GET['error'] == 'estado'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al activar o desactivar la categoría!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -30,14 +36,23 @@
         <thead>
             <tr>
                 <th>Nombre de la categoría</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Estado</th>
+                <th colspan="2">Acciones</th>
+                <th style="display: none"></th> 
             </tr>
         </thead>
         <tbody>
             <?php foreach ($categorias as $categoria):?>
             <tr>
                 <td><?= $categoria['nom_categoria']; ?></td>
+                <!-- Boton para cambiar estado del producto -->
+                <td>
+                    <form action="<?= url('categorias/cambiar-estado') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $categoria['id_categoria'] ?>">
+                    <input type="hidden" name="estado_viejo" value="<?= $categoria['estado'] ?>">
+                    <button type="submit" class="btn btn-<?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'Activo' : 'Inactivo' ?></button>
+                    </form>
+                </td>
                 <!-- Boton para editar -->
                 <td>
                     <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
@@ -50,6 +65,7 @@
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
+                <td style="display: none"></td>
                 <!-- Modal para borrar -->
                 <?= modal('categorias', $categoria['id_categoria'], 'Cuidado, ¿esta seguro que quiere borrar esta categoria?') ?>
             </tr>

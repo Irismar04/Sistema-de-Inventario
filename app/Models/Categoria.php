@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use PDO;
+use App\Constants\Status;
+use App\Traits\Desactivable;
 
 class Categoria extends Model
 {
+    use Desactivable;
+
     protected $tabla = 'categoria';
 
     protected $id = 'id_categoria';
@@ -14,16 +17,16 @@ class Categoria extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-
+        $borrado = Status::DELETED;
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_categoria LIKE :nom_categoria AND
-            NOT id_categoria = :id_categoria" ;
+            NOT id_categoria = :id_categoria AND estado != $borrado";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_categoria LIKE :nom_categoria";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_categoria LIKE :nom_categoria AND estado != $borrado";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta
@@ -50,9 +53,7 @@ class Categoria extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
-        //Si no, sigue el flujo normal del programa
-
-        $query = "INSERT INTO {$this->tabla} (nom_categoria) VALUES (:nom_categoria)";
+        $query = "INSERT INTO {$this->tabla} (nom_categoria, estado) VALUES (:nom_categoria, default)";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nom_categoria", ucfirst($datosForm['nombre']));
         $statement->execute();
