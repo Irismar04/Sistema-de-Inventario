@@ -144,4 +144,4 @@ INSERT INTO
         genero
     )
 VALUES
-    (1, "John", "Doe", "11111111", "M")
+    (1, "John", "Doe", "11111111", "M");
