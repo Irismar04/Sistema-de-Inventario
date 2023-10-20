@@ -5,6 +5,7 @@
             <li class="breadcrumb-item active"></li>
         </ol>
         <div class="row">
+        <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-info text-white mb-4">
                     <div class="card-body">
@@ -17,6 +18,7 @@
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-secondary text-white mb-4">
                     <div class="card-body">

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Constants\Status;
+use App\Traits\Autenticable;
 use App\Traits\Desactivable;
 
 class Usuario extends Model
 {
     use Desactivable;
+    use Autenticable;
 
     protected $tabla = 'usuario';
     protected $id = 'id_usuario';

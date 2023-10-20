@@ -1,20 +1,11 @@
 <?php
 
-namespace Inventario\Database;
+namespace App\Traits;
 
-use Inventario\App;
+use App\Constants\Status;
 
-class Login
+trait Autenticable
 {
-    protected $db;
-
-    protected $tabla;
-
-    public function __construct()
-    {
-        $this->db = App::db();
-    }
-
     public function iniciarSesion($datos)
     {
         // Verificar si el usuario ya ha iniciado sesión
@@ -27,18 +18,19 @@ class Login
             // Obtener datos del formulario
             $usuario = $datos['usuario'];
             $contrasena = $datos['contrasena'];
-
+            $estado = Status::ACTIVE;
             // Consulta SQL para verificar usuario y contraseña
-            $sql = "SELECT * FROM usuario WHERE nom_usuario = :usuario AND clave = :contrasena";
+            $sql = "SELECT nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = $estado LIMIT 1";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
             $stmt->bindParam(':contrasena', hash('sha256', $contrasena));
             $stmt->execute();
 
+            $user = $stmt->fetch();
             // Verificar si el usuario existe en la base de datos
             if ($stmt->rowCount() == 1) {
                 // Iniciar sesión y almacenar el nombre de usuario en la variable de sesión
-                $_SESSION['usuario'] = $usuario;
+                $_SESSION['usuario'] = $user;
                 return true;
             } else {
                 return false;
@@ -48,7 +40,6 @@ class Login
 
     public function cerrarSesion()
     {
-        unset($SESSION['usuario']);
         session_destroy();
     }
 }

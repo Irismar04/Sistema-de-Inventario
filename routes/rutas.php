@@ -41,5 +41,5 @@ $router->get('/salidas/crear', [SalidaController::class, 'crear'])->auth();
 $router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
 
 // Rutas para la gestión de usuarios
-$router->controlador('/usuarios', UsuarioController::class, 'auth');
-$router->post('/usuarios/cambiar-estado', [UsuarioController::class, 'cambiarEstado'])->auth();
+$router->controlador('/usuarios', UsuarioController::class, 'admin');
+$router->post('/usuarios/cambiar-estado', [UsuarioController::class, 'cambiarEstado'])->auth('admin');

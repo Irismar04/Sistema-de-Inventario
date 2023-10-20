@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Inventario\Database\Login;
+use App\Models\Usuario;
 use Inventario\Routing\Request;
 
 class LoginController extends Controller
@@ -19,7 +19,7 @@ class LoginController extends Controller
 
     public function login()
     {
-        $login = new Login();
+        $login = new Usuario();
 
         $logeado = $login->iniciarSesion($_POST);
 
@@ -32,8 +32,8 @@ class LoginController extends Controller
 
     public function logout()
     {
-        $login = new Login();
+        $login = new Usuario();
         $login->cerrarSesion();
-        parent::redirigir('dashboard');
+        parent::redirigir('');
     }
 }

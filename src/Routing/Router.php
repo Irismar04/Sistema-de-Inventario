@@ -7,7 +7,7 @@ class Router
     public $rutas;
     private $carpetas = '/sistema-de-inventario/public';
 
-    public function authMiddleware($path)
+    public function authMiddleware($path, $middleware)
     {
         if (!isset($_SESSION['usuario'])) {
             header("Location: {$this->carpetas}");
@@ -15,6 +15,12 @@ class Router
         } else {
             if($path === "{$this->carpetas}/") {
                 header("Location: {$this->carpetas}/dashboard");
+                exit;
+            }
+
+            if($middleware == 'admin' && $_SESSION['usuario']['nom_rol'] != 'Administrador') {
+                header("Location: {$this->carpetas}/dashboard");
+                exit;
             }
         }
     }
@@ -29,8 +35,8 @@ class Router
             return call_user_func($ruta->accion);
         }
         if (is_array($ruta->accion)) {
-            if($ruta->middleware == 'auth') {
-                $this->authMiddleware($request->path);
+            if($ruta->middleware != null) {
+                $this->authMiddleware($request->path, $ruta->middleware);
             }
             return $this->llamarMetodoEnClase($ruta->accion);
         }

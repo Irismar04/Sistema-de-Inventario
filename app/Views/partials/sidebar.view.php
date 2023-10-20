@@ -71,31 +71,6 @@
                     </nav>
                 </div>
                 <!--Fin Marcas -->
-
-                <!--Gestion de Usuario  -->
-                <a class="nav-link collapsed" href="#"
-                    data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false"
-                    aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    Gestion de Usuarios
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
-                    data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="<?= url('usuarios/crear') ?>">
-                            Añadir
-                        </a>
-                        <a class="nav-link" href="<?= url('usuarios') ?>">
-                            Consultar
-                        </a>
-                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordionPages">
-
-                        </div>
-                    </nav>
-                </div>
-                <!--Fin de Gestion de Usuario -->
                 
                 <!--Gestion de Entradas  -->
                 <a class="nav-link collapsed" href="#"
@@ -144,11 +119,38 @@
                         </div>
                     </nav>
                 </div>
+
+                <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
+                <!--Gestion de Usuario  -->
+                <a class="nav-link collapsed" href="#"
+                    data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false"
+                    aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Gestion de Usuarios
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseUsuario" aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link" href="<?= url('usuarios/crear') ?>">
+                            Añadir
+                        </a>
+                        <a class="nav-link" href="<?= url('usuarios') ?>">
+                            Consultar
+                        </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+
+                        </div>
+                    </nav>
+                </div>
+                <!--Fin de Gestion de Usuario -->
+
                 <a class="nav-link" href="<?= url('historial') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Historial
                 </a>
-
+                <?php endif; ?>
                 <br>
 
                 <a href="/sistema-de-inventario/Manual.pdf" download="Manual de Usuario.pdf" class="nav-link">
