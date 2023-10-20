@@ -57,8 +57,8 @@
                     <label for="motivo" class="form-label">Motivo</label>
                         <select name="motivo" id="motivo" class="form-select">
                             <option value="" hidden selected>Seleccione el motivo de la salida</option>
-                            <option value="deterioro">Por deterioro</option>
-                            <option value="venta">Por venta</option>
+                            <option value="<?= App\Constants\Motivo::SOLD ?>"><?= App\Constants\Motivo::match(App\Constants\Motivo::SOLD) ?></option>
+                            <option value="<?= App\Constants\Motivo::DAMAGED ?>"><?= App\Constants\Motivo::match(App\Constants\Motivo::DAMAGED) ?></option>
                         </select>
                     </div>
 

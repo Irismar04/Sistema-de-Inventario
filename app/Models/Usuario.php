@@ -2,9 +2,19 @@
 
 namespace App\Models;
 
-class Users extends Model
+use App\Traits\Desactivable;
+
+class Usuario extends Model
 {
+    use Desactivable;
+
     protected $tabla = 'usuario';
+    protected $id = 'id_usuario';
+
+    protected $relaciones = [
+        'rol' => 'id_rol',
+        'datos' => 'id_usuario'
+    ];
 
     public function guardar($datosForm)
     {

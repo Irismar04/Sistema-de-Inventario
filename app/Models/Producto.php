@@ -43,7 +43,8 @@ class Producto extends Model
         }
 
         $nombre = "{$datosForm['nombre']}%";
-        $columnaUno->bindParam(":nom_producto", strtolower($nombre));
+        $nombre = strtolower($nombre);
+        $columnaUno->bindParam(":nom_producto", $nombre);
         $columnaUno->execute();
 
 
@@ -126,5 +127,30 @@ class Producto extends Model
         $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         return $resultados;
+    }
+
+    public function todosDebajoDeStockMinimo()
+    {
+        $sql = "SELECT *
+        FROM producto
+        WHERE stock < stock_minimo";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultados;
+    }
+
+    public function ultimoProducto()
+    {
+        $sql = "SELECT *
+        FROM producto
+        ORDER BY id_producto DESC
+        LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $producto = $stmt->fetch();
+        return $producto;
     }
 }

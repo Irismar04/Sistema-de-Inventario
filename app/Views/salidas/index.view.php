@@ -34,7 +34,7 @@
                 <td><?= $salida['nom_producto']; ?></td>
                 <td><?= $salida['cantidad_salida'];?></td>
                 <td><?= $salida['precio_salida'];?></td>
-                <td><?= $salida['motivo'];?></td>
+                <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
                 <td><?= $salida['fecha_salida'];?></td>
             </tr>
             <?php endforeach; ?>
@@ -49,25 +49,5 @@
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
             }
         });
-    });
-    // Cuando cargue
-    document.addEventListener("DOMContentLoaded", function () {
-        // guarda todas las alertas en una variable
-        const alertas = document.querySelectorAll("#alerta");
-
-        alertas.forEach((alerta) => {
-            // Le añade las clases para hacer la transición de entrada
-            alerta.classList.add('slide-fade-enter-active');
-            setTimeout(() => {
-                alerta.classList.add('slide-fade-enter-to');
-            }, 10);
-        });
-        setTimeout(() => {
-            // Le añade las clases para hacer la transición de salida
-            alertas.forEach(function (alerta) {
-                alerta.classList.add('slide-fade-leave-active');
-                alerta.classList.add('slide-fade-leave-to');
-            });
-        }, 3000);
     });
 </script>

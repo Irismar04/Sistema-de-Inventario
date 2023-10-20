@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Constants\Motivo;
+
 class Salida extends Model
 {
     protected $tabla = 'detalle_salida';
@@ -63,5 +65,70 @@ class Salida extends Model
 
             return false;
         }
+    }
+
+    public function productoMasVendido()
+    {
+        $motivo = Motivo::SOLD;
+
+        $sql = "SELECT p.*
+                FROM producto p
+                INNER JOIN detalle_salida ds ON p.id_producto = ds.id_producto
+                INNER JOIN salida s ON ds.id_salida = s.id_salida
+                WHERE ds.motivo = $motivo
+                GROUP BY p.id_producto
+                ORDER BY SUM(s.cantidad_salida) DESC
+                LIMIT 1";
+
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetch();
+
+        return $resultados;
+    }
+
+    public function productoMenosVendido()
+    {
+        $motivo = Motivo::SOLD;
+
+        $sql = "SELECT p.*
+                FROM producto p
+                INNER JOIN detalle_salida ds ON p.id_producto = ds.id_producto
+                INNER JOIN salida s ON ds.id_salida = s.id_salida
+                WHERE ds.motivo = $motivo
+                GROUP BY p.id_producto
+                ORDER BY SUM(s.cantidad_salida) ASC
+                LIMIT 1";
+
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetch();
+
+        return $resultados;
+    }
+
+    public function ultimaSalida()
+    {
+        $sql = "SELECT *
+        FROM salida s
+        INNER JOIN detalle_salida ds ON s.id_salida = ds.id_salida
+        INNER JOIN producto p ON p.id_producto = ds.id_producto
+        ORDER BY s.id_salida DESC
+        LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $salida = $stmt->fetch();
+        return $salida;
     }
 }

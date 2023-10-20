@@ -4,10 +4,12 @@ namespace Inventario\Database;
 
 use Inventario\App;
 
-use PDO;
-
 abstract class Model
 {
+    /**
+     * Parametro de base de datos
+     * @var \PDO
+     */
     protected $db;
 
     public function __construct()

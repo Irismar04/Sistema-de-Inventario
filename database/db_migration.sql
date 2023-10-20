@@ -106,7 +106,7 @@ CREATE TABLE detalle_salida(
     id_producto int NOT NULL,
     id_salida int NOT NULL,
     precio_salida INT NOT NULL,
-    motivo VARCHAR (255),
+    motivo SMALLINT NOT NULL,
     PRIMARY KEY (id_detalle_salida),
     FOREIGN KEY (id_producto) REFERENCES producto (id_producto),
     FOREIGN KEY (id_salida) REFERENCES salida (id_salida)

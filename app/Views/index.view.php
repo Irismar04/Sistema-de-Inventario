@@ -8,9 +8,8 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-info text-white mb-4">
                     <div class="card-body">
-                        <p>Usuarios Registrados</p>
-                        <p>05</p>
-
+                        <p>Usuarios activos en el sistema</p>
+                        <p><?= "$usuariosActivos / $usuarios" ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="#">Más información</a>
@@ -21,8 +20,8 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-secondary text-white mb-4">
                     <div class="card-body">
-                        <p>Productos Registrados</p>
-                        <p>15</p>
+                        <p>Productos debajo del stock minimo</p>
+                        <p><?= "$productosDebajoDeStockMinimo / $productos" ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="#">Más información</a>
@@ -33,8 +32,8 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">
-                        <p>Categorias Registradas</p>
-                        <p>02</p>
+                        <p>Producto mas vendido</p>
+                        <p><?= $productoMasVendido['nom_producto'] ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="#">Más información</a>
@@ -45,8 +44,8 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
-                        <p>Marcas Registradas</p>
-                        <p>03</p>
+                        <p>Producto menos vendido</p>
+                        <p><?= $productoMenosVendido['nom_producto'] ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="#">Más información</a>
@@ -64,9 +63,15 @@
                     <div class="card bg-primary text-white mb-4">
                         <br>
                         <b>
-                            <p>Ultimos producto agregado: Coca-Cola 2L</p>
-                            <p>Ultimas entradas registrada: +20 PAN 1Kg</p>
-                            <p>Ultimas salidas registradas: -3 Ariel 500g </p>
+                            <?php if($ultimoProducto): ?>
+                            <p>Ultimo producto agregado:&nbsp;<?= $ultimoProducto['nom_producto'] ?></p>
+                            <?php endif ?>
+                            <?php if($ultimaEntrada): ?>
+                            <p>Ultima entrada registrada:&nbsp;<?= "+{$ultimaEntrada['cantidad_entrada']} {$ultimaEntrada['nom_producto']}" ?></p>
+                            <?php endif ?>
+                            <?php if($ultimaSalida): ?>
+                            <p>Ultima salida registrada:&nbsp;<?= "-{$ultimaSalida['cantidad_salida']} {$ultimaSalida['nom_producto']}" ?></p>
+                            <?php endif ?>
                         </b>
                     </div>
                 </div>

@@ -58,4 +58,19 @@ class Entrada extends Model
             return false;
         }
     }
+
+    public function ultimaEntrada()
+    {
+        $sql = "SELECT *
+        FROM entrada e
+        INNER JOIN detalle_entrada de ON e.id_entrada = de.id_entrada
+        INNER JOIN producto p ON p.id_producto = de.id_producto
+        ORDER BY e.id_entrada DESC
+        LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $entrada = $stmt->fetch();
+        return $entrada;
+    }
 }
