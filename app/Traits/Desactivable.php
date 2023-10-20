@@ -27,13 +27,14 @@ trait Desactivable
     public function todosActivos()
     {
         $activo = Status::ACTIVE;
-
-        $sql = "SELECT * FROM {$this->tabla} WHERE estado != $activo";
+        $estado = "{$this->tabla}.estado";
+        $sql = "SELECT * FROM {$this->tabla}";
 
         foreach ($this->relaciones as $tabla => $columna) {
             $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
         }
 
+        $sql .= " WHERE {$estado} = {$activo}";
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 
@@ -49,12 +50,15 @@ trait Desactivable
     public function todosSinBorrar()
     {
         $borrado = Status::DELETED;
+        $estado = "{$this->tabla}.estado";
         // Consulta para buscar todos los registros en la tabla deseada
-        $sql = "SELECT * FROM {$this->tabla} WHERE estado != $borrado";
+        $sql = "SELECT * FROM {$this->tabla}";
 
         foreach ($this->relaciones as $tabla => $columna) {
             $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
         }
+
+        $sql .= " WHERE {$estado} != {$borrado}";
 
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);

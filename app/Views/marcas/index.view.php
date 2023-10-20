@@ -34,7 +34,7 @@
     <br>
     <table id="tabla-de-reporte">
         <thead>
-        <tr>
+            <tr>
                 <th rowspan="2">Nombre de la marca</th>
                 <th rowspan="2">Estado</th>
                 <th colspan="2">Acciones</th>
@@ -51,9 +51,10 @@
                 <!-- Boton para cambiar estado del producto -->
                 <td>
                     <form action="<?= url('marcas/cambiar-estado') ?>" method="post">
-                    <input type="hidden" name="id" value="<?= $marca['id_marca'] ?>">
-                    <input type="hidden" name="estado_viejo" value="<?= $marca['estado'] ?>">
-                    <button type="submit" class="btn btn-<?= ($marca['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($categoria['estado']) ?></button>
+                        <input type="hidden" name="id" value="<?= $marca['id_marca'] ?>">
+                        <input type="hidden" name="estado_viejo" value="<?= $marca['estado'] ?>">
+                        <button type="submit"
+                            class="btn btn-<?= ($marca['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($marca['estado']) ?></button>
                     </form>
                 </td>
                 <!-- Boton para editar -->

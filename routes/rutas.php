@@ -28,8 +28,7 @@ $router->controlador('/marcas', MarcaController::class, 'auth');
 $router->post('/marcas/cambiar-estado', [MarcaController::class, 'cambiarEstado'])->auth();
 // Rutas para los productos
 $router->controlador('/productos', ProductoController::class, 'auth');
-$router->post('/productos/activar', [ProductoController::class, 'activar'])->auth();
-$router->post('/productos/desactivar', [ProductoController::class, 'desactivar'])->auth();
+$router->post('/productos/cambiar-estado', [ProductoController::class, 'cambiarEstado'])->auth();
 
 // Rutas para las entradas
 $router->get('/entradas', [EntradaController::class, 'index'])->auth();

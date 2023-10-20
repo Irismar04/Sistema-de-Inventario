@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Constants\Status;
+use App\Traits\Desactivable;
 
 class Producto extends Model
 {
+    use Desactivable;
+
     protected $tabla = 'producto';
     protected $id = 'id_producto';
 
@@ -56,9 +59,9 @@ class Producto extends Model
 
         $query =
         "INSERT INTO {$this->tabla}
-        (id_categoria, id_marca, nom_producto, stock, stock_minimo )
+        (id_categoria, id_marca, nom_producto, stock, stock_minimo, estado)
         VALUES 
-        (:id_categoria, :id_marca, :nom_producto, :stock, :stock_minimo)";
+        (:id_categoria, :id_marca, :nom_producto, :stock, :stock_minimo, default)";
 
 
         $statement = $this->db->prepare($query);
@@ -100,39 +103,28 @@ class Producto extends Model
         return $statement->rowCount() > 0;
     }
 
-    public function activar($id)
+    public function todosSinBorrar()
     {
-        $activo = 1;
+        $borrado = Status::DELETED;
+        $estado = "{$this->tabla}.estado";
+        // Consulta para buscar todos los registros en la tabla deseada
+        $sql = "SELECT *, {$this->tabla}.estado AS estado, categoria.estado AS estado_categoria, marca.estado AS estado_marca FROM {$this->tabla}";
 
-        $query = "UPDATE {$this->tabla} SET 
-        estado = :estado
-        WHERE id_producto = :id_producto";
+        foreach ($this->relaciones as $tabla => $columna) {
+            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+        }
 
-        $statement = $this->db->prepare($query);
-        $statement->bindParam(":id_producto", $id);
+        $sql .= " WHERE {$estado} != {$borrado}";
 
-        $statement->bindParam(":estado", $activo, \PDO::PARAM_INT);
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
 
-        $statement->execute();
+        // Ejecutar la consulta
+        $stmt->execute();
 
-        return $statement->rowCount() > 0;
-    }
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-    public function desactivar($id)
-    {
-        $inactivo = 0;
-
-        $query = "UPDATE {$this->tabla} SET 
-        estado = :estado
-        WHERE id_producto = :id_producto";
-
-        $statement = $this->db->prepare($query);
-        $statement->bindParam(":id_producto", $id);
-
-        $statement->bindParam(":estado", $inactivo, \PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->rowCount() > 0;
+        return $resultados;
     }
 }

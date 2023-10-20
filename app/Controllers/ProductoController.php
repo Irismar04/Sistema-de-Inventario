@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Constants\Status;
 use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Producto;
@@ -12,18 +13,18 @@ class ProductoController extends Controller
     {
 
         $modelo = new Producto();
-        $productos = $modelo->todos();
+        $productos = $modelo->todosSinBorrar();
         return parent::ver('productos/index', ['productos' => $productos]);
     }
 
     public function crear()
     {
         $modelo = new Categoria();
-        $categorias = $modelo->todos();
+        $categorias = $modelo->todosActivos();
 
 
         $modeloDos = new Marca();
-        $marcas = $modeloDos->todos();
+        $marcas = $modeloDos->todosActivos();
         return parent::ver('productos/crear', ['categorias' => $categorias, 'marcas' => $marcas]);
     }
 
@@ -33,8 +34,8 @@ class ProductoController extends Controller
         $modeloDos = new Categoria();
         $modeloTres = new Marca();
         $producto = $modelo->uno($_GET['id']);
-        $categorias = $modeloDos->todos();
-        $marcas = $modeloTres->todos();
+        $categorias = $modeloDos->todosActivos();
+        $marcas = $modeloTres->todosActivos();
         return parent::ver('productos/editar', [
             'producto' => $producto,
             'categorias' => $categorias,
@@ -58,26 +59,30 @@ class ProductoController extends Controller
         parent::redirigir('productos?success=editar');
     }
 
+    public function cambiarEstado()
+    {
+        $modelo = new Producto();
+        [$success, $estado] = $modelo->cambiarEstado($_POST);
+
+        if($success) {
+            if($estado == Status::ACTIVE) {
+                parent::redirigir('productos?success=activado');
+            } elseif($estado == Status::INACTIVE) {
+                parent::redirigir('productos?success=desactivado');
+            } else {
+                parent::redirigir('productos?error=desconocido');
+            }
+        } else {
+            parent::redirigir('productos?error=estado');
+        }
+    }
+
     public function destruir()
     {
         $modelo = new Producto();
-        $modelo->destruir($_GET['id']);
+        $modelo->softDelete($_GET['id']);
 
         parent::redirigir('productos?success=borrar');
-    }
-
-    public function activar()
-    {
-        $id = $_POST['id'];
-        $modelo = new Producto();
-        $modelo->activar($id);
-    }
-
-    public function desactivar()
-    {
-        $id = $_POST['id'];
-        $modelo = new Producto();
-        $modelo->desactivar($id);
     }
 
 }

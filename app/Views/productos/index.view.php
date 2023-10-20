@@ -6,9 +6,9 @@
 <?= generarAlertaExito('¡Se editó el producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
 <?= generarAlertaExito('¡Se eliminó el producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'activar'): ?>
+<?php elseif($_GET['success'] == 'activado'): ?>
 <?= generarAlertaExito('¡Se activó el producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'desactivar'): ?>
+<?php elseif($_GET['success'] == 'desactivado'): ?>
 <?= generarAlertaExito('¡Se desactivo el producto satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
@@ -21,6 +21,8 @@
 <?= generarAlertaError('¡Ha ocurrido un error al editar el producto!') ?>
 <?php elseif($_GET['error'] == 'borrar'): ?>
 <?= generarAlertaError('¡Ha ocurrido un error borrando el producto!') ?>
+<?php elseif($_GET['error'] == 'estado'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al activar o desactivar el producto!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -33,13 +35,17 @@
     <table id="tabla-de-reporte">
         <thead>
             <tr>
-                <th>Nombre del producto</th>
-                <th>Categoría</th>
-                <th>Marca</th>
-                <th>Estado</th>
-                <th>Stock</th>
-                <th>Stock Minimo</th>
+                <th rowspan="2">Nombre del producto</th>
+                <th rowspan="2">Categoría</th>
+                <th rowspan="2">Marca</th>
+                <th rowspan="2">Estado</th>
+                <th rowspan="2">Stock</th>
+                <th rowspan="2">Stock Minimo</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+            <tr>
                 <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -48,8 +54,13 @@
                 <td><?= $producto['nom_producto']; ?></td>
                 <td><?= $producto['nom_categoria'];?></td>
                 <td><?= $producto['nom_marca'];?></td>
+                <!-- Boton para cambiar estado del producto -->
                 <td>
-                    <?= ($producto['estado']) ? "<button type=\"button\" onclick=\"desactivarProducto({$producto['id_producto']})\" class=\"btn btn-success\">Activo</button>" : "<button type=\"button\" onclick=\"activarProducto({$producto['id_producto']})\" class=\"btn btn-danger\">Inactivo</button>" ?>
+                    <form action="<?= url('productos/cambiar-estado') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $producto['id_producto'] ?>">
+                    <input type="hidden" name="estado_viejo" value="<?= $producto['estado'] ?>">
+                    <button type="submit" class="btn btn-<?= ($producto['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($producto['estado']) ?></button>
+                    </form>
                 </td>
                 <td><?= $producto['stock'];?></td>
                 <td><?= $producto['stock_minimo'];?></td>
@@ -59,6 +70,14 @@
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
+                <!-- Boton para mostrar modal de borrare -->
+                <td>
+                    <button class="btn" title="Eliminar" onclick="show(<?= $producto['id_producto'] ?>)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+                <!-- Modal para borrar -->
+                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere borrar esta producto?') ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
