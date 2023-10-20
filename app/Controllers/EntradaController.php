@@ -17,7 +17,7 @@ class EntradaController extends Controller
     public function crear()
     {
         $modelo = new Producto();
-        $productos = $modelo->todos();
+        $productos = $modelo->todosActivos();
 
         return parent::ver('entradas/crear', ['productos' => $productos]);
     }

@@ -17,7 +17,7 @@ class SalidaController extends Controller
     public function crear()
     {
         $modelo = new Producto();
-        $productos = $modelo->todos();
+        $productos = $modelo->todosActivos();
 
         return parent::ver('salidas/crear', ['productos' => $productos]);
     }
