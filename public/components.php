@@ -16,15 +16,17 @@ function modal($nombre, $id, $mensaje)
 {
     $borrarUrl = borrarUrl($nombre, $id);
 
-    return <<<HTML
+    return '
         <dialog data-modal id="delete-modal-$id">
-            <p>
+            <p>'.
                 $mensaje
+                .
+                '
             </p>
             <div>
-                <button class="btn" onclick="cerrar('$id')">Cancelar</button>
-                <a class="btn" href="$borrarUrl">Confirmar</a>
+                <button class="btn" onclick="cerrar('.$id.')">Cancelar</button>
+                <a class="btn" href="'.$borrarUrl.'">Confirmar</a>
             </div>
         </dialog>
-    HTML;
+    ';
 }
