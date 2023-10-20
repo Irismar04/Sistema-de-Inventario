@@ -35,9 +35,11 @@ $router->get('/entradas', [EntradaController::class, 'index'])->auth();
 $router->get('/entradas/crear', [EntradaController::class, 'crear'])->auth();
 $router->post('/entradas', [EntradaController::class, 'guardar'])->auth();
 
-// Rutas para las entradas
+// Rutas para las salidas
 $router->get('/salidas', [SalidaController::class, 'index'])->auth();
 $router->get('/salidas/crear', [SalidaController::class, 'crear'])->auth();
 $router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
 
-$router->get('/usuario', [UsuarioController::class, 'mostrar']);
+// Rutas para la gestión de usuarios
+$router->controlador('/usuarios', UsuarioController::class, 'auth');
+$router->post('/usuarios/cambiar-estado', [UsuarioController::class, 'cambiarEstado'])->auth();

@@ -40,6 +40,10 @@ body {
     min-height: 100vh;
 }
 
+div#layoutSidenav_content {
+  overflow-x: hidden;
+}
+
 footer {
     margin-top: auto;
 }

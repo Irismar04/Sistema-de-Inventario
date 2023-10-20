@@ -54,10 +54,10 @@ CREATE TABLE datos (
     nom_per VARCHAR (255) NOT NULL,
     apellido_per VARCHAR (255) NOT NULL,
     cedula INT NOT NULL,
-    telefono INT NOT NULL,
-    dirreccion VARCHAR (255) NOT NULL,
     genero VARCHAR (255) NOT NULL,
-    correo VARCHAR (255) NOT NULL,
+    telefono INT,
+    direccion VARCHAR (255),
+    correo VARCHAR (255),
     PRIMARY KEY (id_datos),
     FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
 );
@@ -134,3 +134,12 @@ INSERT INTO
     usuario (id_rol, nom_usuario, clave)
 VALUES
     (1, 'admin', 'admin123');
+
+INSERT INTO
+    datos (
+        id_usuario,
+        nom_per,
+        apellido_per,
+        cedula,
+        genero
+    )

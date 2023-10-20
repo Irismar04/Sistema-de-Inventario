@@ -84,5 +84,4 @@ class ProductoController extends Controller
 
         parent::redirigir('productos?success=borrar');
     }
-
 }

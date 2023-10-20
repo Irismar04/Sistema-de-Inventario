@@ -68,7 +68,6 @@ trait Desactivable
 
         // Obtener todos los registros como un arreglo asociativo
         $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
         return $resultados;
     }
 
