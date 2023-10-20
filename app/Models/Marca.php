@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Constants\Status;
+use App\Traits\Desactivable;
 
 class Marca extends Model
 {
+    use Desactivable;
+
     protected $tabla = 'marca';
 
     protected $id = 'id_marca';

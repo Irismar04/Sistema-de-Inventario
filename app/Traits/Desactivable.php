@@ -8,6 +8,11 @@ trait Desactivable
 {
     public function cambiarEstado($datosForm)
     {
+        // Comprueba que el estado introducido es soportado por el sistema
+        if(!Status::exists($datosForm['estado_viejo'])) {
+            return false;
+        }
+
         $newState = ($datosForm['estado_viejo'] == Status::ACTIVE) ? Status::INACTIVE : Status::ACTIVE ;
         $query = "UPDATE {$this->tabla} SET estado = :estado WHERE {$this->id} = :{$this->id}";
 

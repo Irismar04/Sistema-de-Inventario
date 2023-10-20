@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Constants\Status;
 use App\Models\Marca;
 
 class MarcaController extends Controller
@@ -10,7 +11,7 @@ class MarcaController extends Controller
     {
 
         $modelo = new Marca();
-        $marcas = $modelo->todos();
+        $marcas = $modelo->todosSinBorrar();
         return parent::ver('marcas/index', ['marcas' => $marcas]);
     }
 
@@ -42,10 +43,28 @@ class MarcaController extends Controller
         parent::redirigir('marcas?success=editar');
     }
 
+    public function cambiarEstado()
+    {
+        $modelo = new Marca();
+        [$success, $estado] = $modelo->cambiarEstado($_POST);
+
+        if($success) {
+            if($estado == Status::ACTIVE) {
+                parent::redirigir('marcas?success=activado');
+            } elseif($estado == Status::INACTIVE) {
+                parent::redirigir('marcas?success=desactivado');
+            } else {
+                parent::redirigir('marcas?error=desconocido');
+            }
+        } else {
+            parent::redirigir('marcas?error=estado');
+        }
+    }
+
     public function destruir()
     {
         $modelo = new Marca();
-        $success = $modelo->destruir($_GET['id']);
+        $success = $modelo->softDelete($_GET['id']);
 
         if($success) {
             parent::redirigir('marcas?success=borrar');

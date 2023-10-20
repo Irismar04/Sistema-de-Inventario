@@ -35,10 +35,13 @@
     <table id="tabla-de-reporte">
         <thead>
             <tr>
-                <th>Nombre de la categoría</th>
-                <th>Estado</th>
+                <th rowspan="2">Nombre de la categoría</th>
+                <th rowspan="2">Estado</th>
                 <th colspan="2">Acciones</th>
-                <th style="display: none"></th> 
+            </tr>
+            <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -50,7 +53,7 @@
                     <form action="<?= url('categorias/cambiar-estado') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $categoria['id_categoria'] ?>">
                     <input type="hidden" name="estado_viejo" value="<?= $categoria['estado'] ?>">
-                    <button type="submit" class="btn btn-<?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'Activo' : 'Inactivo' ?></button>
+                    <button type="submit" class="btn btn-<?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($categoria['estado']) ?></button>
                     </form>
                 </td>
                 <!-- Boton para editar -->
@@ -65,7 +68,7 @@
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
-                <td style="display: none"></td>
+                
                 <!-- Modal para borrar -->
                 <?= modal('categorias', $categoria['id_categoria'], 'Cuidado, ¿esta seguro que quiere borrar esta categoria?') ?>
             </tr>

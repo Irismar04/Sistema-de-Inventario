@@ -6,6 +6,10 @@
 <?= generarAlertaExito('¡Se editó una marca satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
 <?= generarAlertaExito('¡Se eliminó una marca satisfactoriamente!') ?>
+<?php elseif($_GET['success'] == 'activado'): ?>
+<?= generarAlertaExito('¡Se activo una marca satisfactoriamente!') ?>
+<?php elseif($_GET['success'] == 'desactivado'): ?>
+<?= generarAlertaExito('¡Se desactivo una marca satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -17,6 +21,8 @@
 <?= generarAlertaError('¡Ha ocurrido un error al editar la marca!') ?>
 <?php elseif($_GET['error'] == 'borrar'): ?>
 <?= generarAlertaError('¡La marca tiene productos asignados!') ?>
+<?php elseif($_GET['error'] == 'estado'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al activar o desactivar la marca!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -28,8 +34,12 @@
     <br>
     <table id="tabla-de-reporte">
         <thead>
+        <tr>
+                <th rowspan="2">Nombre de la marca</th>
+                <th rowspan="2">Estado</th>
+                <th colspan="2">Acciones</th>
+            </tr>
             <tr>
-                <th>Nombre de la marca</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -38,6 +48,14 @@
             <?php foreach ($marcas as $marca):?>
             <tr>
                 <td><?= $marca['nom_marca']; ?></td>
+                <!-- Boton para cambiar estado del producto -->
+                <td>
+                    <form action="<?= url('marcas/cambiar-estado') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $marca['id_marca'] ?>">
+                    <input type="hidden" name="estado_viejo" value="<?= $marca['estado'] ?>">
+                    <button type="submit" class="btn btn-<?= ($marca['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($categoria['estado']) ?></button>
+                    </form>
+                </td>
                 <!-- Boton para editar -->
                 <td>
                     <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>">

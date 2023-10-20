@@ -25,7 +25,7 @@ $router->controlador('/categorias', CategoriaController::class, 'auth');
 $router->post('/categorias/cambiar-estado', [CategoriaController::class, 'cambiarEstado'])->auth();
 // Rutas para las marcas
 $router->controlador('/marcas', MarcaController::class, 'auth');
-
+$router->post('/marcas/cambiar-estado', [MarcaController::class, 'cambiarEstado'])->auth();
 // Rutas para los productos
 $router->controlador('/productos', ProductoController::class, 'auth');
 $router->post('/productos/activar', [ProductoController::class, 'activar'])->auth();

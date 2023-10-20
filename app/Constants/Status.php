@@ -10,7 +10,7 @@ class Status
 
     public static function exists($status)
     {
-        return in_array($status, [self::ACTIVE, self::DELETED, self::INACTIVE], true);
+        return in_array($status, [self::ACTIVE, self::DELETED, self::INACTIVE]);
     }
 
     public static function match($status)
