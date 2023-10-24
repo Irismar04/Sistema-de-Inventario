@@ -33,3 +33,13 @@ function selected($primero, $segundo)
 {
     return ($primero == $segundo) ? 'selected' : '';
 }
+
+function moneyUsd($int)
+{
+    return '$' . number_format($int, 2);
+}
+
+function moneyBolivar($int)
+{
+    return number_format($int, 2) . ' Bs';
+}

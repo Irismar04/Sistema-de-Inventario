@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Divisa;
 use App\Models\Salida;
 use App\Models\Producto;
 
@@ -11,7 +12,11 @@ class SalidaController extends Controller
     {
         $modelo = new Salida();
         $salidas = $modelo->todos();
-        return parent::ver('salidas/index', ['salidas' => $salidas]);
+        $divisa = (new Divisa())->ultima();
+        return parent::ver('salidas/index', [
+            'salidas' => $salidas,
+            'divisa' => $divisa
+        ]);
     }
 
     public function crear()

@@ -32,6 +32,7 @@
                 <th>Nombre del producto</th>
                 <th>Cantidad</th>
                 <th>Precio de entrada (USD$)</th>
+                <th>Precio de entrada (Bs)</th>
                 <th>Fecha de entrada</th>
                 <th>Fecha de vencimiento</th>
             </tr>
@@ -41,7 +42,8 @@
             <tr>
                 <td><?= $entrada['nom_producto']; ?></td>
                 <td><?= $entrada['cantidad_entrada'];?></td>
-                <td><?= $entrada['precio_entrada'];?></td>
+                <td><?= moneyUsd($entrada['precio_entrada']);?></td>
+                <td><?= moneyBolivar($entrada['precio_entrada'] * $divisa['cantidad']);?></td>
                 <td><?= $entrada['fecha_entrada'];?></td>
                 <td><?= $entrada['fecha_vencimiento'];?></td>
             </tr>

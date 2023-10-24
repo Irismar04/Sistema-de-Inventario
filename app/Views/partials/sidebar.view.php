@@ -146,12 +146,18 @@
                 </div>
                 <!--Fin de Gestion de Usuario -->
 
+                <!-- Historial -->
                 <a class="nav-link" href="<?= url('historial') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
-                    Historial
+                    Ver Historial
+                </a>
+
+                <!-- Divisa -->
+                <a class="nav-link" href="<?= url('divisa') ?>">
+                    <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                    Cambiar Divisa
                 </a>
                 <?php endif; ?>
-                <br>
 
                 <a href="/sistema-de-inventario/Manual.pdf" download="Manual de Usuario.pdf" class="nav-link">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-pdf"></i>

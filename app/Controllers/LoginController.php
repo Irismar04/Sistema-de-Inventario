@@ -7,7 +7,7 @@ use Inventario\Routing\Request;
 
 class LoginController extends Controller
 {
-    public function mostrar()
+    public function index()
     {
         $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
         $path = $request->path;

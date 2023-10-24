@@ -5,7 +5,7 @@
             <li class="breadcrumb-item active"></li>
         </ol>
         <div class="row">
-        <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
+            <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-info text-white mb-4">
                     <div class="card-body">
@@ -57,6 +57,7 @@
             </div>
         </div>
         <div class="row">
+            <!-- Actividades -->
             <div class="col-xl-6">
                 <div class="card mb-4">
                     <div class="card bg-dark text-white mb-4">
@@ -69,10 +70,14 @@
                             <p>Ultimo producto agregado:&nbsp;<?= $ultimoProducto['nom_producto'] ?></p>
                             <?php endif ?>
                             <?php if($ultimaEntrada): ?>
-                            <p>Ultima entrada registrada:&nbsp;<?= "+{$ultimaEntrada['cantidad_entrada']} {$ultimaEntrada['nom_producto']}" ?></p>
+                            <p>Ultima entrada
+                                registrada:&nbsp;<?= "+{$ultimaEntrada['cantidad_entrada']} {$ultimaEntrada['nom_producto']}" ?>
+                            </p>
                             <?php endif ?>
                             <?php if($ultimaSalida): ?>
-                            <p>Ultima salida registrada:&nbsp;<?= "-{$ultimaSalida['cantidad_salida']} {$ultimaSalida['nom_producto']}" ?></p>
+                            <p>Ultima salida
+                                registrada:&nbsp;<?= "-{$ultimaSalida['cantidad_salida']} {$ultimaSalida['nom_producto']}" ?>
+                            </p>
                             <?php endif ?>
                         </b>
                     </div>

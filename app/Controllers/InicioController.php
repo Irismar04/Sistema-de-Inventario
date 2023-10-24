@@ -9,7 +9,7 @@ use App\Models\Usuario;
 
 class InicioController extends Controller
 {
-    public function mostrar()
+    public function index()
     {
         // Contar productos
         $productos = count((new Producto())->todos());
@@ -33,6 +33,7 @@ class InicioController extends Controller
 
         // Ultima salida registrada
         $ultimaEntrada = (new Entrada())->ultimaEntrada();
+
         return parent::ver('index', [
             'nombre' => 'Inversiones Zormar',
             'productos' => $productos,

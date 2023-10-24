@@ -39,7 +39,7 @@ class Categoria extends Model
         }
 
         $nombre = "{$datosForm['nombre']}%";
-        $columnaUno->bindParam(":nom_categoria", ucfirst($nombre));
+        $columnaUno->bindParam(":nom_categoria", $nombre);
         $columnaUno->execute();
 
 
@@ -55,7 +55,8 @@ class Categoria extends Model
 
         $query = "INSERT INTO {$this->tabla} (nom_categoria, estado) VALUES (:nom_categoria, default)";
         $statement = $this->db->prepare($query);
-        $statement->bindParam(":nom_categoria", ucfirst($datosForm['nombre']));
+        $nuevoNombre = ucfirst($datosForm['nombre']);
+        $statement->bindParam(":nom_categoria", $nuevoNombre);
         $statement->execute();
 
         return $statement->rowCount() > 0;
@@ -65,13 +66,10 @@ class Categoria extends Model
     {
         $this->revisarDuplicados($datosForm, 'editar');
 
-
-        $this->revisarDuplicados($datosForm, 'editar');
-
-
         $query = "UPDATE {$this->tabla} SET nom_categoria = :nuevo_nombre WHERE id_categoria = :id_categoria";
         $statement = $this->db->prepare($query);
-        $statement->bindParam(":nuevo_nombre", ucfirst($datosForm['nombre']));
+        $nuevoNombre = ucfirst($datosForm['nombre']);
+        $statement->bindParam(":nuevo_nombre", $nuevoNombre);
         $statement->bindParam(":id_categoria", $datosForm['id']);
         $statement->execute();
 
