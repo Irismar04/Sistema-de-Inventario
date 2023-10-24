@@ -118,10 +118,23 @@
 
     function generarPDF() {
         const doc = new window.jspdf.jsPDF()
+
+        const titulo = 'Reporte - Productos';
+        const imgWidth = 32;
+        const imgHeight = 28;
+        const imgX = 10;
+        const imgY = 10;
+
+        // Añadir el título y la imagen en la misma línea
+        doc.setFontSize(16);
+        doc.text(titulo, imgX + imgWidth + 10, imgY + imgHeight / 2);
+        doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
         doc.autoTable({
             html: '#tabla-del-pdf',
-            includeHiddenHtml: true
+            includeHiddenHtml: true,
+            margin: { top: 50 },
         })
-        doc.save("Reporte - Productos");
+        doc.save(titulo);
+
     }
 </script>
