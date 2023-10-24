@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
 use App\Constants\Status;
 use App\Traits\Autenticable;
 use App\Traits\Desactivable;
+use App\Traits\Registrable;
 
 class Usuario extends Model
 {
     use Desactivable;
     use Autenticable;
+    use Registrable;
 
     protected $tabla = 'usuario';
     protected $id = 'id_usuario';
@@ -122,6 +125,8 @@ class Usuario extends Model
 
             $this->db->commit();
 
+            $this->registrar(Acciones::CREATE);
+
             return true;
         } catch (\Throwable $th) {
             $this->db->rollBack();
@@ -170,6 +175,8 @@ class Usuario extends Model
 
             $this->db->commit();
 
+            $this->registrar(Acciones::UPDATE);
+
             return true;
         } catch (\Throwable $th) {
             $this->db->rollBack();
@@ -177,10 +184,31 @@ class Usuario extends Model
         }
     }
 
+    public function cambiarContrasena($datosForm)
+    {
+        $query = "UPDATE {$this->tabla} SET
+            clave = :clave
+        WHERE 
+            id_usuario = :id_usuario";
+
+        $usuario = $this->db->prepare($query);
+        $usuario->bindParam(":id_usuario", $datosForm['id']);
+        $usuario->bindParam(":clave", $datosForm['password']);
+        $usuario->execute();
+
+        $this->registrar(Acciones::UPDATE);
+
+        return $usuario->rowCount() > 0;
+    }
+
     public function uno($id)
     {
         // Consulta para buscar el registro por su ID en la tabla deseada
-        $sql = "SELECT * FROM {$this->tabla} LEFT JOIN datos ON datos.id_usuario = usuario.id_usuario WHERE usuario.{$this->id} = :{$this->id}";
+        $sql = "SELECT * FROM {$this->tabla} 
+            LEFT JOIN datos ON  datos.id_usuario = usuario.id_usuario 
+            LEFT JOIN rol ON  rol.id_rol = usuario.id_rol 
+            WHERE 
+            usuario.{$this->id} = :{$this->id}";
 
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);

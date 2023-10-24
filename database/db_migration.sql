@@ -43,6 +43,7 @@ CREATE TABLE historial(
     id_historial int NOT NULL AUTO_INCREMENT,
     id_usuario int NOT NULL,
     accion VARCHAR (255) NOT NULL,
+    tabla VARCHAR (255) NOT NULL,
     creado_en DATETIME NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id_historial),
     FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
@@ -114,6 +115,12 @@ CREATE TABLE detalle_salida(
 
 CREATE TRIGGER hash_clave BEFORE
 INSERT
+    ON usuario FOR EACH ROW
+SET
+    NEW.clave = SHA2(NEW.clave, 256);
+
+CREATE TRIGGER hash_clave_update BEFORE
+UPDATE
     ON usuario FOR EACH ROW
 SET
     NEW.clave = SHA2(NEW.clave, 256);

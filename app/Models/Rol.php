@@ -4,12 +4,10 @@ namespace App\Models;
 
 use PDO;
 
-/**
- *
- */
 class Rol extends Model
 {
     protected $tabla = 'rol';
+    protected $id = 'id_rol';
 
     public function guardar($datosForm)
     {

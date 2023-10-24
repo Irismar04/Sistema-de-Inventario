@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
+use App\Traits\Registrable;
+
 class Divisa extends Model
 {
+    use Registrable;
+
     protected $tabla = "divisa";
 
     protected $id = "id_divisa";
@@ -33,6 +38,8 @@ class Divisa extends Model
         $statement->bindParam(":cantidad", $datosForm['precio']);
         $statement->execute();
 
+        $this->registrar(Acciones::CREATE);
+
         return $statement->rowCount() > 0;
     }
 
@@ -44,6 +51,8 @@ class Divisa extends Model
         $statement->bindParam(":cantidad", $datosForm['precio']);
         $statement->bindParam(":id_divisa", $datosForm['id']);
         $statement->execute();
+
+        $this->registrar(Acciones::UPDATE);
 
         return $statement->rowCount() > 0;
     }

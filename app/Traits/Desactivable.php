@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Constants\Acciones;
 use App\Constants\Status;
 
 trait Desactivable
@@ -20,6 +21,12 @@ trait Desactivable
         $statement->bindParam(":estado", $newState);
         $statement->bindParam(":{$this->id}", $datosForm['id']);
         $statement->execute();
+
+        if($newState == Status::ACTIVE) {
+            $this->registrar(Acciones::ACTIVATE);
+        } else {
+            $this->registrar(Acciones::DEACTIVATE);
+        }
 
         return [$statement->rowCount() > 0, $newState];
     }
@@ -79,6 +86,9 @@ trait Desactivable
             $statement = $this->db->prepare($sql);
             $statement->bindParam(":{$this->id}", $id);
             $statement->execute();
+
+            $this->registrar(Acciones::DELETE);
+
             return true;
         } catch (\Throwable $th) {
             return false;

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
 use App\Constants\Status;
 use App\Traits\Desactivable;
+use App\Traits\Registrable;
 
 class Producto extends Model
 {
     use Desactivable;
+    use Registrable;
 
     protected $tabla = 'producto';
     protected $id = 'id_producto';
@@ -76,6 +79,8 @@ class Producto extends Model
 
         $statement->execute();
 
+        $this->registrar(Acciones::CREATE);
+
         return $statement->rowCount() > 0;
     }
 
@@ -100,6 +105,8 @@ class Producto extends Model
 
 
         $statement->execute();
+
+        $this->registrar(Acciones::UPDATE);
 
         return $statement->rowCount() > 0;
     }

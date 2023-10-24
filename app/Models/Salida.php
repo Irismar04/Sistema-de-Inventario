@@ -7,7 +7,7 @@ use App\Constants\Motivo;
 class Salida extends Model
 {
     protected $tabla = 'detalle_salida';
-    protected $id = 'id_detalle_e';
+    protected $id = 'id_detalle_salida';
 
     protected $relaciones = [
         'producto' => 'id_producto',

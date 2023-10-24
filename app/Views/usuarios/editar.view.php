@@ -86,7 +86,8 @@
                                 placeholder="Correo electrónico" value="<?= $usuario['correo'] ?>">
                         </div>
                     </div>
-                                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                    
+                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                     <button class="btn btn-success" type="submit">Guardar</button>
                     <input class="btn btn-danger" type="reset" value="Limpiar">
                 </form>

@@ -5,7 +5,7 @@ namespace App\Models;
 class Entrada extends Model
 {
     protected $tabla = 'detalle_entrada';
-    protected $id = 'id_detalle_e';
+    protected $id = 'id_detalle_entrada';
 
     protected $relaciones = [
         'producto' => 'id_producto',

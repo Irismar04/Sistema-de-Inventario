@@ -22,7 +22,7 @@
 
 
 <main class="mx-4">
-    <h2 class="text-center font-weight-light my-4">Lista de Entradas de productos</h2>
+    <h2 class="text-center font-weight-light my-4">Lista de entradas de productos</h2>
     <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
     <br>
     <br>
@@ -41,7 +41,7 @@
             <?php foreach ($entradas as $entrada):?>
             <tr>
                 <td><?= $entrada['nom_producto']; ?></td>
-                <td><?= $entrada['cantidad_entrada'];?></td>
+                <td><?= unidades($entrada['cantidad_entrada']);?></td>
                 <td><?= moneyUsd($entrada['precio_entrada']);?></td>
                 <td><?= moneyBolivar($entrada['precio_entrada'] * $divisa['cantidad']);?></td>
                 <td><?= $entrada['fecha_entrada'];?></td>
@@ -64,9 +64,9 @@
     function generarPDF() {
         const doc = new window.jspdf.jsPDF()
         doc.autoTable({
-            html: '#tabla-del-pdf',
+            html: '#tabla-de-reporte',
             includeHiddenHtml: true
         })
-        doc.save("Reporte - entradas");
+        doc.save("Reporte - Entradas");
     }
 </script>

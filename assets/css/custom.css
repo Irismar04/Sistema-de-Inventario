@@ -4,6 +4,10 @@
   right: 0;
 }
 
+.pointer-none {
+  pointer-events: none;
+}
+
 .slide-fade-enter-from {
   transform: translateX(100%);
   opacity: 0;

@@ -21,6 +21,8 @@ abstract class Model extends BaseModel
             $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
         }
 
+        $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
+
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 

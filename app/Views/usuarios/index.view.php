@@ -10,6 +10,8 @@
 <?= generarAlertaExito('¡Se activó el usuario satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'desactivado'): ?>
 <?= generarAlertaExito('¡Se desactivo el usuario satisfactoriamente!') ?>
+<?php elseif($_GET['success'] == 'password'): ?>
+<?= generarAlertaExito('¡Se ha cambiado la contraseña satisfactoriamenet!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -42,9 +44,10 @@
                 <th rowspan="2">Genero</th>
                 <th rowspan="2">Datos</th>
                 <th rowspan="2">Estado</th>
-                <th colspan="2">Acciones</th>
+                <th colspan="3">Acciones</th>
             </tr>
             <tr>
+                <th>Contraseña</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -58,27 +61,34 @@
                 <td><?= $usuario['cedula']; ?></td>
                 <td><?= App\Constants\Genero::match($usuario['genero']); ?></td>
                 <td>
-                    <button class="btn btn-info" title="Datos">
+                    <a href="<?= url('usuarios')."/datos?id={$usuario['id_usuario']}" ?>" class="btn btn-info" title="Datos">
                         Datos
-                    </button>
+                    </a>
                 </td>
                 <!-- Boton para cambiar estado del usuario -->
                 <td>
                     <form action="<?= url('usuarios/cambiar-estado') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $usuario['id_usuario'] ?>">
                     <input type="hidden" name="estado_viejo" value="<?= $usuario['estado'] ?>">
-                    <button type="submit" class="btn btn-<?= ($usuario['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($usuario['estado']) ?></button>
+                    <button type="submit" class="btn btn-<?= ($usuario['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"
+                    <?= disabled($_SESSION['usuario']['id_usuario'], $usuario['id_usuario']) ?>><?= App\Constants\Status::match($usuario['estado']) ?></button>
                     </form>
                 </td>
+                <!-- Boton para cambiar contraseña -->
+                <td class="text-center">
+                    <a class="btn" title="Cambiar contraseña" href="<?= passUrl('usuarios', $usuario['id_usuario']) ?>">
+                        <i class="fa fa-lock"></i>
+                    </a>
+                </td>
                 <!-- Boton para editar -->
-                <td>
+                <td class="text-center">
                     <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
                 <!-- Boton para mostrar modal de borrare -->
-                <td>
-                    <button class="btn" title="Eliminar" onclick="show(<?= $usuario['id_usuario'] ?>)">
+                <td class="text-center">
+                    <button class="btn <?= $_SESSION['usuario']['id_usuario'] == $usuario['id_usuario'] ? 'pe-none text-muted' : '' ?>" title="Eliminar" <?= $_SESSION['usuario']['id_usuario'] != $usuario['id_usuario'] ? "onclick=\"show({$usuario['id_usuario']})\"" : '' ?>>
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>

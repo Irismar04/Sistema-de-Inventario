@@ -62,8 +62,8 @@
                     <button type="submit" class="btn btn-<?= ($producto['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($producto['estado']) ?></button>
                     </form>
                 </td>
-                <td><?= $producto['stock'];?></td>
-                <td><?= $producto['stock_minimo'];?></td>
+                <td><?= unidades($producto['stock']);?></td>
+                <td><?= unidades($producto['stock_minimo']);?></td>
                 <!-- Boton para editar -->
                 <td>
                     <a class="btn" title="Editar" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
@@ -99,8 +99,8 @@
                 <td><?= $producto['nom_producto']; ?></td>
                 <td><?= $producto['nom_categoria'];?></td>
                 <td><?= $producto['nom_marca'];?></td>
-                <td><?= $producto['stock'];?></td>
-                <td><?= $producto['stock_minimo'];?></td>
+                <td><?= unidades($producto['stock']);?></td>
+                <td><?= unidades($producto['stock_minimo']);?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -24,6 +24,16 @@ class UsuarioController extends Controller
         return parent::ver('usuarios/crear', ['roles' => $roles]);
     }
 
+    public function mostrar()
+    {
+        $modelo = new Usuario();
+        $usuario = $modelo->uno($_GET['id']);
+
+        return parent::ver('usuarios/datos', [
+            'usuario' => $usuario,
+        ]);
+    }
+
     public function editar()
     {
         $modelo = new Usuario();
@@ -73,6 +83,28 @@ class UsuarioController extends Controller
             }
         } else {
             parent::redirigir('usuarios?error=estado');
+        }
+    }
+
+
+    public function cambiarContrasena()
+    {
+        $modelo = new Usuario();
+        $usuario = $modelo->uno($_GET['id']);
+        return parent::ver('usuarios/pass', [
+            'usuario' => $usuario,
+        ], 'Inversiones Zormar - Cambiar Contraseña');
+    }
+
+    public function guardarCambiarContrasena()
+    {
+        $modelo = new Usuario();
+        $success = $modelo->cambiarContrasena($_POST);
+
+        if($success) {
+            parent::redirigir('usuarios?success=password');
+        } else {
+            parent::redirigir('usuarios?error=password');
         }
     }
 

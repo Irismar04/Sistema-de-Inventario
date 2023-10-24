@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
 use App\Constants\Status;
 use App\Traits\Desactivable;
+use App\Traits\Registrable;
 
 class Marca extends Model
 {
     use Desactivable;
+    use Registrable;
 
     protected $tabla = 'marca';
 
@@ -59,6 +62,8 @@ class Marca extends Model
         $statement->bindParam(":nom_marca", $datosForm['nombre']);
         $statement->execute();
 
+        $this->registrar(Acciones::CREATE);
+
         return $statement->rowCount() > 0;
     }
 
@@ -69,6 +74,8 @@ class Marca extends Model
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);
         $statement->bindParam(":id_marca", $datosForm['id']);
         $statement->execute();
+
+        $this->registrar(Acciones::UPDATE);
 
         return $statement->rowCount() > 0;
     }

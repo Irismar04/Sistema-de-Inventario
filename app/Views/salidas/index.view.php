@@ -45,11 +45,20 @@
 </main>
 
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
         $('#tabla-de-reporte').DataTable({
             language: {
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
             }
         });
     });
+
+    function generarPDF() {
+        const doc = new window.jspdf.jsPDF()
+        doc.autoTable({
+            html: '#tabla-de-reporte',
+            includeHiddenHtml: true
+        })
+        doc.save("Reporte - Salidas");
+    }
 </script>

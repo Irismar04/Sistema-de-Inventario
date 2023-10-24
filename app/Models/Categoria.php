@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
 use App\Constants\Status;
 use App\Traits\Desactivable;
+use App\Traits\Registrable;
 
 class Categoria extends Model
 {
     use Desactivable;
+    use Registrable;
 
     protected $tabla = 'categoria';
 
@@ -59,6 +62,8 @@ class Categoria extends Model
         $statement->bindParam(":nom_categoria", $nuevoNombre);
         $statement->execute();
 
+        $this->registrar(Acciones::CREATE);
+
         return $statement->rowCount() > 0;
     }
 
@@ -73,6 +78,7 @@ class Categoria extends Model
         $statement->bindParam(":id_categoria", $datosForm['id']);
         $statement->execute();
 
+        $this->registrar(Acciones::UPDATE);
         return $statement->rowCount() > 0;
     }
 }

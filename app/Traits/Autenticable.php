@@ -20,7 +20,7 @@ trait Autenticable
             $contrasena = $datos['contrasena'];
             $estado = Status::ACTIVE;
             // Consulta SQL para verificar usuario y contraseña
-            $sql = "SELECT nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = $estado LIMIT 1";
+            $sql = "SELECT id_usuario, nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = $estado LIMIT 1";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
             $stmt->bindParam(':contrasena', hash('sha256', $contrasena));

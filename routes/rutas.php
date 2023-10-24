@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\HistorialController;
 use Inventario\Routing\Router;
 use App\Controllers\CategoriaController;
 use App\Controllers\DivisaController;
@@ -44,7 +45,13 @@ $router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
 // Rutas para la gestión de usuarios
 $router->controlador('/usuarios', UsuarioController::class, 'admin');
 $router->post('/usuarios/cambiar-estado', [UsuarioController::class, 'cambiarEstado'])->auth('admin');
+$router->get('/usuarios/cambiar-contrasena', [UsuarioController::class, 'cambiarContrasena'])->auth('admin');
+$router->post('/usuarios/cambiar-contrasena', [UsuarioController::class, 'guardarCambiarContrasena'])->auth('admin');
+$router->get('/usuarios/datos', [UsuarioController::class, 'mostrar'])->auth('admin');
 
 // Rutas para la divisa
 $router->get('/divisa', [DivisaController::class, 'index'])->auth('admin');
 $router->post('/divisa', [DivisaController::class, 'guardar'])->auth('admin');
+
+// Rutas para el historial
+$router->get('/historial', [HistorialController::class,'index'])->auth('admin');
