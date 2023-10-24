@@ -75,7 +75,7 @@
         doc.text(titulo, imgX + imgWidth + 10, imgY + imgHeight / 2);
         doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
         doc.autoTable({
-            html: '#tabla-del-pdf',
+            html: '#tabla-de-reporte',
             includeHiddenHtml: true,
             margin: { top: 50 },
         })
