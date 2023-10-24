@@ -13,7 +13,7 @@
                         <p><?= "$usuariosActivos / $usuarios" ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Más información</a>
+                        <a class="small text-white stretched-link" href="<?= url('usuarios') ?>">Más información</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                         <p><?= "$productosDebajoDeStockMinimo / $productos" ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Más información</a>
+                        <a class="small text-white stretched-link" href="<?= url('productos') ?>">Más información</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <p><?= $productoMasVendido['nom_producto'] ?? '¡No hay productos!' ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Más información</a>
+                        <a class="small text-white stretched-link" href="<?= url('salidas') ?>">Más información</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <p><?= $productoMenosVendido['nom_producto'] ?? '¡No hay productos!' ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Más información</a>
+                        <a class="small text-white stretched-link" href="<?= url('salidas') ?>">Más información</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
