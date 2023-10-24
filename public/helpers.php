@@ -46,12 +46,12 @@ function disabled($primero, $segundo)
 
 function moneyUsd($int)
 {
-    return '$' . number_format($int, 2);
+    return '$' . number_format($int, 2, ',', '.');
 }
 
 function moneyBolivar($int)
 {
-    return number_format($int, 2) . ' Bs';
+    return number_format($int, 2, ',', '.') . ' Bs';
 }
 
 function unidades($string)

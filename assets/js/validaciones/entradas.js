@@ -12,7 +12,7 @@ validator
             errorMessage: 'El precio de entrada es obligatorio'
         },
         {
-            rule: 'integer',
+            rule:'number',
             errorMessage: 'El precio de entrada solo puede contener números'
         }
         

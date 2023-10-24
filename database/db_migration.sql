@@ -24,7 +24,7 @@ CREATE TABLE marca (
 
 CREATE TABLE divisa(
     id_divisa int NOT NULL AUTO_INCREMENT,
-    cantidad INT NOT NULL,
+    cantidad FLOAT NOT NULL,
     PRIMARY KEY (id_divisa)
 );
 
@@ -96,7 +96,7 @@ CREATE TABLE detalle_entrada(
     id_producto int NOT NULL,
     id_entrada int NOT NULL,
     fecha_vencimiento DATE NOT NULL,
-    precio_entrada INT NOT NULL,
+    precio_entrada FLOAT NOT NULL,
     PRIMARY KEY (id_detalle_entrada),
     FOREIGN KEY (id_producto) REFERENCES producto (id_producto),
     FOREIGN KEY (id_entrada) REFERENCES entrada (id_entrada)
@@ -106,7 +106,7 @@ CREATE TABLE detalle_salida(
     id_detalle_salida int NOT NULL AUTO_INCREMENT,
     id_producto int NOT NULL,
     id_salida int NOT NULL,
-    precio_salida INT NOT NULL,
+    precio_salida FLOAT NOT NULL,
     motivo SMALLINT NOT NULL,
     PRIMARY KEY (id_detalle_salida),
     FOREIGN KEY (id_producto) REFERENCES producto (id_producto),

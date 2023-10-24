@@ -34,14 +34,14 @@
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio de compra (USD$)</label>
-                        <input class="form-control" type="text" id="precio" name="precio_entrada" 
+                        <input class="form-control" type="number" step="0.01" id="precio" name="precio_entrada" 
                              placeholder="Precio al que se compraron los productos">
                     </div>
 
-                    <!-- Stock Minimo -->
+                    <!-- Cantidad -->
                     <div class="mb-3">
                         <label for="cantidad" class="form-label">Cantidad</label>
-                        <input class="form-control" type="text" id="cantidad" name="cantidad_entrada" 
+                        <input class="form-control" type="number" id="cantidad" name="cantidad_entrada" 
                              placeholder="Cantidad de productos a añadir al inventario">
                     </div>
 

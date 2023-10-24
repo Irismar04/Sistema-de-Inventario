@@ -35,7 +35,7 @@
                 <td><?= $salida['nom_producto']; ?></td>
                 <td><?= $salida['cantidad_salida'];?></td>
                 <td><?= moneyUsd($salida['precio_salida']);?></td>
-                <td><?= moneyBolivar($salida['precio_salida'] * $divisa['cantidad']);?></td>
+                <td><?= moneyBolivar($salida['precio_salida'] * ($divisa['cantidad'] ?? 0));?></td>
                 <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
                 <td><?= $salida['fecha_salida'];?></td>
             </tr>

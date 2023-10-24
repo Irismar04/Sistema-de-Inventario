@@ -7,7 +7,7 @@ validator
             errorMessage: 'El precio de la divisa es obligatorio'
         },
         {
-            rule: 'integer',
+            rule:'number',
             errorMessage: 'El precio de la divisa solo puede contener números'
         }
         

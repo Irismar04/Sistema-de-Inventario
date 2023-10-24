@@ -23,7 +23,7 @@
                 <div class="mb-3">
                     <label for="precio-actual" class="form-label">Precio actual</label>
                     <input class="form-control" name="precio-actual" value="<?= $divisa['cantidad'] ?>" id="precio-actual" placeholder="" readonly
-                        type="text" />
+                        type="number" step="0.01" />
                 </div>
                 <input type="hidden" name="id" value="<?= $divisa['id_divisa'] ?>">
                 <?php endif; ?>
@@ -32,7 +32,7 @@
                 <div class="mb-3">
                     <label for="precio" class="form-label">Precio de la divisa</label>
                     <input class="form-control" name="precio" id="precio" placeholder="e.j: 30000" autofocus
-                        type="text" />
+                    type="number" step="0.01" />
                 </div>
 
                 <!-- Botones -->

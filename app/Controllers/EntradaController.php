@@ -13,6 +13,7 @@ class EntradaController extends Controller
         $modelo = new Entrada();
         $entradas = $modelo->todos();
         $divisa = (new Divisa())->ultima();
+
         return parent::ver('entradas/index', [
             'entradas' => $entradas,
             'divisa' => $divisa

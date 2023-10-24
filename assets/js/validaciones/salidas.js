@@ -23,7 +23,7 @@ validator
             errorMessage: 'El precio de salida es obligatorio'
         },
         {
-            rule: 'integer',
+            rule:'number',
             errorMessage: 'El precio de salida solo puede contener números'
         }
         

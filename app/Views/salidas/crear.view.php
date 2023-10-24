@@ -41,14 +41,14 @@
                     <!-- Cantidad -->
                     <div class="mb-3">
                         <label for="cantidad" class="form-label">Cantidad</label>
-                        <input class="form-control" type="text" id="cantidad" name="cantidad_salida" 
+                        <input class="form-control" type="number" id="cantidad" name="cantidad_salida" 
                              placeholder="Cantidad de productos a restar del inventario">
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio de venta (USD$)</label>
-                        <input class="form-control" type="text" id="precio" name="precio_salida" 
+                        <input class="form-control" type="number" step="0.01" id="precio" name="precio_salida" 
                              placeholder="Precio al que se vendieron los productos">
                     </div>
 
