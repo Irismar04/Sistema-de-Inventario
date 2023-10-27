@@ -8,6 +8,7 @@ use App\Controllers\EntradaController;
 use App\Controllers\InicioController;
 use App\Controllers\LoginController;
 use App\Controllers\MarcaController;
+use App\Controllers\PerfilController;
 use App\Controllers\ProductoController;
 use App\Controllers\SalidaController;
 use App\Controllers\UsuarioController;
@@ -55,3 +56,9 @@ $router->post('/divisa', [DivisaController::class, 'guardar'])->auth('admin');
 
 // Rutas para el historial
 $router->get('/historial', [HistorialController::class,'index'])->auth('admin');
+
+// Rutas del perfil
+$router->get('/perfil/editar-perfil', [PerfilController::class, 'editarPerfil'])->auth();
+$router->get('/perfil/cambiar-contrasena', [PerfilController::class, 'cambiarContrasena'])->auth();
+$router->post('/perfil/cambiar-contrasena', [PerfilController::class, 'guardarCambiarContrasena'])->auth();
+$router->post('/perfil/actualizar', [PerfilController::class, 'actualizar'])->auth();

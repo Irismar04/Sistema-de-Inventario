@@ -201,6 +201,41 @@ class Usuario extends Model
         return $usuario->rowCount() > 0;
     }
 
+    public function cambiarContrasenaDePerfil($datosForm)
+    {
+
+        $estado = Status::ACTIVE;
+        // Consulta SQL para verificar usuario y contraseña
+        $sql = "SELECT id_usuario, nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = $estado LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $usuario = $datosForm['username'];
+        $password = hash('sha256', $datosForm['old-password']);
+        $stmt->bindParam(':usuario', $usuario);
+        $stmt->bindParam(':contrasena', $password);
+        $stmt->execute();
+
+        // Verificar si el usuario existe en la base de datos
+        if ($stmt->rowCount() == 1) {
+            $query = "UPDATE {$this->tabla} SET
+            clave = :clave
+        WHERE 
+            id_usuario = :id_usuario";
+
+            $usuario = $this->db->prepare($query);
+            $usuario->bindParam(":id_usuario", $datosForm['id']);
+            $usuario->bindParam(":clave", $datosForm['password']);
+            $usuario->execute();
+
+            $this->registrar(Acciones::UPDATE);
+
+            return $usuario->rowCount() > 0;
+        } else {
+            return false;
+        }
+
+
+    }
+
     public function uno($id)
     {
         // Consulta para buscar el registro por su ID en la tabla deseada

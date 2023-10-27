@@ -67,3 +67,7 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+.space-between {
+  justify-content: space-between;
+}

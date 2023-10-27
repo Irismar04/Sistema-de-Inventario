@@ -58,3 +58,15 @@ function unidades($string)
 {
     return $string . ' unidades';
 }
+
+function formatoDeFecha($date)
+{
+    $date = new DateTimeImmutable($date);
+    return $date->format('d-m-Y');
+}
+
+function formatoDeFechaConHora($date)
+{
+    $date = new DateTimeImmutable($date);
+    return $date->format('d-m-Y H:i:s');
+}

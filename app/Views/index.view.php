@@ -1,3 +1,13 @@
+<!--Alertas-->
+<?php if (isset($_GET['success'])): ?>
+<?php if ($_GET['success'] == 'perfil-contrasena'): ?>
+<?= generarAlertaExito('¡La contraseña de su cuenta se ha cambiado satisfactoriamente!') ?>
+<?php endif; ?>
+<?php if ($_GET['success'] == 'perfil-editar'): ?>
+<?= generarAlertaExito('¡se ha editado su perfil satisfactoriamente!') ?>
+<?php endif; ?>
+<?php endif; ?>
+
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Bienvenido</h1>

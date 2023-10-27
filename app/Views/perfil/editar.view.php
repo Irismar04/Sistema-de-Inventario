@@ -12,9 +12,8 @@
     <div class="container-fluid px-4">
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
             <div class="mb-3">
-                <h2 class="text-center font-weight-light my-4">Editar Usuario</h2>
-                <form id="form" method="post" action="<?= url('usuarios/actualizar') ?>">
-
+                <h2 class="text-center font-weight-light my-4">Editar Perfil</h2>
+                <form id="form" method="post" action="<?= url('perfil/actualizar') ?>">
 
                     <!-- Nombre de usuario -->
                     <div class="mb-3">
@@ -87,7 +86,7 @@
                         </div>
                     </div>
                     
-                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                    <input type="hidden" name="id" value="<?= $usuario['id_usuario'] ?>">
                     <button class="btn btn-success" type="submit">Guardar</button>
                     <input class="btn btn-danger" type="reset" value="Limpiar">
                 </form>

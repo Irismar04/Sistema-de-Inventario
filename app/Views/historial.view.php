@@ -18,7 +18,7 @@
                 <td><?= $registro['nom_usuario']; ?></td>
                 <td><?= App\Constants\Acciones::match($registro['accion']);?></td>
                 <td><?= $registro['tabla'];?></td>
-                <td><?= $registro['creado_en']; ?></td>
+                <td><?= formatoDeFechaConHora($registro['creado_en']); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
