@@ -10,9 +10,15 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-
         $modelo = new Usuario();
-        $usuarios = $modelo->todosSinBorrar();
+        $usuarios = $modelo->todosActivos();
+        return parent::ver('usuarios/index', ['usuarios' => $usuarios]);
+    }
+
+    public function inactivos()
+    {
+        $modelo = new Usuario();
+        $usuarios = $modelo->todosInactivos();
         return parent::ver('usuarios/index', ['usuarios' => $usuarios]);
     }
 

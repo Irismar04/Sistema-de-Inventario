@@ -36,12 +36,11 @@
         <thead>
             <tr>
                 <th rowspan="2">Nombre de la categoría</th>
-                <th rowspan="2">Estado</th>
                 <th colspan="2">Acciones</th>
             </tr>
             <tr>
+                <th>Estado</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -61,12 +60,6 @@
                     <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
-                </td>
-                <!-- Boton para mostrar modal de borrare -->
-                <td>
-                    <button class="btn" title="Eliminar" onclick="show(<?= $categoria['id_categoria'] ?>)">
-                        <i class="fa fa-trash"></i>
-                    </button>
                 </td>
                 
                 <!-- Modal para borrar -->

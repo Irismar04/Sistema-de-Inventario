@@ -10,7 +10,14 @@ class CategoriaController extends Controller
     public function index()
     {
         $modelo = new Categoria();
-        $categorias = $modelo->todosSinBorrar();
+        $categorias = $modelo->todosActivos();
+        return parent::ver('categorias/index', ['categorias' => $categorias]);
+    }
+
+    public function inactivos()
+    {
+        $modelo = new Categoria();
+        $categorias = $modelo->todosInactivos();
         return parent::ver('categorias/index', ['categorias' => $categorias]);
     }
 
@@ -50,7 +57,7 @@ class CategoriaController extends Controller
 
         if($success) {
             if($estado == Status::ACTIVE) {
-                parent::redirigir('categorias?success=activado');
+                parent::redirigir('categorias/inactivos?success=activado');
             } elseif($estado == Status::INACTIVE) {
                 parent::redirigir('categorias?success=desactivado');
             } else {

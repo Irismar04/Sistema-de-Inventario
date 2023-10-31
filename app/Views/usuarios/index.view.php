@@ -43,13 +43,12 @@
                 <th rowspan="2">Cédula</th>
                 <th rowspan="2">Genero</th>
                 <th rowspan="2">Datos</th>
-                <th rowspan="2">Estado</th>
                 <th colspan="3">Acciones</th>
             </tr>
             <tr>
+                <th>Estado</th>
                 <th>Contraseña</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -85,12 +84,6 @@
                     <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
-                </td>
-                <!-- Boton para mostrar modal de borrare -->
-                <td class="text-center">
-                    <button class="btn <?= $_SESSION['usuario']['id_usuario'] == $usuario['id_usuario'] ? 'pe-none text-muted' : '' ?>" title="Eliminar" <?= $_SESSION['usuario']['id_usuario'] != $usuario['id_usuario'] ? "onclick=\"show({$usuario['id_usuario']})\"" : '' ?>>
-                        <i class="fa fa-trash"></i>
-                    </button>
                 </td>
                 <!-- Modal para borrar -->
                 <?= modal('usuarios', $usuario['id_usuario'], 'Cuidado, ¿esta seguro que quiere borrar esta usuario?') ?>

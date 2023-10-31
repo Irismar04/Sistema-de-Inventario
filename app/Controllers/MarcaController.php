@@ -9,9 +9,15 @@ class MarcaController extends Controller
 {
     public function index()
     {
-
         $modelo = new Marca();
-        $marcas = $modelo->todosSinBorrar();
+        $marcas = $modelo->todosActivos();
+        return parent::ver('marcas/index', ['marcas' => $marcas]);
+    }
+
+    public function inactivos()
+    {
+        $modelo = new Marca();
+        $marcas = $modelo->todosInactivos();
         return parent::ver('marcas/index', ['marcas' => $marcas]);
     }
 

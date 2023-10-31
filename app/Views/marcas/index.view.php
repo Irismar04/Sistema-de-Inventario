@@ -36,12 +36,11 @@
         <thead>
             <tr>
                 <th rowspan="2">Nombre de la marca</th>
-                <th rowspan="2">Estado</th>
                 <th colspan="2">Acciones</th>
             </tr>
             <tr>
+                <th>Estado</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -62,12 +61,6 @@
                     <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
-                </td>
-                <!-- Boton para mostrar modal de borrare -->
-                <td>
-                    <button class="btn" title="Eliminar" onclick="show(<?= $marca['id_marca'] ?>)">
-                        <i class="fa fa-trash"></i>
-                    </button>
                 </td>
                 <!-- Modal para borrar -->
                 <?= modal('marcas', $marca['id_marca'], 'Cuidado, ¿esta seguro que quiere borrar esta marca?') ?>

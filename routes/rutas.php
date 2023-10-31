@@ -26,12 +26,15 @@ $router->get('/dashboard', [InicioController::class, 'index'])->auth();
 // Rutas para las categorias
 $router->controlador('/categorias', CategoriaController::class, 'auth');
 $router->post('/categorias/cambiar-estado', [CategoriaController::class, 'cambiarEstado'])->auth();
+
 // Rutas para las marcas
 $router->controlador('/marcas', MarcaController::class, 'auth');
 $router->post('/marcas/cambiar-estado', [MarcaController::class, 'cambiarEstado'])->auth();
+
 // Rutas para los productos
 $router->controlador('/productos', ProductoController::class, 'auth');
 $router->post('/productos/cambiar-estado', [ProductoController::class, 'cambiarEstado'])->auth();
+$router->get('/productos/inactivos', [ProductoController::class, 'inactivos'])->auth();
 
 // Rutas para las entradas
 $router->get('/entradas', [EntradaController::class, 'index'])->auth();

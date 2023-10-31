@@ -20,16 +20,15 @@ class Categoria extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-        $borrado = Status::DELETED;
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_categoria LIKE :nom_categoria AND
-            NOT id_categoria = :id_categoria AND estado != $borrado";
+            NOT id_categoria = :id_categoria";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_categoria LIKE :nom_categoria AND estado != $borrado";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_categoria LIKE :nom_categoria";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta

@@ -24,18 +24,16 @@ class Usuario extends Model
 
     public function revisarDuplicados($datosForm, $vista)
     {
-
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-        $borrado = Status::DELETED;
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_usuario LIKE :nom_usuario AND
-            NOT id_usuario = :id_usuario AND estado != $borrado";
+            NOT id_usuario = :id_usuario";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_usuario LIKE :nom_usuario AND estado != $borrado";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_usuario LIKE :nom_usuario";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta
@@ -56,12 +54,12 @@ class Usuario extends Model
             $sql = "SELECT * FROM {$this->tabla}
             LEFT JOIN datos ON datos.id_usuario = usuario.id_usuario
             WHERE cedula LIKE :cedula AND
-            NOT usuario.id_usuario = :id_usuario AND estado != $borrado";
+            NOT usuario.id_usuario = :id_usuario";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} LEFT JOIN datos ON datos.id_usuario = usuario.id_usuario WHERE cedula = :cedula AND estado != $borrado";
+            $sql = "SELECT * FROM {$this->tabla} LEFT JOIN datos ON datos.id_usuario = usuario.id_usuario WHERE cedula = :cedula";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta
@@ -265,9 +263,9 @@ class Usuario extends Model
 
     }
 
-    public function todosSinBorrar()
+    public function todosActivos()
     {
-        $borrado = Status::DELETED;
+        $borrado = Status::INACTIVE;
         $estado = "{$this->tabla}.estado";
         // Consulta para buscar todos los registros en la tabla deseada
         $sql = "SELECT *, usuario.id_usuario as id_usuario FROM {$this->tabla}";

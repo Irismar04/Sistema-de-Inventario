@@ -13,7 +13,14 @@ class ProductoController extends Controller
     {
 
         $modelo = new Producto();
-        $productos = $modelo->todosSinBorrar();
+        $productos = $modelo->todosActivos();
+        return parent::ver('productos/index', ['productos' => $productos]);
+    }
+
+    public function inactivos()
+    {
+        $modelo = new Producto();
+        $productos = $modelo->todosInactivos();
         return parent::ver('productos/index', ['productos' => $productos]);
     }
 
@@ -66,7 +73,7 @@ class ProductoController extends Controller
 
         if($success) {
             if($estado == Status::ACTIVE) {
-                parent::redirigir('productos?success=activado');
+                parent::redirigir('productos/inactivos?success=activado');
             } elseif($estado == Status::INACTIVE) {
                 parent::redirigir('productos?success=desactivado');
             } else {

@@ -20,17 +20,16 @@ class Marca extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-        $borrado = Status::DELETED;
 
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_marca LIKE :nom_marca AND
-            NOT id_marca = :id_marca AND estado != $borrado";
+            NOT id_marca = :id_marca";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_marca LIKE :nom_marca AND estado != $borrado";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_marca LIKE :nom_marca";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta

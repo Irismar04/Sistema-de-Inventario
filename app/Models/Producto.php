@@ -24,16 +24,15 @@ class Producto extends Model
     {
 
         // Revisa si el formulario tiene un id(si tiene un id, es un formulario de editar)
-        $borrado = Status::DELETED;
         if (isset($datosForm['id'])) {
             $sql = "SELECT * FROM {$this->tabla}
             WHERE nom_producto LIKE :nom_producto AND
-            NOT id_producto = :id_producto AND estado != $borrado";
+            NOT id_producto = :id_producto";
 
         }
         //si no tiene id, es un formulario de crear
         else {
-            $sql = "SELECT * FROM {$this->tabla} WHERE nom_producto LIKE :nom_producto AND estado != $borrado";
+            $sql = "SELECT * FROM {$this->tabla} WHERE nom_producto LIKE :nom_producto";
         }
 
         // Ejecuta la sentencia SQL y revisa de que este correcta
@@ -111,31 +110,6 @@ class Producto extends Model
         return $statement->rowCount() > 0;
     }
 
-    public function todosSinBorrar()
-    {
-        $borrado = Status::DELETED;
-        $estado = "{$this->tabla}.estado";
-        // Consulta para buscar todos los registros en la tabla deseada
-        $sql = "SELECT *, {$this->tabla}.estado AS estado, categoria.estado AS estado_categoria, marca.estado AS estado_marca FROM {$this->tabla}";
-
-        foreach ($this->relaciones as $tabla => $columna) {
-            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
-        }
-
-        $sql .= " WHERE {$estado} != {$borrado}";
-
-        // Preparar la consulta
-        $stmt = $this->db->prepare($sql);
-
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Obtener todos los registros como un arreglo asociativo
-        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $resultados;
-    }
-
     public function todosDebajoDeStockMinimo()
     {
         $sql = "SELECT *
@@ -159,5 +133,27 @@ class Producto extends Model
         $stmt->execute();
         $producto = $stmt->fetch();
         return $producto;
+    }
+
+    public function todosInactivos()
+    {
+        $inactivo = Status::INACTIVE;
+        $estado = "{$this->tabla}.estado";
+        $sql = "SELECT producto.*, marca.nom_marca, categoria.nom_categoria FROM {$this->tabla}";
+
+        foreach ($this->relaciones as $tabla => $columna) {
+            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+        }
+
+        $sql .= " WHERE {$estado} = {$inactivo}";
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultados;
     }
 }

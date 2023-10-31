@@ -20,7 +20,8 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link"
                             href="<?= url('productos/crear') ?>">Añadir</a>
-                        <a class="nav-link" href="<?= url('productos') ?>">Consultar</a>
+                        <a class="nav-link" href="<?= url('productos') ?>">Consultar Activos</a>
+                        <a class="nav-link" href="<?= url('productos/inactivos') ?>">Consultar Inactivos</a>
                     </nav>
                 </div>
                 <!--Fin de Productos -->
@@ -39,7 +40,10 @@
                             Añadir
                         </a>
                         <a class="nav-link" href="<?= url('categorias') ?>">
-                            Consultar
+                            Consultar Activos
+                        </a>
+                        <a class="nav-link" href="<?= url('categorias/inactivos') ?>">
+                            Consultar Inactivos
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
@@ -63,7 +67,10 @@
                             Añadir
                         </a>
                         <a class="nav-link" href="<?= url('marcas') ?>">
-                            Consultar
+                            Consultar Activos
+                        </a>
+                        <a class="nav-link" href="<?= url('marcas/inactivos') ?>">
+                            Consultar Inactivos
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
@@ -136,7 +143,10 @@
                             Añadir
                         </a>
                         <a class="nav-link" href="<?= url('usuarios') ?>">
-                            Consultar
+                            Consultar Activos
+                        </a>
+                        <a class="nav-link" href="<?= url('usuarios/inactivos') ?>">
+                            Consultar Inactivos
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">

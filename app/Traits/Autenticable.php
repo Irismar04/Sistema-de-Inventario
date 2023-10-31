@@ -17,16 +17,18 @@ trait Autenticable
         if(isset($datos['usuario']) && isset($datos['contrasena'])) {
             // Obtener datos del formulario
             $usuario = $datos['usuario'];
-            $contrasena = $datos['contrasena'];
+            $contrasena = hash('sha256', $datos['contrasena']);
             $estado = Status::ACTIVE;
+
             // Consulta SQL para verificar usuario y contraseña
-            $sql = "SELECT id_usuario, nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = $estado LIMIT 1";
+            $sql = "SELECT id_usuario, nom_usuario, nom_rol, estado FROM usuario LEFT JOIN rol ON rol.id_rol = usuario.id_rol WHERE nom_usuario = :usuario AND clave = :contrasena AND estado = :estado LIMIT 1";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':contrasena', hash('sha256', $contrasena));
+            $stmt->bindParam(':contrasena', $contrasena);
+            $stmt->bindParam(':estado', $estado);
             $stmt->execute();
-
             $user = $stmt->fetch();
+
             // Verificar si el usuario existe en la base de datos
             if ($stmt->rowCount() == 1) {
                 // Iniciar sesión y almacenar el nombre de usuario en la variable de sesión

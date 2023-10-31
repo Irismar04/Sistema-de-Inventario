@@ -38,14 +38,13 @@
                 <th rowspan="2">Nombre del producto</th>
                 <th rowspan="2">Categoría</th>
                 <th rowspan="2">Marca</th>
-                <th rowspan="2">Estado</th>
                 <th rowspan="2">Stock</th>
                 <th rowspan="2">Stock Minimo</th>
                 <th colspan="2">Acciones</th>
             </tr>
             <tr>
+                <th>Estado</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -54,6 +53,8 @@
                 <td><?= $producto['nom_producto']; ?></td>
                 <td><?= $producto['nom_categoria'];?></td>
                 <td><?= $producto['nom_marca'];?></td>
+                <td><?= unidades($producto['stock']);?></td>
+                <td><?= unidades($producto['stock_minimo']);?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
                     <form action="<?= url('productos/cambiar-estado') ?>" method="post">
@@ -62,22 +63,14 @@
                     <button type="submit" class="btn btn-<?= ($producto['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($producto['estado']) ?></button>
                     </form>
                 </td>
-                <td><?= unidades($producto['stock']);?></td>
-                <td><?= unidades($producto['stock_minimo']);?></td>
                 <!-- Boton para editar -->
                 <td>
                     <a class="btn" title="Editar" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
-                <!-- Boton para mostrar modal de borrare -->
-                <td>
-                    <button class="btn" title="Eliminar" onclick="show(<?= $producto['id_producto'] ?>)">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
                 <!-- Modal para borrar -->
-                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere borrar esta producto?') ?>
+                <?= modal('productos', $producto['id_producto'], 'Cuidado, ¿esta seguro que quiere cambiar el estado de este producto?') ?>
             </tr>
             <?php endforeach; ?>
         </tbody>

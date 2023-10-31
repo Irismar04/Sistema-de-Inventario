@@ -54,19 +54,17 @@ trait Desactivable
         return $resultados;
     }
 
-    public function todosSinBorrar()
+    public function todosInactivos()
     {
-        $borrado = Status::DELETED;
+        $inactivo = Status::INACTIVE;
         $estado = "{$this->tabla}.estado";
-        // Consulta para buscar todos los registros en la tabla deseada
         $sql = "SELECT * FROM {$this->tabla}";
 
         foreach ($this->relaciones as $tabla => $columna) {
             $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
         }
 
-        $sql .= " WHERE {$estado} != {$borrado}";
-
+        $sql .= " WHERE {$estado} = {$inactivo}";
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 
@@ -78,9 +76,33 @@ trait Desactivable
         return $resultados;
     }
 
+    // public function todosActivos()
+    // {
+    //     $borrado = Status::DELETED;
+    //     $estado = "{$this->tabla}.estado";
+    //     // Consulta para buscar todos los registros en la tabla deseada
+    //     $sql = "SELECT * FROM {$this->tabla}";
+
+    //     foreach ($this->relaciones as $tabla => $columna) {
+    //         $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+    //     }
+
+    //     $sql .= " WHERE {$estado} != {$borrado}";
+
+    //     // Preparar la consulta
+    //     $stmt = $this->db->prepare($sql);
+
+    //     // Ejecutar la consulta
+    //     $stmt->execute();
+
+    //     // Obtener todos los registros como un arreglo asociativo
+    //     $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $resultados;
+    // }
+
     public function softDelete($id)
     {
-        $estado = Status::DELETED;
+        $estado = Status::INACTIVE;
         try {
             $sql = "UPDATE {$this->tabla} SET estado = {$estado} WHERE {$this->id} = :{$this->id}";
             $statement = $this->db->prepare($sql);

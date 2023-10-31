@@ -99,6 +99,9 @@ class Router
         // Index
         $this->get($uri, [$controller, 'index'])->auth($middleware);
 
+        // Index para inactivos
+        $this->get("$uri/inactivos", [$controller, 'inactivos'])->auth($middleware);
+
         // Create
         $this->get("$uri/crear", [$controller, 'crear'])->auth($middleware);
 
