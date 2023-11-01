@@ -57,7 +57,7 @@
                 <td><?= unidades($producto['stock_minimo']);?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
-                    <form action="<?= url('productos/cambiar-estado') ?>" method="post">
+                    <form action="<?= url('productos/cambiar-estado') ?>" method="post"  onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de este producto?')">
                     <input type="hidden" name="id" value="<?= $producto['id_producto'] ?>">
                     <input type="hidden" name="estado_viejo" value="<?= $producto['estado'] ?>">
                     <button type="submit" class="btn btn-<?= ($producto['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($producto['estado']) ?></button>
@@ -65,7 +65,7 @@
                 </td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" title="Editar" href="<?= editarUrl('productos', $producto['id_producto']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('productos', $producto['id_producto']) ?>" onclick="return confirm('¿Esta seguro que desea editar este producto?')">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

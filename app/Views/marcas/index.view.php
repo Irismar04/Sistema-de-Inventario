@@ -49,7 +49,7 @@
                 <td><?= $marca['nom_marca']; ?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
-                    <form action="<?= url('marcas/cambiar-estado') ?>" method="post">
+                    <form action="<?= url('marcas/cambiar-estado') ?>" method="post" onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de esta marca?')">
                         <input type="hidden" name="id" value="<?= $marca['id_marca'] ?>">
                         <input type="hidden" name="estado_viejo" value="<?= $marca['estado'] ?>">
                         <button type="submit"
@@ -58,7 +58,7 @@
                 </td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>" onclick="return confirm('¿Esta seguro que desea editar esta marca?')">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

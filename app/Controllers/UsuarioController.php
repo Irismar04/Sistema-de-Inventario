@@ -81,7 +81,7 @@ class UsuarioController extends Controller
 
         if($success) {
             if($estado == Status::ACTIVE) {
-                parent::redirigir('usuarios?success=activado');
+                parent::redirigir('usuarios/inactivos?success=activado');
             } elseif($estado == Status::INACTIVE) {
                 parent::redirigir('usuarios?success=desactivado');
             } else {

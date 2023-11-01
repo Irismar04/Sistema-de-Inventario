@@ -56,7 +56,7 @@ class MarcaController extends Controller
 
         if($success) {
             if($estado == Status::ACTIVE) {
-                parent::redirigir('marcas?success=activado');
+                parent::redirigir('marcas/inactivos?success=activado');
             } elseif($estado == Status::INACTIVE) {
                 parent::redirigir('marcas?success=desactivado');
             } else {

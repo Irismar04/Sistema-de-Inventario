@@ -49,7 +49,7 @@
                 <td><?= $categoria['nom_categoria']; ?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
-                    <form action="<?= url('categorias/cambiar-estado') ?>" method="post">
+                    <form action="<?= url('categorias/cambiar-estado') ?>" method="post" onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de esta categoría?')">
                     <input type="hidden" name="id" value="<?= $categoria['id_categoria'] ?>">
                     <input type="hidden" name="estado_viejo" value="<?= $categoria['estado'] ?>">
                     <button type="submit" class="btn btn-<?= ($categoria['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"><?= App\Constants\Status::match($categoria['estado']) ?></button>
@@ -57,7 +57,7 @@
                 </td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>" onclick="return confirm('¿Esta seguro que desea editar esta categoría?')">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

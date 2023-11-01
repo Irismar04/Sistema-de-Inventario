@@ -66,7 +66,7 @@
                 </td>
                 <!-- Boton para cambiar estado del usuario -->
                 <td>
-                    <form action="<?= url('usuarios/cambiar-estado') ?>" method="post">
+                    <form action="<?= url('usuarios/cambiar-estado') ?>" method="post" onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de este usuario?')">
                     <input type="hidden" name="id" value="<?= $usuario['id_usuario'] ?>">
                     <input type="hidden" name="estado_viejo" value="<?= $usuario['estado'] ?>">
                     <button type="submit" class="btn btn-<?= ($usuario['estado'] == App\Constants\Status::ACTIVE) ? 'success' : 'danger' ?>"
@@ -75,13 +75,13 @@
                 </td>
                 <!-- Boton para cambiar contraseña -->
                 <td class="text-center">
-                    <a class="btn" title="Cambiar contraseña" href="<?= passUrl('usuarios', $usuario['id_usuario']) ?>">
+                    <a class="btn" title="Cambiar contraseña" href="<?= passUrl('usuarios', $usuario['id_usuario']) ?>" onclick="return confirm('¿Esta seguro que desea cambiar la contraseña de este usuario?')">
                         <i class="fa fa-lock"></i>
                     </a>
                 </td>
                 <!-- Boton para editar -->
                 <td class="text-center">
-                    <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>">
+                    <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>" onclick="return confirm('¿Esta seguro que desea editar este usuario?')">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>
