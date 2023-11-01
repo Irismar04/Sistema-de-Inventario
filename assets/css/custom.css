@@ -71,3 +71,7 @@ table {
 .space-between {
   justify-content: space-between;
 }
+
+.absolute {
+  position: absolute;
+}
