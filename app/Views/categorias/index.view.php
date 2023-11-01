@@ -97,6 +97,9 @@
         const doc = new window.jspdf.jsPDF()
 
         const titulo = 'Reporte - Categorias';
+        const rif = 'RIF: J-412948105';
+        const direccion = 'Dirección: Guayacán de las Flores, Sector Calle 7, casa n°22';
+        const nombre = 'Dueño: Edgar Zorrilla';
         const imgWidth = 32;
         const imgHeight = 28;
         const imgX = 10;
@@ -104,7 +107,11 @@
 
         // Añadir el título y la imagen en la misma línea
         doc.setFontSize(16);
-        doc.text(titulo, imgX + imgWidth + 10, imgY + imgHeight / 2);
+        doc.text(titulo, imgX + imgWidth + 10, imgY - 8 + imgHeight / 2);
+        doc.setFontSize(10);
+        doc.text(rif, imgX + imgWidth + 10, imgY + imgHeight / 2);
+        doc.text(direccion, imgX + imgWidth + 10, imgY + 8 + imgHeight / 2);
+        doc.text(nombre, imgX + imgWidth + 10, imgY + 16 + imgHeight / 2);
         doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
         doc.autoTable({
             html: '#tabla-del-pdf',
