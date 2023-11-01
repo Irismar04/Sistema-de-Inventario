@@ -23,7 +23,6 @@
 
                 <!-- Botones -->
                 <button class="btn btn-success" type="submit">Editar</button>
-                <input class="btn btn-danger" type="reset" value="Limpiar"></a>
             </form>
         </div>
     </div>

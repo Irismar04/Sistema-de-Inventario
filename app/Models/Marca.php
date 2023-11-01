@@ -41,6 +41,7 @@ class Marca extends Model
             $columnaUno->bindParam(":id_marca", $datosForm['id']);
         }
 
+
         $nombre = "{$datosForm['nombre']}%";
         $columnaUno->bindParam(":nom_marca", $nombre);
         $columnaUno->execute();
@@ -68,6 +69,7 @@ class Marca extends Model
 
     public function actualizar($datosForm)
     {
+        $this->revisarDuplicados($datosForm, 'editar');
         $query = "UPDATE {$this->tabla} SET nom_marca = :nuevo_nombre WHERE id_marca = :id_marca";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);
