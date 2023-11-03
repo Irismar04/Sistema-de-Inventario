@@ -65,3 +65,6 @@ $router->get('/perfil/editar-perfil', [PerfilController::class, 'editarPerfil'])
 $router->get('/perfil/cambiar-contrasena', [PerfilController::class, 'cambiarContrasena'])->auth();
 $router->post('/perfil/cambiar-contrasena', [PerfilController::class, 'guardarCambiarContrasena'])->auth();
 $router->post('/perfil/actualizar', [PerfilController::class, 'actualizar'])->auth();
+
+// Rutas de API
+$router->get('/api/productos-por-categoria', [ProductoController::class, 'productosPorCategoriaJson'])->auth();

@@ -10,13 +10,13 @@
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
         <a href="<?= url('categorias') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
             <h2 class="text-center font-weight-light my-4">Editar Categoría</h2>
-            <form id="form" method="post" action="<?= url('categorias/actualizar') ?>">
+            <form autocomplete="off" id="form" method="post" action="<?= url('categorias/actualizar') ?>">
                 <!-- Nombre de la categoria -->
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre de la categoría</label>
                     <input type="text" class="form-control" value="<?= $categoria['nom_categoria'] ?>" name="nombre"
                         id="nombre" placeholder="Nombre de la categoría" autofocus />
-                    <p class="mt-2"><i>*Solo guarda letras</i></p>
+                    <p class="mt-2"><i></i></p>
                 </div>
 
                 <!-- ID de la categoria a editar -->

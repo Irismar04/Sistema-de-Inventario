@@ -91,4 +91,12 @@ class ProductoController extends Controller
 
         parent::redirigir('productos?success=borrar');
     }
+
+    public function productosPorCategoriaJson()
+    {
+        $modelo = new Producto();
+        $productos = $modelo->todosPorCategoria($_GET['id']);
+
+        return json_encode($productos);
+    }
 }

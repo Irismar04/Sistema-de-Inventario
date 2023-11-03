@@ -14,7 +14,7 @@
             <div class="mb-3">
                 <a href="<?= url('productos') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
                 <h2 class="text-center font-weight-light my-4">Añadir Producto</h2>
-                <form id="form" method="post" action="<?= url('productos') ?>">
+                <form id="form" autocomplete="off" method="post" action="<?= url('productos') ?>">
 
                     <!-- Nombre del Producto -->
                     <div class="mb-3">
@@ -58,15 +58,22 @@
                     <!-- Stock Inicial -->
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock Inicial</label>
-                        <input class="form-control" type="text" id="stock" name="stock"
+                        <input class="form-control" type="number" id="stock" name="stock"
                             placeholder="Stock Inicial del Producto">
                     </div>
 
                     <!-- Stock Minimo -->
                     <div class="mb-3">
                         <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input class="form-control" type="text" id="stock_minimo" name="stock_minimo"
+                        <input class="form-control" type="number" id="stock_minimo" name="stock_minimo"
                             placeholder="Stock Mínimo del Producto">
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio (USD)</label>
+                        <input class="form-control" type="number" step="0.01" id="precio" name="precio"
+                            placeholder="Precio del producto en dolares">
                     </div>
 
                     <button class="btn btn-success" type="submit">Guardar</button>

@@ -14,7 +14,7 @@
             <div class="mb-3">
                 <a href="<?= url('usuarios') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
                 <h2 class="text-center font-weight-light my-4">Editar Usuario</h2>
-                <form id="form" method="post" action="<?= url('usuarios/actualizar') ?>">
+                <form id="form" autocomplete="off" method="post" action="<?= url('usuarios/actualizar') ?>">
 
 
                     <!-- Nombre de usuario -->

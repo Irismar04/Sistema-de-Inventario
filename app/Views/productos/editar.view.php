@@ -14,7 +14,7 @@
             <div class="mb-3">
                 <a href="<?= url('productos') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
                 <h2 class="text-center font-weight-light my-4">Editar Producto</h2>
-                <form method="post" action="<?= url('productos/actualizar') ?>">
+                <form id="form" autocomplete="off" method="post" action="<?= url('productos/actualizar') ?>">
 
                     <!-- Nombre del Producto -->
                     <div class="mb-3">
@@ -61,8 +61,15 @@
                     <!-- Stock Minimo -->
                     <div class="mb-3">
                         <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                        <input class="form-control" type="text" value="<?= $producto['stock_minimo'] ?>"
+                        <input class="form-control" type="number" value="<?= $producto['stock_minimo'] ?>"
                             id="stock_minimo" name="stock_minimo" placeholder="Stock Mínimo del Producto">
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio (USD)</label>
+                        <input class="form-control" type="number" value="<?= $producto['precio'] ?>" step="0.01" id="precio" name="precio"
+                            placeholder="Precio del producto en dolares">
                     </div>
 
                     <!-- ID del producto a editar -->

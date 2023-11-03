@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Divisa;
 use App\Models\Salida;
 use App\Models\Producto;
@@ -21,10 +22,10 @@ class SalidaController extends Controller
 
     public function crear()
     {
-        $modelo = new Producto();
-        $productos = $modelo->todosActivos();
+        $modelo = new Categoria();
+        $categorias = $modelo->todosActivos();
 
-        return parent::ver('salidas/crear', ['productos' => $productos]);
+        return parent::ver('salidas/crear', ['categorias' => $categorias]);
     }
 
     public function guardar()

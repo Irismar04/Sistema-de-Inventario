@@ -40,6 +40,7 @@
                 <th rowspan="2">Marca</th>
                 <th rowspan="2">Stock</th>
                 <th rowspan="2">Stock Minimo</th>
+                <th rowspan="2">Precio (USD)</th>
                 <th colspan="2">Acciones</th>
             </tr>
             <tr>
@@ -55,6 +56,7 @@
                 <td><?= $producto['nom_marca'];?></td>
                 <td><?= unidades($producto['stock']);?></td>
                 <td><?= unidades($producto['stock_minimo']);?></td>
+                <td><?= moneyUsd($producto['precio']) ?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
                     <form action="<?= url('productos/cambiar-estado') ?>" method="post"  onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de este producto?')">

@@ -16,7 +16,7 @@
     <div class="container-fluid px-4">
         <div class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
             <h2 class="text-center font-weight-light my-4">Actualizar Divisa</h2>
-            <form id="form" method="post" action="<?= url('divisa') ?>">
+            <form id="form" autocomplete="off" method="post" action="<?= url('divisa') ?>">
 
                 <?php if ($divisa != false): ?>
                 <!-- Precio de la divisa -->

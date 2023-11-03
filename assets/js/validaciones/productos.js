@@ -39,6 +39,16 @@ validator
             errorMessage: 'El stock minimo solo puede contener números'
         }
     ])
+    .addField('#precio', [
+        {
+        rule: 'required',
+            errorMessage: 'El precio es obligatorio'
+        },
+        {
+            rule: 'number',
+            errorMessage: 'El precio solo puede contener números'
+        },
+    ])
     .onSuccess((e) => {
         document.getElementById("form").submit();
     });

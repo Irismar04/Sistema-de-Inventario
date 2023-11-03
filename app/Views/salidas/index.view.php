@@ -1,7 +1,7 @@
 <!-- Alertas de exito -->
 <?php if(isset($_GET['success'])): ?>
 <?php if($_GET['success'] == 'crear'): ?>
-<?= generarAlertaExito('¡Se agregó stock a un producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se agregó una salida de productos satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 

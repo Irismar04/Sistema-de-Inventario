@@ -25,7 +25,7 @@
     <script src="<?= assetsDir('/js/jspdf.umd.min.js') ?>"></script>
     <script src="<?= assetsDir('/js/jspdf.plugin.autotable.js') ?>"></script>
     <script src="<?= assetsDir('/js/datetimepicker.js') ?>"></script>
-
+    <script defer src="<?= assetsDir('/js/alpine.min.js') ?>"></script>
 </head>
 
 <body>

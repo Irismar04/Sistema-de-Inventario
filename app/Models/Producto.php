@@ -62,9 +62,9 @@ class Producto extends Model
 
         $query =
         "INSERT INTO {$this->tabla}
-        (id_categoria, id_marca, nom_producto, stock, stock_minimo, estado)
+        (id_categoria, id_marca, nom_producto, stock, stock_minimo, precio, estado)
         VALUES 
-        (:id_categoria, :id_marca, :nom_producto, :stock, :stock_minimo, default)";
+        (:id_categoria, :id_marca, :nom_producto, :stock, :stock_minimo, :precio, default)";
 
 
         $statement = $this->db->prepare($query);
@@ -74,7 +74,7 @@ class Producto extends Model
         $statement->bindParam(":nom_producto", $datosForm['nombre']);
         $statement->bindParam(":stock", $datosForm['stock']);
         $statement->bindParam(":stock_minimo", $datosForm['stock_minimo']);
-
+        $statement->bindParam(':precio', $datosForm['precio']);
 
         $statement->execute();
 
@@ -91,7 +91,8 @@ class Producto extends Model
         nom_producto = :nuevo_nombre,
         id_categoria = :id_categoria,
         id_marca = :id_marca,
-        stock_minimo = :stock_minimo 
+        stock_minimo = :stock_minimo,
+        precio = :precio
         WHERE id_producto = :id_producto";
 
         $statement = $this->db->prepare($query);
@@ -101,7 +102,7 @@ class Producto extends Model
         $statement->bindParam(":id_categoria", $datosForm['categorias']);
         $statement->bindParam(":id_marca", $datosForm['marcas']);
         $statement->bindParam(":stock_minimo", $datosForm['stock_minimo']);
-
+        $statement->bindParam(':precio', $datosForm['precio']);
 
         $statement->execute();
 
@@ -146,6 +147,28 @@ class Producto extends Model
         }
 
         $sql .= " WHERE {$estado} = {$inactivo}";
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultados;
+    }
+
+    public function todosPorCategoria($id)
+    {
+        $activo = Status::ACTIVE;
+        $estado = "{$this->tabla}.estado";
+        $sql = "SELECT producto.*, marca.nom_marca, categoria.nom_categoria FROM {$this->tabla}";
+
+        foreach ($this->relaciones as $tabla => $columna) {
+            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+        }
+
+        $sql .= " WHERE {$estado} = {$activo} AND producto.id_categoria = {$id}";
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 
