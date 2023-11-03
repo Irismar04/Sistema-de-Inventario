@@ -9,6 +9,8 @@ require "{$basePath}/public/helpers.php";
 
 use Inventario\App;
 
+define("ROOT_PATH", $basePath);
+
 $db = include "{$basePath}/config/database.php";
 
 $app = new App($router, $db, $basePath);
