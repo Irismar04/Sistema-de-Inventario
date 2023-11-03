@@ -58,7 +58,7 @@
                 </td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>" onclick="return confirm('¿Esta seguro que desea editar esta marca?')">
+                    <a class="btn" title="Editar" href="<?= editarUrl('marcas', $marca['id_marca']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

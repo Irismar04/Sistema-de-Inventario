@@ -75,13 +75,13 @@
                 </td>
                 <!-- Boton para cambiar contraseña -->
                 <td class="text-center">
-                    <a class="btn" title="Cambiar contraseña" href="<?= passUrl('usuarios', $usuario['id_usuario']) ?>" onclick="return confirm('¿Esta seguro que desea cambiar la contraseña de este usuario?')">
+                    <a class="btn" title="Cambiar contraseña" href="<?= passUrl('usuarios', $usuario['id_usuario']) ?>">
                         <i class="fa fa-lock"></i>
                     </a>
                 </td>
                 <!-- Boton para editar -->
                 <td class="text-center">
-                    <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>" onclick="return confirm('¿Esta seguro que desea editar este usuario?')">
+                    <a class="btn" title="Editar" href="<?= editarUrl('usuarios', $usuario['id_usuario']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

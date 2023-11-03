@@ -57,7 +57,7 @@
                 </td>
                 <!-- Boton para editar -->
                 <td>
-                    <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>" onclick="return confirm('¿Esta seguro que desea editar esta categoría?')">
+                    <a class="btn" title="Editar" href="<?= editarUrl('categorias', $categoria['id_categoria']) ?>">
                         <i class="fa fa-edit"></i>
                     </a>
                 </td>

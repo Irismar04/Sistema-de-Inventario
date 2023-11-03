@@ -11,7 +11,7 @@
             <div class="mb-3">
             <a href="<?= url('dashboard') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
                 <h2 class="text-center font-weight-light my-4">Cambiar contraseña</h2>
-                <form id="form" autocomplete="off" method="post" action="<?= url('perfil/cambiar-contrasena') ?>">
+                <form id="form" autocomplete="off" method="post" action="<?= url('perfil/cambiar-contrasena') ?>" onsubmit="return confirm('¿Esta seguro que desea cambiar su contraseña?')">
 
                     <div class="col mb-3">
 

@@ -14,7 +14,7 @@
             <div class="mb-3">
                 <a href="<?= url('productos') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
                 <h2 class="text-center font-weight-light my-4">Editar Producto</h2>
-                <form id="form" autocomplete="off" method="post" action="<?= url('productos/actualizar') ?>">
+                <form id="form" autocomplete="off" method="post" action="<?= url('productos/actualizar') ?>" onsubmit="return confirm('¿Esta seguro que desea editar este producto?')">
 
                     <!-- Nombre del Producto -->
                     <div class="mb-3">
