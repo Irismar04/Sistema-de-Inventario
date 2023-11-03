@@ -43,7 +43,7 @@
                 <td><?= $entrada['nom_producto']; ?></td>
                 <td><?= unidades($entrada['cantidad_entrada']);?></td>
                 <td><?= moneyUsd($entrada['precio_entrada']);?></td>
-                <td><?= moneyBolivar($entrada['precio_entrada'] * ($divisa['cantidad'] ?? 0));?></td>
+                <td><?= moneyBolivar($entrada['precio_entrada'] * ($entrada['divisa_precio'] ?? 0));?></td>
                 <td><?= formatoDeFecha($entrada['fecha_entrada']);?></td>
                 <td><?= formatoDeFecha($entrada['fecha_vencimiento']);?></td>
             </tr>

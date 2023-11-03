@@ -38,22 +38,12 @@ class Divisa extends Model
         $statement->bindParam(":cantidad", $datosForm['precio']);
         $statement->execute();
 
-        $this->registrar(Acciones::CREATE);
+        $this->registrar(Acciones::UPDATE);
 
         return $statement->rowCount() > 0;
     }
 
     public function actualizar($datosForm)
     {
-        $query = "UPDATE {$this->tabla} SET cantidad = :cantidad WHERE id_divisa = :id_divisa";
-        $statement = $this->db->prepare($query);
-
-        $statement->bindParam(":cantidad", $datosForm['precio']);
-        $statement->bindParam(":id_divisa", $datosForm['id']);
-        $statement->execute();
-
-        $this->registrar(Acciones::UPDATE);
-
-        return $statement->rowCount() > 0;
     }
 }

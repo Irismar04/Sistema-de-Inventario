@@ -13,10 +13,8 @@ class SalidaController extends Controller
     {
         $modelo = new Salida();
         $salidas = $modelo->todos();
-        $divisa = (new Divisa())->ultima();
         return parent::ver('salidas/index', [
             'salidas' => $salidas,
-            'divisa' => $divisa
         ]);
     }
 

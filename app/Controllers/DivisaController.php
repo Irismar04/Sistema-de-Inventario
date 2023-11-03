@@ -17,12 +17,8 @@ class DivisaController extends Controller
     public function guardar()
     {
         $modelo = new Divisa();
-        $success = false;
-        if(isset($_POST['id'])) {
-            $success = $modelo->actualizar($_POST);
-        } else {
-            $success = $modelo->guardar($_POST);
-        }
+
+        $success = $modelo->guardar($_POST);
 
         if($success) {
             parent::redirigir('divisa?success=crear');

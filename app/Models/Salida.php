@@ -14,6 +14,30 @@ class Salida extends Model
         'salida' => 'id_salida'
     ];
 
+
+    public function todos()
+    {
+        // Consulta para buscar todos los registros en la tabla deseada
+        $sql = "SELECT *, divisa.cantidad as divisa_precio FROM {$this->tabla} 
+        LEFT JOIN producto ON producto.id_producto = {$this->tabla}.id_producto
+        LEFT JOIN salida ON salida.id_salida = {$this->tabla}.id_salida
+        LEFT JOIN divisa ON salida.id_divisa = divisa.id_divisa
+        GROUP BY salida.id_salida";
+
+        $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
+
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $resultados;
+    }
+
     public function actualizar($datosForm)
     {
     }
@@ -28,22 +52,24 @@ class Salida extends Model
             parent::redirigir('salidas/crear?error=cantidad');
         }
 
-        $querySalida = "INSERT INTO salida (cantidad_salida, fecha_salida) VALUES (:cantidad_salida, default)";
+        $querySalida = "INSERT INTO salida (id_divisa, cantidad_salida, fecha_salida) VALUES (:id_divisa, :cantidad_salida, default)";
 
-        $queryDetalles = "INSERT INTO {$this->tabla} 
-        (id_producto, id_salida, precio_salida, motivo) 
-        VALUES 
-        (:id_producto, :id_salida, :precio_salida, :motivo)";
-
-        $queryProducto = "UPDATE producto SET stock = stock - :cantidad_salida WHERE id_producto = :id_producto";
         try {
             $this->db->beginTransaction();
+
+            $divisa = (new Divisa())->ultima();
             // Hace el insert en la tabla de salida
             $salida = $this->db->prepare($querySalida);
+            $salida->bindParam(":id_divisa", $divisa['id_divisa']);
             $salida->bindParam(":cantidad_salida", $datosForm['cantidad_salida']);
             $salida->execute();
 
             $id = $this->db->lastInsertId();
+
+            $queryDetalles = "INSERT INTO {$this->tabla} 
+            (id_producto, id_salida, precio_salida, motivo) 
+            VALUES 
+            (:id_producto, :id_salida, :precio_salida, :motivo)";
 
             $detalles = $this->db->prepare($queryDetalles);
             $detalles->bindParam(":id_producto", $datosForm['id_producto']);
@@ -51,6 +77,8 @@ class Salida extends Model
             $detalles->bindParam(":precio_salida", $datosForm['precio_salida']);
             $detalles->bindParam(":motivo", $datosForm['motivo']);
             $detalles->execute();
+
+            $queryProducto = "UPDATE producto SET stock = stock - :cantidad_salida WHERE id_producto = :id_producto";
 
             $producto = $this->db->prepare($queryProducto);
             $producto->bindParam(":id_producto", $datosForm['id_producto']);

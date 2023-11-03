@@ -70,6 +70,7 @@ CREATE TABLE producto(
     nom_producto VARCHAR (255) NOT NULL,
     stock INT NOT NULL,
     stock_minimo INT NOT NULL,
+    precio FLOAT NOT NULL,
     estado smallint NOT NULL DEFAULT 1,
     creado_en TIMESTAMP NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (id_producto),
@@ -79,16 +80,20 @@ CREATE TABLE producto(
 
 CREATE TABLE entrada (
     id_entrada int NOT NULL AUTO_INCREMENT,
+    id_divisa int NOT NULL,
     cantidad_entrada INT NOT NULL,
     fecha_entrada TIMESTAMP NOT NULL DEFAULT current_timestamp(),
-    PRIMARY KEY (id_entrada)
+    PRIMARY KEY (id_entrada),
+    FOREIGN KEY (id_divisa) REFERENCES divisa(id_divisa)
 );
 
 CREATE TABLE salida (
     id_salida int NOT NULL AUTO_INCREMENT,
+    id_divisa int NOT NULL,
     cantidad_salida INT NOT NULL,
     fecha_salida TIMESTAMP NOT NULL DEFAULT current_timestamp(),
-    PRIMARY KEY (id_salida)
+    PRIMARY KEY (id_salida),
+    FOREIGN KEY (id_divisa) REFERENCES divisa(id_divisa)
 );
 
 CREATE TABLE detalle_entrada(
@@ -152,3 +157,8 @@ INSERT INTO
     )
 VALUES
     (1, "Irismar", "Oliveros", "11111111", "F");
+
+INSERT INTO
+    divisa (cantidad)
+VALUES
+    (0);
