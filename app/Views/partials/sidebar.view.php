@@ -2,13 +2,13 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="<?= url('dashboard') ?>">
+                <a class="nav-link <?= (rutaBase() == 'dashboard') ? 'active' : '' ?>" href="<?= url('dashboard') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Inicio
                 </a>
 
                 <!-- Productos -->
-                <a class="nav-link collapsed pointer" href="#"
+                <a class="nav-link collapsed pointer <?= (rutaBase() == 'productos') ? 'active' : '' ?>" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -27,7 +27,7 @@
                 <!--Fin de Productos -->
 
                 <!--Categorias-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                <a class="nav-link collapsed <?= (rutaBase() == 'categorias') ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Gestionar Categorias
@@ -54,7 +54,7 @@
                 <!--Fin Categoria -->
 
                 <!--Marcas-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas"
+                <a class="nav-link collapsed <?= (rutaBase() == 'marcas') ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMarcas"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Gestionar Marcas
@@ -80,7 +80,7 @@
                 <!--Fin Marcas -->
                 
                 <!--Gestion de Entradas  -->
-                <a class="nav-link collapsed" href="#"
+                <a class="nav-link collapsed <?= (rutaBase() == 'entradas') ? 'active' : '' ?>" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseEntrada" aria-expanded="false"
                     aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
@@ -104,7 +104,7 @@
                 </div>
 
                 <!--Gestion de Salidas  -->
-                <a class="nav-link collapsed" href="#"
+                <a class="nav-link collapsed <?= (rutaBase() == 'salidas') ? 'active' : '' ?>" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseSalida" aria-expanded="false"
                     aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
@@ -129,7 +129,7 @@
 
                 <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
                 <!--Gestion de Usuario  -->
-                <a class="nav-link collapsed" href="#"
+                <a class="nav-link collapsed <?= (rutaBase() == 'usuarios') ? 'active' : '' ?>" href="#"
                     data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false"
                     aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
@@ -157,13 +157,13 @@
                 <!--Fin de Gestion de Usuario -->
 
                 <!-- Historial -->
-                <a class="nav-link" href="<?= url('historial') ?>">
+                <a class="nav-link <?= (rutaBase() == 'historial') ? 'active' : '' ?>" href="<?= url('historial') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
                     Ver Historial
                 </a>
 
                 <!-- Divisa -->
-                <a class="nav-link" href="<?= url('divisa') ?>">
+                <a class="nav-link <?= (rutaBase() == 'divisa') ? 'active' : '' ?>" href="<?= url('divisa') ?>">
                     <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
                     Cambiar Divisa
                 </a>

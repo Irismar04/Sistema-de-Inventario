@@ -70,3 +70,15 @@ function formatoDeFechaConHora($date)
     $date = new DateTimeImmutable($date);
     return $date->format('d-m-Y H:i:s');
 }
+
+function rutaBase()
+{
+    $parsedRequest = parse_url($_SERVER['REQUEST_URI']);
+    $path = $parsedRequest['path'];
+    $basePath = '/sistema-de-inventario/public';
+
+    $path = str_replace($basePath . '/', '', $path);
+    $arrayPath = explode('/', $path);
+
+    return $arrayPath[0];
+}
