@@ -23,7 +23,7 @@
 
 <main class="mx-4">
     <h2 class="text-center font-weight-light my-4">Lista de entradas de productos</h2>
-    <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
+    <a class="btn btn-info" href="<?= url('entradas/reportes') ?>" style="float: right;">Generar PDF</a>
     <br>
     <br>
     <table id="tabla-de-reporte">
@@ -60,33 +60,4 @@
             }
         });
     });
-
-    function generarPDF() {
-        const doc = new window.jspdf.jsPDF()
-
-        const titulo = 'Reporte - Entradas';
-        const rif = 'RIF: J-412948105';
-        const direccion = 'Dirección: Guayacán de las Flores, Sector Calle 7, casa n°22';
-        const nombre = 'Dueño: Edgar Zorrilla';
-        const imgWidth = 32;
-        const imgHeight = 28;
-        const imgX = 10;
-        const imgY = 10;
-
-        // Añadir el título y la imagen en la misma línea
-        doc.setFontSize(16);
-        doc.text(titulo, imgX + imgWidth + 10, imgY - 8 + imgHeight / 2);
-        doc.setFontSize(10);
-        doc.text(rif, imgX + imgWidth + 10, imgY + imgHeight / 2);
-        doc.text(direccion, imgX + imgWidth + 10, imgY + 8 + imgHeight / 2);
-        doc.text(nombre, imgX + imgWidth + 10, imgY + 16 + imgHeight / 2);
-        doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
-        doc.autoTable({
-            html: '#tabla-de-reporte',
-            includeHiddenHtml: true,
-            margin: { top: 50 },
-        })
-        doc.save(titulo);
-
-    }
 </script>

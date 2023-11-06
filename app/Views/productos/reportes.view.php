@@ -1,10 +1,3 @@
-<!--Alertas-->
-<?php if (isset($_GET['error'])): ?>
-<?php if ($_GET['error'] == 'nombre'): ?>
-<?= generarAlertaError('¡Ya hay un producto con ese nombre!') ?>
-<?php endif; ?>
-<?php endif; ?>
-
 <main>
     <div class="container-fluid px-4">
         <div x-data="pdfMaker" class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">

@@ -2,9 +2,9 @@
   <div class="container-fluid px-4">
     <div x-data="pdfMaker" class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
       <div class="mb-3">
-        <a href="<?= url('salidas') ?>" class="btn btn-info absolute"><i
+        <a href="<?= url('entradas') ?>" class="btn btn-info absolute"><i
             class="fas fa-arrow-left"></i>&nbsp;Volver</a>
-        <h2 class="text-center font-weight-light my-4">Reporte de salidas de productos</h2>
+        <h2 class="text-center font-weight-light my-4">Reporte de entradas de productos</h2>
         <form x-ref="form" id="form" autocomplete="off">
 
           <div class="row mb-3">
@@ -72,7 +72,7 @@
 
       async getProducts() {
         const response = await fetch(
-          `http://localhost/sistema-de-inventario/public/api/salidas-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}`
+          `http://localhost/sistema-de-inventario/public/api/entradas-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}`
           );
         const data = await response.json();
         return data;
@@ -80,7 +80,7 @@
 
       async generar() {
         const data = await this.getProducts();
-        const salidas = [];
+        const entradas = [];
         const DollarFormatter = Intl.NumberFormat('es-VE', {
           style: 'currency',
           currency: 'USD'
@@ -90,25 +90,19 @@
           currency: 'VES'
         });
 
-        const motivos = {
-          1: 'Por Venta',
-          2: 'Por Deterioro'
-        }
-
-        data.forEach((salida) => {
-          salidas.push([
-            salida.nom_producto,
-            salida.cantidad_salida,
-            DollarFormatter.format(salida.precio_salida),
-            BolivarFormatter.format(salida.precio_salida * salida.divisa_precio),
-            motivos[salida.motivo],
-            new Date(salida.fecha_salida).toLocaleDateString('es-ES')
+        data.forEach((entrada) => {
+          entradas.push([
+            entrada.nom_producto,
+            entrada.cantidad_entrada,
+            DollarFormatter.format(entrada.precio_entrada),
+            BolivarFormatter.format(entrada.precio_entrada * entrada.divisa_precio),
+            new Date(entrada.fecha_entrada).toLocaleDateString('es-ES')
           ]);
         })
 
         const doc = new window.jspdf.jsPDF()
 
-        const titulo = 'Reporte - Salida de productos';
+        const titulo = 'Reporte - Entrada de productos';
         const rif = 'RIF: J-412948105';
         const direccion = 'Dirección: Guayacán de las Flores, Sector Calle 7, casa n°22';
         const nombre = 'Dueño: Edgar Zorrilla';
@@ -133,11 +127,10 @@
           },
           head: [
             [
-              'Nombre del producto', 'Cantidad', 'Precio (USD$)', 'Precio (Bs)', 'Motivo de salida',
-              'Fecha de salida',
+              'Nombre del producto', 'Cantidad', 'Precio (USD$)', 'Precio (Bs)', 'Fecha de entrada',
             ]
           ],
-          body: salidas,
+          body: entradas,
           margin: {
             top: 50
           },

@@ -19,6 +19,11 @@ class EntradaController extends Controller
         ]);
     }
 
+    public function reportes()
+    {
+        return parent::ver('entradas/reportes');
+    }
+
     public function crear()
     {
         $modelo = new Categoria();
@@ -37,5 +42,13 @@ class EntradaController extends Controller
         } else {
             parent::redirigir('entradas?error=crear');
         }
+    }
+
+    public function entradasPorFechaJson()
+    {
+        $modelo = new Entrada();
+        $entradas = $modelo->todosPorFecha($_GET);
+
+        return json_encode($entradas);
     }
 }

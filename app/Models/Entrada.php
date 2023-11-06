@@ -102,4 +102,31 @@ class Entrada extends Model
         $entrada = $stmt->fetch();
         return $entrada;
     }
+
+    public function todosPorFecha($parametros)
+    {
+        // Consulta para buscar todos los registros en la tabla deseada
+        $sql = "SELECT *, divisa.cantidad as divisa_precio FROM {$this->tabla} 
+        LEFT JOIN producto ON producto.id_producto = {$this->tabla}.id_producto
+        LEFT JOIN entrada ON entrada.id_entrada = {$this->tabla}.id_entrada
+        LEFT JOIN divisa ON entrada.id_divisa = divisa.id_divisa
+        WHERE DATE(entrada.fecha_entrada) BETWEEN :desde AND :hasta
+        ";
+
+        $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
+
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(":desde", $parametros['desde']);
+        $stmt->bindParam(":hasta", $parametros['hasta']);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $resultados;
+    }
 }
