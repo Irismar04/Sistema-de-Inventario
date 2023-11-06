@@ -46,6 +46,7 @@ $router->post('/entradas', [EntradaController::class, 'guardar'])->auth();
 $router->get('/salidas', [SalidaController::class, 'index'])->auth();
 $router->get('/salidas/crear', [SalidaController::class, 'crear'])->auth();
 $router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
+$router->get('/salidas/reportes', [SalidaController::class, 'reportes'])->auth();
 
 // Rutas para la gestión de usuarios
 $router->controlador('/usuarios', UsuarioController::class, 'admin');
@@ -70,3 +71,4 @@ $router->post('/perfil/actualizar', [PerfilController::class, 'actualizar'])->au
 // Rutas de API
 $router->get('/api/productos-por-categoria', [ProductoController::class, 'productosPorCategoriaJson'])->auth();
 $router->get('/api/productos-por-fecha', [ProductoController::class,'productosPorFechaJson'])->auth();
+$router->get('/api/salidas-por-fecha', [SalidaController::class,'salidasPorFechaJson'])->auth();

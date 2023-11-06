@@ -18,6 +18,11 @@ class SalidaController extends Controller
         ]);
     }
 
+    public function reportes()
+    {
+        return parent::ver('salidas/reportes');
+    }
+
     public function crear()
     {
         $modelo = new Categoria();
@@ -36,5 +41,13 @@ class SalidaController extends Controller
         } else {
             parent::redirigir('salidas?error=crear');
         }
+    }
+
+    public function salidasPorFechaJson()
+    {
+        $modelo = new Salida();
+        $salidas = $modelo->todosPorFecha($_GET);
+
+        return json_encode($salidas);
     }
 }
