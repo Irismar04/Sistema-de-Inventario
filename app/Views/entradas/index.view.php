@@ -40,7 +40,7 @@
         <tbody>
             <?php foreach ($entradas as $entrada):?>
             <tr>
-                <td><?= $entrada['nom_producto']; ?></td>
+                <td><?= ucfirst($entrada['nom_producto']); ?></td>
                 <td><?= unidades($entrada['cantidad_entrada']);?></td>
                 <td><?= moneyUsd($entrada['precio_entrada']);?></td>
                 <td><?= moneyBolivar($entrada['precio_entrada'] * ($entrada['divisa_precio'] ?? 0));?></td>

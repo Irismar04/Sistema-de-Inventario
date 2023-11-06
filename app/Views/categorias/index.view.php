@@ -46,7 +46,7 @@
         <tbody>
             <?php foreach ($categorias as $categoria):?>
             <tr>
-                <td><?= $categoria['nom_categoria']; ?></td>
+                <td><?= ucfirst($categoria['nom_categoria']); ?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
                     <form action="<?= url('categorias/cambiar-estado') ?>" method="post" onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de esta categoría?')">
@@ -78,7 +78,7 @@
         <tbody>
             <?php foreach ($categorias as $categoria):?>
             <tr>
-                <td><?= $categoria['nom_categoria'] ?></td>
+                <td><?= ucfirst($categoria['nom_categoria']) ?></td>
             </tr>
             <?php endforeach; ?>
     </table>

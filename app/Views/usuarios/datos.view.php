@@ -33,13 +33,13 @@
                     <div class="col">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" readonly disabled
-                            value="<?= $usuario['nom_per'] ?>">
+                            value="<?= ucfirst($usuario['nom_per']) ?>">
                     </div>
                     <!-- Apellido -->
                     <div class="col">
                         <label for="apellido" class="form-label">Apellido</label>
                         <input type="text" id="apellido" name="apellido" class="form-control" readonly disabled
-                            value="<?= $usuario['apellido_per'] ?>">
+                            value="<?= ucfirst($usuario['apellido_per']) ?>">
                     </div>
                 </div>
 

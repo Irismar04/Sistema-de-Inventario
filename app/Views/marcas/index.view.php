@@ -46,7 +46,7 @@
         <tbody>
             <?php foreach ($marcas as $marca):?>
             <tr>
-                <td><?= $marca['nom_marca']; ?></td>
+                <td><?= ucfirst($marca['nom_marca']); ?></td>
                 <!-- Boton para cambiar estado del producto -->
                 <td>
                     <form action="<?= url('marcas/cambiar-estado') ?>" method="post" onsubmit="return confirm('¿Esta seguro que desea cambiar el estado de esta marca?')">
@@ -78,7 +78,7 @@
         <tbody>
             <?php foreach ($marcas as $marca):?>
             <tr>
-                <td><?= $marca['nom_marca']; ?></td>
+                <td><?= ucfirst($marca['nom_marca']); ?></td>
             </tr>
             <?php endforeach; ?>
     </table>

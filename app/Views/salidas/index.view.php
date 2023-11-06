@@ -32,8 +32,8 @@
         <tbody>
             <?php foreach ($salidas as $salida):?>
             <tr>
-                <td><?= $salida['nom_producto']; ?></td>
-                <td><?= $salida['cantidad_salida'];?></td>
+                <td><?= ucfirst($salida['nom_producto']); ?></td>
+                <td><?= "{$salida['cantidad_salida']} unidades";?></td>
                 <td><?= moneyUsd($salida['precio_salida']);?></td>
                 <td><?= moneyBolivar($salida['precio_salida'] * ($salida['divisa_precio'] ?? 0));?></td>
                 <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
