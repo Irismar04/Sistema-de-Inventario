@@ -20,7 +20,7 @@ class Entrada extends Model
         LEFT JOIN producto ON producto.id_producto = {$this->tabla}.id_producto
         LEFT JOIN entrada ON entrada.id_entrada = {$this->tabla}.id_entrada
         LEFT JOIN divisa ON entrada.id_divisa = divisa.id_divisa
-        GROUP BY entrada.id_entrada";
+        ";
 
         $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
 

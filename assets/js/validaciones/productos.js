@@ -5,6 +5,11 @@ validator
             rule: 'required',
             errorMessage: 'El nombre es obligatorio'
         },
+        {
+            rule: 'customRegexp',
+            value: /^[A-Za-z\s\W]+$/,
+            errorMessage: 'El nombre solo puede contener letras o caracteres especiales'
+        }
     ])
     .addField('#categorias', [
         {

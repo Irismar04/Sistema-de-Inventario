@@ -18,11 +18,12 @@ class Salida extends Model
     public function todos()
     {
         // Consulta para buscar todos los registros en la tabla deseada
-        $sql = "SELECT *, divisa.cantidad as divisa_precio FROM {$this->tabla} 
+        $sql = "SELECT *, divisa.cantidad as divisa_precio 
+        FROM {$this->tabla} 
         LEFT JOIN producto ON producto.id_producto = {$this->tabla}.id_producto
         LEFT JOIN salida ON salida.id_salida = {$this->tabla}.id_salida
         LEFT JOIN divisa ON salida.id_divisa = divisa.id_divisa
-        GROUP BY salida.id_salida";
+        ";
 
         $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
 
@@ -99,12 +100,12 @@ class Salida extends Model
     {
         $motivo = Motivo::SOLD;
 
-        $sql = "SELECT p.*
+        $sql = "SELECT p.nom_producto
                 FROM producto p
-                INNER JOIN detalle_salida ds ON p.id_producto = ds.id_producto
-                INNER JOIN salida s ON ds.id_salida = s.id_salida
+                LEFT JOIN detalle_salida ds ON p.id_producto = ds.id_producto
+                LEFT JOIN salida s ON ds.id_salida = s.id_salida
                 WHERE ds.motivo = $motivo
-                GROUP BY p.id_producto
+                GROUP BY p.id_producto, p.nom_producto
                 ORDER BY SUM(s.cantidad_salida) DESC
                 LIMIT 1";
 
@@ -124,12 +125,12 @@ class Salida extends Model
     {
         $motivo = Motivo::SOLD;
 
-        $sql = "SELECT p.*
+        $sql = "SELECT p.nom_producto
                 FROM producto p
                 INNER JOIN detalle_salida ds ON p.id_producto = ds.id_producto
                 INNER JOIN salida s ON ds.id_salida = s.id_salida
                 WHERE ds.motivo = $motivo
-                GROUP BY p.id_producto
+                GROUP BY p.id_producto, p.nom_producto
                 ORDER BY SUM(s.cantidad_salida) ASC
                 LIMIT 1";
 

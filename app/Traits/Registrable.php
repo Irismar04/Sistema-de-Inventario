@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Constants\Status;
 use App\Models\Historial;
 
 trait Registrable
