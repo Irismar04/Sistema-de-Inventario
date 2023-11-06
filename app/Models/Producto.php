@@ -60,6 +60,8 @@ class Producto extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+
         $query =
         "INSERT INTO {$this->tabla}
         (id_categoria, id_marca, nom_producto, stock, stock_minimo, precio, estado)
@@ -86,6 +88,8 @@ class Producto extends Model
     public function actualizar($datosForm)
     {
         $this->revisarDuplicados($datosForm, 'editar');
+
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
 
         $query = "UPDATE {$this->tabla} SET 
         nom_producto = :nuevo_nombre,
@@ -171,6 +175,30 @@ class Producto extends Model
         $sql .= " WHERE {$estado} = {$activo} AND producto.id_categoria = {$id}";
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultados;
+    }
+
+    public function todosPorFecha($parametros)
+    {
+        $sql = "SELECT producto.*, marca.nom_marca, categoria.nom_categoria FROM {$this->tabla}";
+
+        foreach ($this->relaciones as $tabla => $columna) {
+            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+        }
+
+        $sql .= " WHERE {$this->tabla}.estado = :estado AND DATE(producto.creado_en) BETWEEN :desde AND :hasta";
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(":desde", $parametros['desde']);
+        $stmt->bindParam(":hasta", $parametros['hasta']);
+        $stmt->bindParam(":estado", $parametros['estado']);
 
         // Ejecutar la consulta
         $stmt->execute();

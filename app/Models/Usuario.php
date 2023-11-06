@@ -89,6 +89,11 @@ class Usuario extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
+        // Normalizar datos
+        $datosForm['username'] = strtolower($datosForm['username']);
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+        $datosForm['apellido'] = strtolower($datosForm['apellido']);
+
         $queryUsuario = "INSERT INTO {$this->tabla}
                             (id_rol, nom_usuario, clave, estado) 
                         VALUES 
@@ -135,6 +140,11 @@ class Usuario extends Model
     public function actualizar($datosForm)
     {
         $this->revisarDuplicados($datosForm, 'editar');
+
+        // Normalizar datos
+        $datosForm['username'] = strtolower($datosForm['username']);
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+        $datosForm['apellido'] = strtolower($datosForm['apellido']);
 
         $queryUsuario = "UPDATE {$this->tabla} SET
                             id_rol = :id_rol,

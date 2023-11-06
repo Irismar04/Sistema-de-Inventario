@@ -57,6 +57,8 @@ class Marca extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+
         $query = "INSERT INTO {$this->tabla} (nom_marca, estado) VALUES (:nom_marca, default)";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nom_marca", $datosForm['nombre']);
@@ -70,6 +72,9 @@ class Marca extends Model
     public function actualizar($datosForm)
     {
         $this->revisarDuplicados($datosForm, 'editar');
+
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+
         $query = "UPDATE {$this->tabla} SET nom_marca = :nuevo_nombre WHERE id_marca = :id_marca";
         $statement = $this->db->prepare($query);
         $statement->bindParam(":nuevo_nombre", $datosForm['nombre']);

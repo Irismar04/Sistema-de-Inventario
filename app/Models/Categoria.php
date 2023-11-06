@@ -55,6 +55,8 @@ class Categoria extends Model
     {
         $this->revisarDuplicados($datosForm, 'crear');
 
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
+
         $query = "INSERT INTO {$this->tabla} (nom_categoria, estado) VALUES (:nom_categoria, default)";
         $statement = $this->db->prepare($query);
         $nuevoNombre = ucfirst($datosForm['nombre']);
@@ -69,6 +71,8 @@ class Categoria extends Model
     public function actualizar($datosForm)
     {
         $this->revisarDuplicados($datosForm, 'editar');
+
+        $datosForm['nombre'] = strtolower($datosForm['nombre']);
 
         $query = "UPDATE {$this->tabla} SET nom_categoria = :nuevo_nombre WHERE id_categoria = :id_categoria";
         $statement = $this->db->prepare($query);

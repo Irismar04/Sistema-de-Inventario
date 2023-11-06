@@ -29,7 +29,7 @@
 
 <main class="mx-4">
     <h2 class="text-center font-weight-light my-4">Lista de Productos</h2>
-    <button class="btn btn-info" onclick="generarPDF()" style="float: right;">Generar PDF</button>
+    <a class="btn btn-info" href="<?= url('productos/reportes') ?>" style="float: right;">Generar PDF</a>
     <br>
     <br>
     <table id="tabla-de-reporte">
@@ -51,9 +51,9 @@
         <tbody>
             <?php foreach ($productos as $producto):?>
             <tr>
-                <td><?= $producto['nom_producto']; ?></td>
-                <td><?= $producto['nom_categoria'];?></td>
-                <td><?= $producto['nom_marca'];?></td>
+                <td><?= ucfirst($producto['nom_producto']); ?></td>
+                <td><?= ucfirst($producto['nom_categoria']);?></td>
+                <td><?= ucfirst($producto['nom_marca']);?></td>
                 <td><?= unidades($producto['stock']);?></td>
                 <td><?= unidades($producto['stock_minimo']);?></td>
                 <td><?= moneyUsd($producto['precio']) ?></td>

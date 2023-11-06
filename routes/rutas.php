@@ -35,6 +35,7 @@ $router->post('/marcas/cambiar-estado', [MarcaController::class, 'cambiarEstado'
 $router->controlador('/productos', ProductoController::class, 'auth');
 $router->post('/productos/cambiar-estado', [ProductoController::class, 'cambiarEstado'])->auth();
 $router->get('/productos/inactivos', [ProductoController::class, 'inactivos'])->auth();
+$router->get('/productos/reportes', [ProductoController::class, 'reportes'])->auth();
 
 // Rutas para las entradas
 $router->get('/entradas', [EntradaController::class, 'index'])->auth();
@@ -68,3 +69,4 @@ $router->post('/perfil/actualizar', [PerfilController::class, 'actualizar'])->au
 
 // Rutas de API
 $router->get('/api/productos-por-categoria', [ProductoController::class, 'productosPorCategoriaJson'])->auth();
+$router->get('/api/productos-por-fecha', [ProductoController::class,'productosPorFechaJson'])->auth();

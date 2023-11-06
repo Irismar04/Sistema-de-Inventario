@@ -11,7 +11,6 @@ class ProductoController extends Controller
 {
     public function index()
     {
-
         $modelo = new Producto();
         $productos = $modelo->todosActivos();
         return parent::ver('productos/index', ['productos' => $productos]);
@@ -22,6 +21,11 @@ class ProductoController extends Controller
         $modelo = new Producto();
         $productos = $modelo->todosInactivos();
         return parent::ver('productos/index', ['productos' => $productos]);
+    }
+
+    public function reportes()
+    {
+        return parent::ver('productos/reportes');
     }
 
     public function crear()
@@ -96,6 +100,14 @@ class ProductoController extends Controller
     {
         $modelo = new Producto();
         $productos = $modelo->todosPorCategoria($_GET['id']);
+
+        return json_encode($productos);
+    }
+
+    public function productosPorFechaJson()
+    {
+        $modelo = new Producto();
+        $productos = $modelo->todosPorFecha($_GET);
 
         return json_encode($productos);
     }
