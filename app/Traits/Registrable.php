@@ -6,12 +6,12 @@ use App\Models\Historial;
 
 trait Registrable
 {
-    public function registrar($accion)
+    public function registrar($accion, $tabla = null)
     {
         $modelo = new Historial();
         $modelo->guardar([
             'accion' => $accion,
-            'tabla' => $this->tabla
+            'tabla' => $tabla ?? $this->tabla
         ]);
     }
 }

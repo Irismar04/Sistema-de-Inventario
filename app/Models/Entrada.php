@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
+use App\Traits\Registrable;
+
 class Entrada extends Model
 {
+    use Registrable;
+
     protected $tabla = 'detalle_entrada';
     protected $id = 'id_detalle_entrada';
 
@@ -79,6 +84,8 @@ class Entrada extends Model
             $producto->execute();
 
             $this->db->commit();
+
+            $this->registrar(Acciones::CREATE, 'entrada');
 
             return true;
         } catch (\Throwable $th) {

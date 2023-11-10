@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Constants\Acciones;
 use App\Constants\Motivo;
+use App\Traits\Registrable;
 
 class Salida extends Model
 {
+    use Registrable;
+
     protected $tabla = 'detalle_salida';
     protected $id = 'id_detalle_salida';
 
@@ -87,6 +91,8 @@ class Salida extends Model
             $producto->execute();
 
             $this->db->commit();
+
+            $this->registrar(Acciones::CREATE, 'salida');
 
             return true;
         } catch (\Throwable $th) {

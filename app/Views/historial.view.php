@@ -6,18 +6,20 @@
     <table id="tabla-de-reporte">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Usuario</th>
                 <th>Acción</th>
-                <th>Tabla</th>
+                <th>Módulo</th>
                 <th>Fecha</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($historial as $registro):?>
             <tr>
+                <td><?= $registro['id_historial'] ?></td>
                 <td><?= $registro['nom_usuario']; ?></td>
                 <td><?= App\Constants\Acciones::match($registro['accion']);?></td>
-                <td><?= $registro['tabla'];?></td>
+                <td><?= ucfirst($registro['tabla']);?></td>
                 <td><?= formatoDeFechaConHora($registro['creado_en']); ?></td>
             </tr>
             <?php endforeach; ?>
@@ -30,7 +32,8 @@
         $('#tabla-de-reporte').DataTable({
             language: {
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
-            }
+            },
+            order: [[0,'desc']]
         });
     });
 
