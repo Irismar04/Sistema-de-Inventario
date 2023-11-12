@@ -47,8 +47,43 @@ class Salida extends Model
     {
     }
 
-    public function destruir($id)
+    public function destruir($datosForm)
     {
+        if($datosForm['stock_actual'] - $datosForm['cantidad_salida'] < 0) {
+            parent::redirigir('salidas?error=cantidad');
+        }
+
+        try {
+            $this->db->beginTransaction();
+
+            $queryDetalles = "DELETE FROM {$this->tabla} WHERE {$this->id} = :{$this->id}";
+
+            $detalles = $this->db->prepare($queryDetalles);
+            $detalles->bindParam(":id_detalle_salida", $datosForm['id_detalle_salida']);
+            $detalles->execute();
+
+            $querySalida = "DELETE FROM salida WHERE id_salida = :id_salida";
+            $salida = $this->db->prepare($querySalida);
+            $salida->bindParam(":id_salida", $datosForm['id_salida']);
+            $salida->execute();
+
+            $queryProducto = "UPDATE producto SET stock = stock + :cantidad_salida WHERE id_producto = :id_producto";
+
+            $producto = $this->db->prepare($queryProducto);
+            $producto->bindParam(":id_producto", $datosForm['id_producto']);
+            $producto->bindParam(":cantidad_salida", $datosForm['cantidad_salida']);
+            $producto->execute();
+
+            $this->db->commit();
+
+            $this->registrar(Acciones::DELETE, 'salida');
+
+            return true;
+        } catch (\Throwable $th) {
+            $this->db->rollBack();
+
+            return false;
+        }
     }
 
     public function guardar($datosForm)

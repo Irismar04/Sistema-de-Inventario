@@ -1,11 +1,9 @@
 <!-- Alertas de exito -->
 <?php if(isset($_GET['success'])): ?>
 <?php if($_GET['success'] == 'crear'): ?>
-<?= generarAlertaExito('¡Se agregó un producto satisfactoriamente!') ?>
-<?php elseif($_GET['success'] == 'editar'): ?>
-<?= generarAlertaExito('¡Se editó un producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se agregó stock a un producto satisfactoriamente!') ?>
 <?php elseif($_GET['success'] == 'borrar'): ?>
-<?= generarAlertaExito('¡Se eliminó un producto satisfactoriamente!') ?>
+<?= generarAlertaExito('¡Se revirtio una entrada de inventario satisfactoriamente!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -16,7 +14,9 @@
 <?php elseif($_GET['error'] == 'editar'): ?>
 <?= generarAlertaError('¡Ha ocurrido un error al editar el producto!') ?>
 <?php elseif($_GET['error'] == 'borrar'): ?>
-<?= generarAlertaError('¡Ha ocurrido un error borrando el producto!') ?>
+<?= generarAlertaError('¡Ha ocurrido al revertir la entrada de inventario de un producto!') ?>
+<?php elseif($_GET['error'] == 'cantidad'): ?>
+<?= generarAlertaError('¡No hay suficiente stock para revertir esta entrada!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -29,23 +29,39 @@
     <table id="tabla-de-reporte">
         <thead>
             <tr>
-                <th>Nombre del producto</th>
-                <th>Cantidad</th>
-                <th>Precio de entrada (USD$)</th>
-                <th>Precio de entrada (Bs)</th>
-                <th>Fecha de entrada</th>
-                <th>Fecha de vencimiento</th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Nombre del producto</th>
+                <th rowspan="2">Cantidad</th>
+                <th rowspan="2">Precio de entrada (USD$)</th>
+                <th rowspan="2">Precio de entrada (Bs)</th>
+                <th rowspan="2">Fecha de entrada</th>
+                <th rowspan="2">Fecha de vencimiento</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+            <tr>
+                <th>Revertir Entrada</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($entradas as $entrada):?>
             <tr>
+                <td><?= $entrada['id_detalle_entrada'] ?></td>
                 <td><?= ucfirst($entrada['nom_producto']); ?></td>
                 <td><?= unidades($entrada['cantidad_entrada']);?></td>
                 <td><?= moneyUsd($entrada['precio_entrada']);?></td>
                 <td><?= moneyBolivar($entrada['precio_entrada'] * ($entrada['divisa_precio'] ?? 0));?></td>
                 <td><?= formatoDeFecha($entrada['fecha_entrada']);?></td>
                 <td><?= formatoDeFecha($entrada['fecha_vencimiento']);?></td>
+                <td>
+                    <form action="<?= url('entradas/revertir') ?>" method="post" onsubmit="return confirm('¿Estas seguro que deseas revertir esta entrada de inventario?')">
+                        <input type="hidden" name="id_producto" value="<?= $entrada['id_producto'] ?>">
+                        <input type="hidden" name="id_entrada" value="<?= $entrada['id_entrada'] ?>">
+                        <input type="hidden" name="id_detalle_entrada" value="<?= $entrada['id_detalle_entrada'] ?>">
+                        <input type="hidden" name="stock_actual" value="<?= $entrada['stock'] ?>">
+                        <input type="hidden" name="cantidad_entrada" value="<?= $entrada['cantidad_entrada'] ?>">
+                        <button type="submit" class="btn btn-danger">Revertir</button>
+                    </form>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -57,7 +73,8 @@
         $('#tabla-de-reporte').DataTable({
             language: {
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
-            }
+            },
+            order: [[0,'desc']]
         });
     });
 </script>

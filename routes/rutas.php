@@ -41,12 +41,14 @@ $router->get('/productos/reportes', [ProductoController::class, 'reportes'])->au
 $router->get('/entradas', [EntradaController::class, 'index'])->auth();
 $router->get('/entradas/crear', [EntradaController::class, 'crear'])->auth();
 $router->post('/entradas', [EntradaController::class, 'guardar'])->auth();
+$router->post('/entradas/revertir', [EntradaController::class, 'revertir'])->auth();
 $router->get('/entradas/reportes', [EntradaController::class, 'reportes'])->auth();
 
 // Rutas para las salidas
 $router->get('/salidas', [SalidaController::class, 'index'])->auth();
 $router->get('/salidas/crear', [SalidaController::class, 'crear'])->auth();
 $router->post('/salidas', [SalidaController::class, 'guardar'])->auth();
+$router->post('/salidas/revertir', [SalidaController::class, 'revertir'])->auth();
 $router->get('/salidas/reportes', [SalidaController::class, 'reportes'])->auth();
 
 // Rutas para la gestión de usuarios

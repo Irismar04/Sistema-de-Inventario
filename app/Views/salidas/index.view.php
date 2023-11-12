@@ -3,12 +3,18 @@
 <?php if($_GET['success'] == 'crear'): ?>
 <?= generarAlertaExito('¡Se agregó una salida de productos satisfactoriamente!') ?>
 <?php endif; ?>
+<?php if($_GET['success'] == 'borrar'): ?>
+<?= generarAlertaExito('¡Se revirtio una salida de inventario satisfactoriamente!') ?>
+<?php endif; ?>
 <?php endif; ?>
 
 <!-- Alertas de error -->
 <?php if(isset($_GET['error'])): ?>
 <?php if($_GET['error'] == 'crear'): ?>
 <?= generarAlertaError('¡Ha ocurrido un error al añadir stock al producto!') ?>
+<?php endif; ?>
+<?php if($_GET['error'] == 'borrar'): ?>
+<?= generarAlertaError('¡Ha ocurrido un error al revertir una salida de inventario!') ?>
 <?php endif; ?>
 <?php endif; ?>
 
@@ -21,23 +27,39 @@
     <table id="tabla-de-reporte">
         <thead>
             <tr>
-                <th>Nombre del producto</th>
-                <th>Cantidad</th>
-                <th>Precio de salida (USD$)</th>
-                <th>Precio de salida (Bs)</th>
-                <th>Motivo de salida</th>
-                <th>Fecha de salida</th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Nombre del producto</th>
+                <th rowspan="2">Cantidad</th>
+                <th rowspan="2">Precio de salida (USD$)</th>
+                <th rowspan="2">Precio de salida (Bs)</th>
+                <th rowspan="2">Motivo de salida</th>
+                <th rowspan="2">Fecha de salida</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+            <tr>
+                <th>Revertir Salida</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($salidas as $salida):?>
             <tr>
+                <td><?= $salida['id_detalle_salida'] ?></td>
                 <td><?= ucfirst($salida['nom_producto']); ?></td>
                 <td><?= "{$salida['cantidad_salida']} unidades";?></td>
                 <td><?= moneyUsd($salida['precio_salida']);?></td>
                 <td><?= moneyBolivar($salida['precio_salida'] * ($salida['divisa_precio'] ?? 0));?></td>
                 <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
                 <td><?= formatoDeFecha($salida['fecha_salida']);?></td>
+                <td>
+                    <form action="<?= url('salidas/revertir') ?>" method="post"  onsubmit="return confirm('¿Estas seguro que deseas revertir esta salida de inventario?')">
+                        <input type="hidden" name="id_producto" value="<?= $salida['id_producto'] ?>">
+                        <input type="hidden" name="id_salida" value="<?= $salida['id_salida'] ?>">
+                        <input type="hidden" name="id_detalle_salida" value="<?= $salida['id_detalle_salida'] ?>">
+                        <input type="hidden" name="stock_actual" value="<?= $salida['stock'] ?>">
+                        <input type="hidden" name="cantidad_salida" value="<?= $salida['cantidad_salida'] ?>">
+                        <button type="submit" class="btn btn-danger">Revertir</button>
+                    </form>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -49,7 +71,8 @@
         $('#tabla-de-reporte').DataTable({
             language: {
                 url: '<?= assetsDir('/js/es-ES.json') ?>'
-            }
+            },
+            order: [[0,'desc']]
         });
     });
 </script>

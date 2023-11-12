@@ -20,6 +20,29 @@ class Producto extends Model
         'marca' => 'id_marca'
     ];
 
+    public function todosActivos()
+    {
+        $activo = Status::ACTIVE;
+        $estado = "{$this->tabla}.estado";
+        $sql = "SELECT {$this->tabla}.*, categoria.nom_categoria, marca.nom_marca  FROM {$this->tabla}";
+
+        foreach ($this->relaciones as $tabla => $columna) {
+            $sql .= " LEFT JOIN {$tabla} ON {$tabla}.{$columna} = {$this->tabla}.{$columna}";
+        }
+
+        $sql .= " WHERE {$estado} = {$activo}";
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener todos los registros como un arreglo asociativo
+        $resultados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $resultados;
+    }
+
     public function revisarDuplicados($datosForm, $vista)
     {
 

@@ -44,6 +44,19 @@ class EntradaController extends Controller
         }
     }
 
+    public function revertir()
+    {
+        $modelo = new Entrada();
+
+        $success = $modelo->destruir($_POST);
+
+        if($success) {
+            parent::redirigir('entradas?success=borrar');
+        } else {
+            parent::redirigir('entradas?error=borrar');
+        }
+    }
+
     public function entradasPorFechaJson()
     {
         $modelo = new Entrada();

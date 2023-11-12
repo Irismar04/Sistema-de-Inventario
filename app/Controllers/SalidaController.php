@@ -31,6 +31,19 @@ class SalidaController extends Controller
         return parent::ver('salidas/crear', ['categorias' => $categorias]);
     }
 
+    public function revertir()
+    {
+        $modelo = new Salida();
+
+        $success = $modelo->destruir($_POST);
+
+        if($success) {
+            parent::redirigir('salidas?success=borrar');
+        } else {
+            parent::redirigir('salidas?error=borrar');
+        }
+    }
+
     public function guardar()
     {
         $modelo = new Salida();

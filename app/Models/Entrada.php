@@ -45,8 +45,44 @@ class Entrada extends Model
     {
     }
 
-    public function destruir($id)
+    public function destruir($datosForm)
     {
+        if($datosForm['stock_actual'] - $datosForm['cantidad_entrada'] < 0) {
+            parent::redirigir('entradas?error=cantidad');
+        }
+
+        try {
+            $this->db->beginTransaction();
+
+            $queryDetalles = "DELETE FROM {$this->tabla} WHERE {$this->id} = :{$this->id}";
+
+            $detalles = $this->db->prepare($queryDetalles);
+            $detalles->bindParam(":id_detalle_entrada", $datosForm['id_detalle_entrada']);
+            $detalles->execute();
+
+            $queryEntrada = "DELETE FROM entrada WHERE id_entrada = :id_entrada";
+            // Hace el insert en la tabla de entrada
+            $entrada = $this->db->prepare($queryEntrada);
+            $entrada->bindParam(":id_entrada", $datosForm['id_entrada']);
+            $entrada->execute();
+
+            $queryProducto = "UPDATE producto SET stock = stock - :cantidad_entrada WHERE id_producto = :id_producto";
+
+            $producto = $this->db->prepare($queryProducto);
+            $producto->bindParam(":id_producto", $datosForm['id_producto']);
+            $producto->bindParam(":cantidad_entrada", $datosForm['cantidad_entrada']);
+            $producto->execute();
+
+            $this->db->commit();
+
+            $this->registrar(Acciones::DELETE, 'entrada');
+
+            return true;
+        } catch (\Throwable $th) {
+            $this->db->rollBack();
+
+            return false;
+        }
     }
 
     public function guardar($datosForm)
