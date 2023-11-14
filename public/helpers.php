@@ -73,10 +73,13 @@ function rutaBase()
 {
     $parsedRequest = parse_url($_SERVER['REQUEST_URI']);
     $path = $parsedRequest['path'];
-    $basePath = '/sistema-de-inventario/public';
-
-    $path = str_replace($basePath . '/', '', $path);
-    $arrayPath = explode('/', $path);
-
+    $carpetas = str_replace("/index.php", "", $_SERVER['PHP_SELF']);
+    $path = str_replace($carpetas, '', $path);
+    $arrayPath = array_map(
+        function ($value) {
+            return implode('/', $value);
+        },
+        array_chunk(explode('/', $path), 2)
+    );
     return $arrayPath[0];
 }

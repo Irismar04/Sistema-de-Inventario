@@ -113,9 +113,9 @@
                 <td><?= ucwords("{$usuario['nom_per']} {$usuario['apellido_per']}"); ?></td>
                 <td><?= $usuario['cedula']; ?></td>
                 <td><?= $usuario['genero']; ?></td>
-                <td><?= $usuario['telefono'] ?? 'No registrado'; ?></td>
-                <td><?= $usuario['direccion'] ?? 'No registrado'; ?></td>
-                <td><?= $usuario['correo'] ?? 'No registrado'; ?></td>      
+                <td><?= $usuario['telefono'] != null ? $usuario['telefono'] : 'No registrado'; ?></td>
+                <td><?= $usuario['direccion'] != null ? $usuario['direccion'] : 'No registrado'; ?></td>
+                <td><?= $usuario['correo'] != null ? $usuario['correo'] : 'No registrado'; ?></td>      
             </tr>
             <?php endforeach; ?>
         </tbody>

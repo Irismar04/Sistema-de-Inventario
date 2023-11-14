@@ -45,7 +45,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">
                         <p>Producto mas vendido</p>
-                        <p><?= ucfirst($productoMasVendido['nom_producto']) ?? '¡No hay productos!' ?></p>
+                        <p><?= isset($productoMasVendido['nom_producto']) ? ucfirst($productoMasVendido['nom_producto']) : '¡No hay productos!' ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="<?= url('salidas') ?>">Más información</a>
@@ -57,7 +57,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
                         <p>Producto menos vendido</p>
-                        <p><?= ucfirst($productoMenosVendido['nom_producto']) ?? '¡No hay productos!' ?></p>
+                        <p><?= isset($productoMenosVendido['nom_producto']) ? ucfirst($productoMenosVendido['nom_producto']) : '¡No hay productos!' ?></p>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="<?= url('salidas') ?>">Más información</a>

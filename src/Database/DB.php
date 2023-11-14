@@ -21,7 +21,7 @@ class DB
                 ';dbname=' . $config['name'],
                 $config['user'],
                 $config['pass'],
-                $config['options'] ?? $defaultOptions
+                isset($config['options']) ? $config['options'] : $defaultOptions
             );
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), $e->getCode());

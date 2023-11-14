@@ -20,7 +20,7 @@ class App
         $this->router = $router;
         $this->viewEngine = new ViewEngine($basePath);
         $this->basePath = $basePath;
-        static::$db = new DB($config ?? []);
+        static::$db = new DB($config != null ? $config : []);
     }
 
     public static function db()

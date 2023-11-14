@@ -11,7 +11,7 @@ trait Registrable
         $modelo = new Historial();
         $modelo->guardar([
             'accion' => $accion,
-            'tabla' => $tabla ?? $this->tabla
+            'tabla' => $tabla != null ? $tabla : $this->tabla
         ]);
     }
 }

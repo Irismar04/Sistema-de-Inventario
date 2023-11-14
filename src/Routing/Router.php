@@ -32,7 +32,12 @@ class Router
 
     public function correr($request)
     {
-        $ruta = $this->rutas[$request->method][$request->path] ?? null;
+        if(isset($this->rutas[$request->method][$request->path])) {
+            $ruta = $this->rutas[$request->method][$request->path];
+        } else {
+            $ruta = null;
+        }
+
         if ($ruta == null) {
             throw new HttpNotFoundException();
         }
@@ -50,13 +55,8 @@ class Router
 
     private function crearRuta($metodo, $uri, $accion)
     {
-        if($uri == '/' && $this->carpetas != '') {
-            $ruta = $this->carpetas;
-        } else {
-            $ruta = $this->carpetas . $uri;
-        }
         $clase = new Ruta($accion);
-        $this->rutas[$metodo][$ruta] = $clase;
+        $this->rutas[$metodo][$uri] = $clase;
 
         return $clase;
     }
