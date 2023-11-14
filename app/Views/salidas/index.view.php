@@ -30,8 +30,10 @@
                 <th rowspan="2">#</th>
                 <th rowspan="2">Nombre del producto</th>
                 <th rowspan="2">Cantidad</th>
-                <th rowspan="2">Precio de salida (USD$)</th>
-                <th rowspan="2">Precio de salida (Bs)</th>
+                <th rowspan="2">Precio Unitario (USD$)</th>
+                <th rowspan="2">Precio Unitario (Bs)</th>
+                <th rowspan="2">Precio Total (USD$)</th>
+                <th rowspan="2">Precio Total (Bs)</th>
                 <th rowspan="2">Motivo de salida</th>
                 <th rowspan="2">Fecha de salida</th>
                 <th colspan="2">Acciones</th>
@@ -48,6 +50,8 @@
                 <td><?= "{$salida['cantidad_salida']} unidades";?></td>
                 <td><?= moneyUsd($salida['precio_salida']);?></td>
                 <td><?= moneyBolivar($salida['precio_salida'] * ($salida['divisa_precio'] ?? 0));?></td>
+                <td><?= moneyUsd(($salida['precio_salida'] * $salida['cantidad_salida']));?></td>
+                <td><?= moneyBolivar(($salida['precio_salida'] * $salida['cantidad_salida']) * ($salida['divisa_precio'] ?? 0));?></td>
                 <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
                 <td><?= formatoDeFecha($salida['fecha_salida']);?></td>
                 <td>

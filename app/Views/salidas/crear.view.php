@@ -60,8 +60,9 @@
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio de venta (USD$)</label>
-                        <input x-model="precio" class="form-control" type="number" step="0.01" id="precio" name="precio_salida" 
-                             placeholder="Precio de venta de los productos" readonly>
+                        <input type="hidden" x-model="precioReal" name="precio_salida">
+                        <input x-model="precio" class="form-control" id="precio"
+                             placeholder="Precio de venta de los productos" disabled>
                     </div>
 
                     <!-- Motivo -->
@@ -92,7 +93,8 @@
             stock: '',
             cantidad: '',
             precio: '',
-            USDollar: new Intl.NumberFormat('en-US', {
+            precioReal: '',
+            USDollar: new Intl.NumberFormat('VES', {
                 style: 'currency',
                 currency: 'USD',
             }),
@@ -103,6 +105,7 @@
               this.productos = data;
               this.producto = '';
               this.precio = '';
+              this.precioReal = '';
             },
 
             updatePrice() {
@@ -111,10 +114,12 @@
               })
 
               this.stock = this.producto.stock
+              this.precioReal = this.producto.precio;
               if(this.quantity != ''){
                 this.precio = this.producto.precio * this.cantidad;
+                this.precio = this.USDollar.format(this.precio);
               } else {
-                this.precio = this.producto;
+                this.precio = this.producto.precio;
               }
             },
         }))

@@ -40,12 +40,7 @@ validator
         {
         rule: 'required',
             errorMessage: 'El precio de salida es obligatorio'
-        },
-        {
-            rule:'number',
-            errorMessage: 'El precio de salida solo puede contener números'
-        }
-        
+        },        
     ])
     .addField('#motivo', [
         {
