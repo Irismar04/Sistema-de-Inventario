@@ -16,7 +16,8 @@ class Controller
 
     public function redirigir($ruta)
     {
-        header("Location: /sistema-de-inventario/public/{$ruta}");
+        $carpetas = str_replace("/index.php", "", $_SERVER['PHP_SELF']);
+        header("Location: {$carpetas}/{$ruta}");
         exit;
     }
 }

@@ -11,7 +11,9 @@ class LoginController extends Controller
     {
         $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
         $path = $request->path;
-        if($path === "/sistema-de-inventario/public" && isset($_SESSION['usuario'])) {
+        $path =  rtrim($path, "/");
+        $carpetas = str_replace("/index.php", "", $_SERVER['PHP_SELF']);
+        if($path === "{$carpetas}" && isset($_SESSION['usuario'])) {
             parent::redirigir('dashboard');
         }
         return parent::ver('inicio', [], '', null);

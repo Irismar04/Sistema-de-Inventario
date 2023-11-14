@@ -83,7 +83,7 @@
     $(document).ready(function () {
         $('#tabla-de-reporte').DataTable({
             language: {
-                url: '<?= assetsDir('/js/es-ES.json') ?>'
+                url: '<?= assets('/js/es-ES.json') ?>'
             }
         });
     });

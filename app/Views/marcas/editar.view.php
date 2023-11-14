@@ -27,4 +27,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/marcas-y-categorias.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/marcas-y-categorias.js') ?>"></script>

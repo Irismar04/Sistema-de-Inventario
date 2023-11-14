@@ -8,11 +8,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Login</title>
-    <link href="<?= assetsDir('/css/styles.css') ?>" rel="stylesheet" />
-    <link rel="stylesheet" href="<?= assetsDir('/css/custom.css') ?>">
-    <script src="<?= assetsDir('/js/all.js') ?>"></script>
+    <link href="<?= assets('/css/styles.css') ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="<?= assets('/css/custom.css') ?>">
+    <script src="<?= assets('/js/all.js') ?>"></script>
 
-    <script src="<?= assetsDir('/js/validaciones.js') ?>"></script>
+    <script src="<?= assets('/js/validaciones.js') ?>"></script>
 </head>
 
 <body class="bg-primary">
@@ -25,7 +25,7 @@
                             <h3 class="text-center font-weight-light my-4">Inicio de sesión</h3>
                             <h4 class="text-center font-weight-light my-4">Sistema de Inventario</h4>
                             <div class="text-center mb-4">
-                                <img src="http://localhost/sistema-de-inventario/assets/img/imagen1.png" height="190px"
+                                <img src="<?= assets('/img/imagen1.png') ?>" height="190px"
                                     alt="Logo InternetCtrl">
                             </div>
                             <?php if (isset($_GET['status'])): ?>
@@ -69,9 +69,9 @@
     </main>
     <?php include __DIR__ . '/partials/footer.view.php' ?>
 
-    <script src="<?= assetsDir('/js/validaciones/login.js') ?>"></script>
-    <script src="<?= assetsDir('/js/bootstrap.bundle.min.js') ?>"></script>
-    <script src="<?= assetsDir('/js/scripts.js') ?>"></script>
-    <script src="<?= assetsDir('/js/alertas.js') ?>"></script>
+    <script src="<?= assets('/js/validaciones/login.js') ?>"></script>
+    <script src="<?= assets('/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= assets('/js/scripts.js') ?>"></script>
+    <script src="<?= assets('/js/alertas.js') ?>"></script>
 </body>
 </html>

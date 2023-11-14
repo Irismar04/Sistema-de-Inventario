@@ -72,7 +72,7 @@
 
       async getProducts() {
         const response = await fetch(
-          `http://localhost/sistema-de-inventario/public/api/salidas-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}`
+          `<?= APP_URL ?>/api/salidas-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}`
           );
         const data = await response.json();
         return data;
@@ -126,7 +126,7 @@
         doc.text(rif, imgX + imgWidth + 10, imgY + imgHeight / 2);
         doc.text(direccion, imgX + imgWidth + 10, imgY + 8 + imgHeight / 2);
         doc.text(nombre, imgX + imgWidth + 10, imgY + 16 + imgHeight / 2);
-        doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
+        doc.addImage('<?= assets('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
         doc.autoTable({
           didDrawPage: (data) => {
             doc.text(fechas, 10, 285);

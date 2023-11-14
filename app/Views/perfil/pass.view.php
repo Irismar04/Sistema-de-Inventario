@@ -62,4 +62,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/cambiar-contrasena.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/cambiar-contrasena.js') ?>"></script>

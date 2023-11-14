@@ -114,4 +114,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/usuarios.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/usuarios.js') ?>"></script>

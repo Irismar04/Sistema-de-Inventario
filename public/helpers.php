@@ -2,16 +2,14 @@
 
 function url($uri)
 {
-    $basePath = dirname(__DIR__);
-    $appConfig = include "{$basePath}/config/app.php";
-    return "{$appConfig['url']}/$uri";
+    $url = APP_URL;
+    return "{$url}/{$uri}";
 }
 
 function root_dir($uri)
 {
-    $basePath = dirname(__DIR__);
-    $appConfig = include "{$basePath}/config/app.php";
-    return "{$appConfig['root_dir']}/$uri";
+    $basePath = ROOT_DIR;
+    return "{$basePath}/{$uri}";
 }
 
 function editarUrl($uri, $id)
@@ -29,9 +27,9 @@ function borrarUrl($uri, $id)
     return url($uri)."/destruir?id=$id";
 }
 
-function assetsDir($file)
+function assets($file)
 {
-    return root_dir('assets')."$file";
+    return url('assets')."$file";
 }
 
 function selected($primero, $segundo)

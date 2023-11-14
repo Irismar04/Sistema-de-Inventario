@@ -11,7 +11,7 @@ class ViewEngine
     protected $viewPath;
     protected $layoutPath;
 
-    public function __construct($basePath = ROOT_PATH)
+    public function __construct($basePath = ROOT_DIR)
     {
         $this->viewPath = "{$basePath}/app/Views";
         $this->layoutPath = "{$basePath}/app/Views/layouts";

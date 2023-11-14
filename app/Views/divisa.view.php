@@ -43,4 +43,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/divisa.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/divisa.js') ?>"></script>

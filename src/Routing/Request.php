@@ -4,15 +4,14 @@ namespace Inventario\Routing;
 
 class Request
 {
-    public $uri;
     public $method;
     public $path;
 
     public function __construct($uri, $method)
     {
-        $this->uri = parse_url($uri);
+        $uri = parse_url($uri);
         $this->method = $method;
-        $this->setPath($this->uri['path']);
+        $this->setPath($uri['path']);
     }
 
     public function setPath(string $uri)

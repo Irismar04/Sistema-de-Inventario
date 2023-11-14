@@ -82,4 +82,4 @@
     </div>
 </main>
 
-<script src="<?= assetsDir('/js/validaciones/productos.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/productos.js') ?>"></script>

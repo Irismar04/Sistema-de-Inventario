@@ -5,12 +5,17 @@ namespace Inventario\Routing;
 class Router
 {
     public $rutas;
-    private $carpetas = '/sistema-de-inventario/public';
+    private $carpetas;
+
+    public function __construct()
+    {
+        $this->carpetas = str_replace("/index.php", "", $_SERVER['PHP_SELF']);
+    }
 
     public function authMiddleware($path, $middleware)
     {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: {$this->carpetas}");
+            header("Location: {$this->carpetas}/");
             exit;
         } else {
             if($path === "{$this->carpetas}/") {
@@ -45,10 +50,10 @@ class Router
 
     private function crearRuta($metodo, $uri, $accion)
     {
-        if($uri != '/') {
-            $ruta = $this->carpetas . $uri;
-        } else {
+        if($uri == '/' && $this->carpetas != '') {
             $ruta = $this->carpetas;
+        } else {
+            $ruta = $this->carpetas . $uri;
         }
         $clase = new Ruta($accion);
         $this->rutas[$metodo][$ruta] = $clase;

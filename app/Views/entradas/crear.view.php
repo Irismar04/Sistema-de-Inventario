@@ -91,7 +91,7 @@
             precio: '',
 
             async getProducts() {
-              const response = await fetch(`http://localhost/sistema-de-inventario/public/api/productos-por-categoria?id=${this.categoria}`);
+              const response = await fetch(`<?= APP_URL ?>/api/productos-por-categoria?id=${this.categoria}`);
               const data = await response.json();
               this.productos = data;
               this.producto = '';
@@ -113,4 +113,4 @@
     })
 </script>
 
-<script src="<?= assetsDir('/js/validaciones/entradas.js') ?>"></script>
+<script src="<?= assets('/js/validaciones/entradas.js') ?>"></script>

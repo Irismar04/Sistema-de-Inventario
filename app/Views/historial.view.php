@@ -31,7 +31,7 @@
     $(document).ready(function () {
         $('#tabla-de-reporte').DataTable({
             language: {
-                url: '<?= assetsDir('/js/es-ES.json') ?>'
+                url: '<?= assets('/js/es-ES.json') ?>'
             },
             order: [[0,'desc']]
         });
@@ -56,7 +56,7 @@
         doc.text(rif, imgX + imgWidth + 10, imgY + imgHeight / 2);
         doc.text(direccion, imgX + imgWidth + 10, imgY + 8 + imgHeight / 2);
         doc.text(nombre, imgX + imgWidth + 10, imgY + 16 + imgHeight / 2);
-        doc.addImage('<?= assetsDir('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
+        doc.addImage('<?= assets('/img/imagen1.png') ?>', 'PNG', imgX, imgY, imgWidth, imgHeight);
         doc.autoTable({
             html: '#tabla-de-reporte',
             includeHiddenHtml: true,
