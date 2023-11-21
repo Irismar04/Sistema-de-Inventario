@@ -36,11 +36,15 @@
                 <th rowspan="2">Precio Total (Bs)</th>
                 <th rowspan="2">Motivo de salida</th>
                 <th rowspan="2">Fecha de salida</th>
-                <th colspan="2">Acciones</th>
+                <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
+                    <th colspan="2">Acciones</th>
+                <?php endif; ?>
             </tr>
+            <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
             <tr>
                 <th>Revertir Salida</th>
             </tr>
+            <?php endif; ?>
         </thead>
         <tbody>
             <?php foreach ($salidas as $salida):?>
@@ -54,6 +58,7 @@
                 <td><?= moneyBolivar(($salida['precio_salida'] * $salida['cantidad_salida']) * ($salida['divisa_precio'] ?? 0));?></td>
                 <td><?= App\Constants\Motivo::match($salida['motivo']);?></td>
                 <td><?= formatoDeFecha($salida['fecha_salida']);?></td>
+                <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
                 <td>
                     <form action="<?= url('salidas/revertir') ?>" method="post"  onsubmit="return confirm('¿Estas seguro que deseas revertir esta salida de inventario?')">
                         <input type="hidden" name="id_producto" value="<?= $salida['id_producto'] ?>">
@@ -64,6 +69,7 @@
                         <button type="submit" class="btn btn-danger">Revertir</button>
                     </form>
                 </td>
+                <?php endif; ?>
             </tr>
             <?php endforeach; ?>
         </tbody>

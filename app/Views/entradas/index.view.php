@@ -36,11 +36,15 @@
                 <th rowspan="2">Precio de entrada (Bs)</th>
                 <th rowspan="2">Fecha de entrada</th>
                 <th rowspan="2">Fecha de vencimiento</th>
-                <th colspan="2">Acciones</th>
+                <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
+                    <th colspan="2">Acciones</th>
+                <?php endif; ?>
             </tr>
+            <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
             <tr>
                 <th>Revertir Entrada</th>
             </tr>
+            <?php endif; ?>
         </thead>
         <tbody>
             <?php foreach ($entradas as $entrada):?>
@@ -52,6 +56,7 @@
                 <td><?= moneyBolivar($entrada['precio_entrada'] * ($entrada['divisa_precio'] ?? 0));?></td>
                 <td><?= formatoDeFecha($entrada['fecha_entrada']);?></td>
                 <td><?= formatoDeFecha($entrada['fecha_vencimiento']);?></td>
+                <?php if($_SESSION['usuario']['nom_rol'] == 'Administrador'): ?>
                 <td>
                     <form action="<?= url('entradas/revertir') ?>" method="post" onsubmit="return confirm('¿Estas seguro que deseas revertir esta entrada de inventario?')">
                         <input type="hidden" name="id_producto" value="<?= $entrada['id_producto'] ?>">
@@ -62,6 +67,7 @@
                         <button type="submit" class="btn btn-danger">Revertir</button>
                     </form>
                 </td>
+                <?php endif; ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
