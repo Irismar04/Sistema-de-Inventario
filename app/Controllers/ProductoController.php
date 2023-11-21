@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Constants\Status;
 use App\Models\Categoria;
+use App\Models\Divisa;
 use App\Models\Marca;
 use App\Models\Producto;
 
@@ -13,7 +14,8 @@ class ProductoController extends Controller
     {
         $modelo = new Producto();
         $productos = $modelo->todosActivos();
-        return parent::ver('productos/index', ['productos' => $productos]);
+        $divisa = (new Divisa())->ultima();
+        return parent::ver('productos/index', ['productos' => $productos, 'divisa' => $divisa]);
     }
 
     public function inactivos()
