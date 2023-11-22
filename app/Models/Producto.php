@@ -207,7 +207,7 @@ class Producto extends Model
         return $resultados;
     }
 
-    public function todosPorFecha($parametros)
+    public function todosConFiltros($parametros)
     {
         $sql = "SELECT producto.*, marca.nom_marca, categoria.nom_categoria FROM {$this->tabla}";
 
@@ -216,12 +216,31 @@ class Producto extends Model
         }
 
         $sql .= " WHERE {$this->tabla}.estado = :estado AND DATE(producto.creado_en) BETWEEN :desde AND :hasta";
+
+        // Parametros opcionales
+        $categoriaExiste = isset($parametros['categoria']) && $parametros['categoria'] != null;
+        $marcaExiste = isset($parametros['marca']) && $parametros['marca'] != 'null';
+        if($categoriaExiste) {
+            $sql .= " AND {$this->tabla}.id_categoria = :categoria";
+        }
+
+        if($marcaExiste) {
+            $sql .= " AND {$this->tabla}.id_marca = :marca";
+        }
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 
         $stmt->bindParam(":desde", $parametros['desde']);
         $stmt->bindParam(":hasta", $parametros['hasta']);
         $stmt->bindParam(":estado", $parametros['estado']);
+
+        if($categoriaExiste) {
+            $stmt->bindParam(":categoria", $parametros['categoria']);
+        }
+
+        if($marcaExiste) {
+            $stmt->bindParam(":marca", $parametros['marca']);
+        }
 
         // Ejecutar la consulta
         $stmt->execute();

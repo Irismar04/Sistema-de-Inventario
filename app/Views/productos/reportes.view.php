@@ -20,6 +20,40 @@
                         </div>
                     </div>
 
+                    <div class="row mb-3">
+                      <!-- Categorias-->
+                    <div class="col">
+                        <label for="categorias" class="form-label">Categoría de los productos</label>
+                        <select x-model="categoria" name="categorias" id="categorias" class="form-select">
+                            <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
+                            <option value="null">Seleccione una categoría (opcional)</option>
+
+                            <!-- Por cada categoria, se crea una variable $categoria que uso para las opciones-->
+                            <?php foreach ($categorias as $categoria):?>
+
+                            <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
+                            <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nom_categoria']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                      <!-- Marcas-->
+                      <div class="col">
+                          <label for="marcas" class="form-label">Marca de los productos</label>
+                          <select x-model="marca" name="marcas" id="marcas" class="form-select">
+                              <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
+                              <option value="null">Seleccione una marca (opcional)</option>
+
+                              <!-- Por cada marca, se crea una variable $marca que uso para las opciones-->
+                              <?php foreach ($marcas as $marca):?>
+
+                              <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
+                              <option value="<?= $marca['id_marca'] ?>"><?= $marca['nom_marca']?></option>
+                              <?php endforeach; ?>
+                          </select>
+                      </div>
+                    </div>
+
                     <!-- Estados -->
                     <div class="mb-3">
                         <label for="estado" class="form-label">Estado</label>
@@ -46,6 +80,8 @@
           fechaDesde: '',
           fechaHasta: '',
           estado: 1,
+          categoria: null,
+          marca: null,
           validator: '',
 
           init() {
@@ -81,7 +117,16 @@
           },
 
           async getProducts() {
-            const response = await fetch(`<?= APP_URL ?>/api/productos-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}&estado=${this.estado}`);
+            let url = `<?= APP_URL ?>/api/productos-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}&estado=${this.estado}`;
+
+            if(this.categoria != null) {
+              url += `&categoria=${this.categoria}`;
+            }
+
+            if(this.marca != null) {
+              url += `&marca=${this.marca}`;
+            }
+            const response = await fetch(url);
             const data = await response.json();
             return data;
           },

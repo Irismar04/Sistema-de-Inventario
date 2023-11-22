@@ -27,7 +27,16 @@ class ProductoController extends Controller
 
     public function reportes()
     {
-        return parent::ver('productos/reportes');
+        $categoria = new Categoria();
+        $marca = new Marca();
+
+        $categorias = $categoria->todosActivos();
+        $marcas = $marca->todosActivos();
+
+        return parent::ver('productos/reportes', [
+            'categorias' => $categorias,
+            'marcas' => $marcas
+        ]);
     }
 
     public function crear()
@@ -109,7 +118,7 @@ class ProductoController extends Controller
     public function productosPorFechaJson()
     {
         $modelo = new Producto();
-        $productos = $modelo->todosPorFecha($_GET);
+        $productos = $modelo->todosConFiltros($_GET);
 
         return json_encode($productos);
     }
