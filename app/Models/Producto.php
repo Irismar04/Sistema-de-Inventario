@@ -218,7 +218,7 @@ class Producto extends Model
         $sql .= " WHERE {$this->tabla}.estado = :estado AND DATE(producto.creado_en) BETWEEN :desde AND :hasta";
 
         // Parametros opcionales
-        $categoriaExiste = isset($parametros['categoria']) && $parametros['categoria'] != null;
+        $categoriaExiste = isset($parametros['categoria']) && $parametros['categoria'] != 'null';
         $marcaExiste = isset($parametros['marca']) && $parametros['marca'] != 'null';
         if($categoriaExiste) {
             $sql .= " AND {$this->tabla}.id_categoria = :categoria";

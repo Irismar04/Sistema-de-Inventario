@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Categoria;
 use App\Models\Divisa;
 use App\Models\Entrada;
+use App\Models\Marca;
 use App\Models\Producto;
 
 class EntradaController extends Controller
@@ -21,7 +22,16 @@ class EntradaController extends Controller
 
     public function reportes()
     {
-        return parent::ver('entradas/reportes');
+        $categoria = new Categoria();
+        $marca = new Marca();
+
+        $categorias = $categoria->todosActivos();
+        $marcas = $marca->todosActivos();
+
+        return parent::ver('entradas/reportes', [
+            'categorias' => $categorias,
+            'marcas' => $marcas
+        ]);
     }
 
     public function crear()
@@ -60,7 +70,7 @@ class EntradaController extends Controller
     public function entradasPorFechaJson()
     {
         $modelo = new Entrada();
-        $entradas = $modelo->todosPorFecha($_GET);
+        $entradas = $modelo->todosConFiltros($_GET);
 
         return json_encode($entradas);
     }
