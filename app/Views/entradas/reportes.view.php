@@ -2,8 +2,7 @@
   <div class="container-fluid px-4">
     <div x-data="pdfMaker" class="col-sm-5 col-md-10 col-lg-10 col-xl-10 py-10 bg-white">
       <div class="mb-3">
-        <a href="<?= url('entradas') ?>" class="btn btn-info absolute"><i
-            class="fas fa-arrow-left"></i>&nbsp;Volver</a>
+        <a href="<?= url('entradas') ?>" class="btn btn-info absolute"><i class="fas fa-arrow-left"></i>&nbsp;Volver</a>
         <h2 class="text-center font-weight-light my-4">Reporte de entradas de productos</h2>
         <form x-ref="form" id="form" autocomplete="off">
 
@@ -24,38 +23,38 @@
           </div>
 
           <div class="row mb-3">
-                      <!-- Categorias-->
-                    <div class="col">
-                        <label for="categorias" class="form-label">Categoría de los productos</label>
-                        <select x-model="categoria" name="categorias" id="categorias" class="form-select">
-                            <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
-                            <option value="null">Seleccione una categoría (opcional)</option>
+            <!-- Categorias-->
+            <div class="col">
+              <label for="categorias" class="form-label">Categoría de los productos</label>
+              <select x-model="categoria" name="categorias" id="categorias" class="form-select">
+                <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
+                <option value="null">Seleccione una categoría (opcional)</option>
 
-                            <!-- Por cada categoria, se crea una variable $categoria que uso para las opciones-->
-                            <?php foreach ($categorias as $categoria):?>
+                <!-- Por cada categoria, se crea una variable $categoria que uso para las opciones-->
+                <?php foreach ($categorias as $categoria):?>
 
-                            <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
-                            <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nom_categoria']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+                <!-- value es lo que guardaremos, que sera el id, nom_categoria es lo que sale al usuario-->
+                <option value="<?= $categoria['id_categoria'] ?>"><?= $categoria['nom_categoria']?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
 
-                      <!-- Marcas-->
-                      <div class="col">
-                          <label for="marcas" class="form-label">Marca de los productos</label>
-                          <select x-model="marca" name="marcas" id="marcas" class="form-select">
-                              <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
-                              <option value="null">Seleccione una marca (opcional)</option>
+            <!-- Marcas-->
+            <div class="col">
+              <label for="marcas" class="form-label">Marca de los productos</label>
+              <select x-model="marca" name="marcas" id="marcas" class="form-select">
+                <!-- Opcion que sale mostrado un texto de ayuda al usuario-->
+                <option value="null">Seleccione una marca (opcional)</option>
 
-                              <!-- Por cada marca, se crea una variable $marca que uso para las opciones-->
-                              <?php foreach ($marcas as $marca):?>
+                <!-- Por cada marca, se crea una variable $marca que uso para las opciones-->
+                <?php foreach ($marcas as $marca):?>
 
-                              <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
-                              <option value="<?= $marca['id_marca'] ?>"><?= $marca['nom_marca']?></option>
-                              <?php endforeach; ?>
-                          </select>
-                      </div>
-                    </div>
+                <!-- value es lo que guardaremos, que sera el id, nom_marca es lo que sale al usuario-->
+                <option value="<?= $marca['id_marca'] ?>"><?= $marca['nom_marca']?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+          </div>
 
           <button class="btn btn-success" type="submit">Generar Reporte</button>
           <input class="btn btn-danger" type="reset" value="Limpiar">
@@ -108,15 +107,15 @@
 
       async getProducts() {
         let url = `<?= APP_URL ?>/api/entradas-por-fecha?desde=${this.fechaDesde}&hasta=${this.fechaHasta}`
-        
-        if(this.categoria != null) {
+
+        if (this.categoria != null) {
           url += `&categoria=${this.categoria}`;
         }
 
-        if(this.marca != null) {
+        if (this.marca != null) {
           url += `&marca=${this.marca}`;
         }
-        
+
         const response = await fetch(url);
         const data = await response.json();
         return data;

@@ -202,7 +202,7 @@ class Salida extends Model
         return $salida;
     }
 
-    public function todosPorFecha($parametros)
+    public function todosConFiltros($parametros)
     {
         // Consulta para buscar todos los registros en la tabla deseada
         $sql = "SELECT *, divisa.cantidad as divisa_precio 
@@ -213,6 +213,17 @@ class Salida extends Model
         WHERE DATE(salida.fecha_salida) BETWEEN :desde AND :hasta
         ";
 
+        // Parametros opcionales
+        $categoriaExiste = isset($parametros['categoria']) && $parametros['categoria'] != 'null';
+        $marcaExiste = isset($parametros['marca']) && $parametros['marca'] != 'null';
+        if($categoriaExiste) {
+            $sql .= " AND producto.id_categoria = :categoria";
+        }
+
+        if($marcaExiste) {
+            $sql .= " AND producto.id_marca = :marca";
+        }
+
         $sql .= " ORDER BY {$this->tabla}.{$this->id} DESC";
 
         // Preparar la consulta
@@ -220,6 +231,14 @@ class Salida extends Model
 
         $stmt->bindParam(":desde", $parametros['desde']);
         $stmt->bindParam(":hasta", $parametros['hasta']);
+
+        if($categoriaExiste) {
+            $stmt->bindParam(":categoria", $parametros['categoria']);
+        }
+
+        if($marcaExiste) {
+            $stmt->bindParam(":marca", $parametros['marca']);
+        }
 
         // Ejecutar la consulta
         $stmt->execute();
